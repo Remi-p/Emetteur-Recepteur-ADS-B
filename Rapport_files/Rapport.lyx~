@@ -1,0 +1,843 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{tikz}
+\usepackage{wallpaper}
+
+
+\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+
+\DeclareFixedFont{\titlefont}{T1}{ppl}{b}{it}{0.5in}
+
+                       
+\def\printauthor{%                  
+    {\@author}}              
+
+\author{%
+    Thibaut Gourdel \\
+    Perrot Rémi \\
+    \texttt{tgourdel@enseirb-matmeca.fr} \\
+    \texttt{rperrot@enseirb-matmeca.fr}
+    }
+\end_preamble
+\options reqno
+\use_default_options false
+\begin_modules
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language french
+\language_package none
+\inputencoding utf8
+\fontencoding T1
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 0
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{titlepage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{picture}
+\end_layout
+
+\end_inset
+
+(0,0)
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+put
+\end_layout
+
+\end_inset
+
+(45,-345)
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+titlefont
+\end_layout
+
+\end_inset
+
+ 
+\color white
+TS 226 : ADS-B
+\color inherit
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+put
+\end_layout
+
+\end_inset
+
+(0, 0) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "30line%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Novembre 2015
+\end_layout
+
+\begin_layout Plain Layout
+Communications numériques
+\end_layout
+
+\begin_layout Plain Layout
+TS226
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+put
+\end_layout
+
+\end_inset
+
+(0,-660)
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "b"
+use_parbox 0
+use_makebox 0
+width "30line%"
+special "none"
+height "1in"
+height_special "totalheight"
+status collapsed
+
+\begin_layout Plain Layout
+\align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+printauthor
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{picture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+ThisCenterWallPaper
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+1
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+../../../Template/PageGarde.pdf
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{titlepage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Couche physique ADS-B
+\end_layout
+
+\begin_layout Section
+Travail préliminaire
+\end_layout
+
+\begin_layout Paragraph
+Question 1
+\end_layout
+
+\begin_layout Standard
+On a le signal 
+\begin_inset Formula $s_{l}(t)=\sum_{k\in Z}p_{b_{k}}(t-kT_{s})$
+\end_inset
+
+, avec 
+\begin_inset Formula $p_{b_{k}}(t)$
+\end_inset
+
+ défini par 
+\begin_inset Formula $p_{0}(t)$
+\end_inset
+
+ pour 
+\begin_inset Formula $b_{k}=0$
+\end_inset
+
+, et 
+\begin_inset Formula $p_{1}(t)$
+\end_inset
+
+ pour 
+\begin_inset Formula $b_{k}=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Soit les fonctions intermédiaires : 
+\begin_inset Formula 
+\begin{align}
+p_{0\_int}(t) & =p_{0}(t)\\
+p_{1\_int}(t) & =p_{1}(t)
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On obtient les fonctions de la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pbk_int"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+Graphique 1 (todo with Matlab)
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{0\_int}(t)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+Graphique 2 (todo with Matlab)
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{1\_int}(t)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Représentation de 
+\begin_inset Formula $p_{b_{k}\_int}(t)$
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Pbk_int"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ainsi, on peut définir la fonction 
+\begin_inset Formula $s_{int}(t)$
+\end_inset
+
+, elle aussi intermédiaire :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+s_{int}(t) & =s_{l}(t)-0,5=\left(\sum_{k\in Z}p_{b_{k}}(t-kT_{s})\right)-0,5\nonumber \\
+ & =\sum_{k\in Z}p_{b_{k}\_int}(t-kT_{s})\label{eq:pbk_int}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On remarque aux sous-figures de la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pbk_int"
+
+\end_inset
+
+ que :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{cases}
+\text{Pour \ensuremath{b_{k}}=0} & \rightarrow p_{0\_int}(t)=p(t)\\
+\text{Pour \ensuremath{b_{k}}=1} & \rightarrow p_{1\_int}(t)=-p(t)
+\end{cases}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Grâce aux symboles 
+\begin_inset Formula $A_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Ak=\begin{cases}
+1 & \text{pour \ensuremath{b_{k}=0}}\\
+-1 & \text{pour }b_{k}=1
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On peut directement remplacer dans l'équation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pbk_int"
+
+\end_inset
+
+ 
+\begin_inset Formula $p_{b_{k}\_int}(t)$
+\end_inset
+
+ par 
+\begin_inset Formula $p(t)$
+\end_inset
+
+, en utilisant 
+\begin_inset Formula $A_{k}$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+s_{int}(t)=\sum_{k\in Z}A_{k}p(t-kT_{s})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Soit finalement 
+\begin_inset Formula $s_{l}(t)=s_{int}(t)+0,5=0,5+\sum_{k\in Z}A_{k}p(t-kT_{s})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subparagraph
+Modulation obtenue :
+\end_layout
+
+\begin_layout Standard
+La modulation obtenue avec 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ nous mets face à un code biphase (Manchester), standardisé par l'IEEE 802.3
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+http://docwiki.cisco.com
+\end_layout
+
+\end_inset
+
+.
+ Ce code est lié à une modulation PSK, Phase Shift Keying, où le signal
+ est un signal carré (plutôt que - habituellement - une sinusoïde).
+ 
+\end_layout
+
+\begin_layout Standard
+Avec ce code, la modulation est effectuée en faisant une convolution entre
+ les symboles 
+\begin_inset Formula $A_{k}$
+\end_inset
+
+ et le filtre 
+\begin_inset Formula $p(t)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Pour retrouver les bits d'entrées, on peut donc convoluer avec le filtre
+ adapté 
+\begin_inset Formula $p^{*}(-t)$
+\end_inset
+
+.
+ Cela à pour effet de créer une sorte de signal triangulaire, dont les points
+ aux moments d'échantillonnage correspondent aux symboles.
+ Voir figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Arch-sl-0.5"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Question1-3.dia
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Architecture pour une modulation avec 
+\begin_inset Formula $s_{l}(t)-0,5$
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Arch-sl-0.5"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 2
+\end_layout
+
+\begin_layout Standard
+Ce sont des filtres adaptés.
+ L'utilisation de ces filtres permet de maximiser le SNR (Signal-to-Noise
+ Ratio).
+\end_layout
+
+\begin_layout Paragraph
+Question 3
+\end_layout
+
+\begin_layout Standard
+On calcul les convolutions entre chaque filtre, pour prouver le fait qu'ils
+ vérifient les critères de Nyquist.
+\end_layout
+
+\begin_layout Standard
+// TODO (soit graphiquement, soit calculatoirement)
+\end_layout
+
+\begin_layout Paragraph
+Question 4
+\end_layout
+
+\begin_layout Standard
+On peut sortir, dans 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Sortir p(t-kTs)"
+
+\end_inset
+
+, 
+\begin_inset Formula $p(t-kT_{S})$
+\end_inset
+
+ puisqu'elle n'est pas aléatoire.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+m_{s_{l}}(t) & =E\left[s_{l}(t)\right]=E\left[0,5+\sum_{k\in Z}A_{k}p(t-kT_{s})\right]\nonumber \\
+ & =0,5+\sum_{k\in Z}E\left[A_{k}\right]p(t-kTs)\label{eq:Sortir p(t-kTs)}\\
+ & =0,5=m_{s_{l}}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $m_{s_{l}}$
+\end_inset
+
+ est donc égal à 0,5 (puisque 
+\begin_inset Formula $E[A_{k}]=0$
+\end_inset
+
+).
+\end_layout
+
+\end_body
+\end_document
