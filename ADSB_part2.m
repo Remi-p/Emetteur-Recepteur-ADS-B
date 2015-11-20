@@ -8,10 +8,8 @@ registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
 
 load('trames_20141120')
 
-
-bit2registre(trames_20141120(:,1), registre);
-
-test1 = decode_name( '001011001100001101110001110000110010110011100000' )
-
-
+for i=1:21
+	registre = bit2registre(trames_20141120(:,i), registre);
+	registre
+end
 

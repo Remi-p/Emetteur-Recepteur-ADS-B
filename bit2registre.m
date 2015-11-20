@@ -1,4 +1,4 @@
-function [] = bit2registre( trame, registre )
+function [ registre ] = bit2registre( trame, registre_old )
 % bit2registre Extrait les informations du vecteur binaire et renvoie le
 %              registre mis a jour seulement si le CRC ne detecte pas
 %              d'erreur
@@ -12,19 +12,19 @@ message = struct('identification',1, ...
 				 'airborne_pos',3, ...
 				 'airborne_vel', 4);
 
+registre = registre_old;
+
 	if(~isempty(trame))
 
 		% Downlink Format (5 first bits)
 		DF = b2d(extract(trame, 1, 1, 5));
 		registre.format = DF;
-		DF
 
 		if(DF == 17)
 	
 		% ICAO aircraft address (AA)
 		AA = b2d(extract(trame, 1, 9,32));
 		registre.adresse = AA;
-		AA
 		
 		%% ******* Datas ********
 		datas = trame(33:88,1);
@@ -32,7 +32,6 @@ message = struct('identification',1, ...
 		% Format Type Code (FTC)
 		FTC = b2d(extract(datas, 1, 1,5));
 		registre.type = FTC;
-		FTC
 		
 			switch type_message(FTC)
 			
@@ -43,8 +42,6 @@ message = struct('identification',1, ...
 					name = sprintf('%d', name);
 					name = decode_name(name);
 					registre.nom = name;
-
-					registre	
 					
 				case message.airborne_pos
 					
@@ -62,21 +59,32 @@ message = struct('identification',1, ...
 
 					% latitude & lonitude
 					lat = b2d(extract(datas, 1, 23, 39));
-                    lat
                     lon = b2d(extract(datas, 1, 40, 56));
                     [ latitude longitude ] = decode_coordonnees(cprFlag, lat, lon);
 
 					registre.latitude = latitude;
                     registre.longitude = longitude;
-                    
-                    registre
-			
+
 				case message.surface_pos
+				
+					% timeFlag
+					TFlag = b2d(extract(datas, 1, 21, 21));
+					registre.timeFlag = TFlag;
+					
+					% cprFlag
+					cprFlag = b2d(extract(datas, 1, 22, 22));
+					registre.cprFlag = cprFlag;
+				
+					% latitude & lonitude
+					lat = b2d(extract(datas, 1, 23, 39));
+                    lon = b2d(extract(datas, 1, 40, 56));
+                    [ latitude longitude ] = decode_coordonnees(cprFlag, lat, lon);
 					
 				case message.airborne_vel
+				
+				
 					
 				otherwise
-					
 			end
 		end
 	end
