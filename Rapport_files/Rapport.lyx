@@ -6,7 +6,23 @@
 \begin_preamble
 \usepackage{tikz}
 \usepackage{wallpaper}
+\usepackage{pgfplots}
 
+% Für graphs
+\pgfplotsset{every axis/.append style={
+    axis x line=middle,    % put the x axis in the middle
+    axis y line=middle,    % put the y axis in the middle
+    axis line style={<->}, % arrows on the axis
+    xlabel={$x$},          % default put x on x-axis
+    ylabel={$y$},          % default put y on y-axis
+    },
+    normplot/.style={color=blue,mark=none,line width=1pt,-},
+    %cmhplot/.style={color=blue,mark=none,line width=1pt,<->},
+    %soldot/.style={color=blue,only marks,mark=*},
+    %holdot/.style={color=blue,fill=white,only marks,mark=*},
+}
+
+\tikzset{>=stealth}
 
 \definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
 
@@ -483,54 +499,10 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-Graphique 1 (todo with Matlab)
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Formula $p_{0\_int}(t)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hfill{}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-Graphique 2 (todo with Matlab)
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Formula $p_{1\_int}(t)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
+\align left
+\begin_inset CommandInset include
+LatexCommand include
+filename "Question1-1.tex"
 
 \end_inset
 
@@ -766,6 +738,34 @@ name "fig:Arch-sl-0.5"
 \end_inset
 
 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+//TODO : Juste waiting for a subfloat
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -788,7 +788,7 @@ Question 3
 \end_layout
 
 \begin_layout Standard
-On calcul les convolutions entre chaque filtre, pour prouver le fait qu'ils
+On calcule les convolutions entre chaque filtre, pour prouver le fait qu'ils
  vérifient les critères de Nyquist.
 \end_layout
 
@@ -798,6 +798,14 @@ On calcul les convolutions entre chaque filtre, pour prouver le fait qu'ils
 
 \begin_layout Paragraph
 Question 4
+\end_layout
+
+\begin_layout Standard
+Calculons le moment d'ordre 1 du signal 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -844,7 +852,133 @@ Question 5
 \end_layout
 
 \begin_layout Standard
+Calcul de la fonction d'autocorrélation.
+\end_layout
 
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+R_{s_{l}}(t,\tau) & =E\left[s_{l}(t)s_{l}^{*}(t+\tau)\right]\nonumber \\
+ & =E\left[\left(0,5+\sum_{k\in Z}A_{k}p(t-kT_{s})\right)\left(0,5+\sum_{k'\in Z}A_{k'}p(t+\tau-k'T_{s})\right)\right]\nonumber \\
+ & =E[0,25+\sum_{k}\sum_{k'}A_{k}A_{k'}p(t-kT_{s})p(t+\tau-k'T_{s})\nonumber \\
+ & \;+\underbrace{0,5\sum_{k\in Z}A_{k}p(t-kT_{s})+0,5\sum_{k'\in Z}A_{k'}p(t+\tau-k'T_{s})}_{\text{=0, puisque }E[A_{k}]=0}]\nonumber \\
+ & =0,25+\sum_{k}\sum_{k'}E\left[A_{k}A_{k'}\right]p(t-kT_{s})p(t+\tau-k'T_{s})
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lorsque 
+\begin_inset Formula $k\neq k'$
+\end_inset
+
+, on a 
+\begin_inset Formula $E\left[A_{k}A_{k'}\right]=E\left[A_{k}\right]E\left[A_{k'}\right]=0$
+\end_inset
+
+, et donc 
+\begin_inset Formula $R_{s_{l}}(t,\tau)=0,25$
+\end_inset
+
+.
+ Par contre, pour 
+\begin_inset Formula $k=k'$
+\end_inset
+
+, on est face à 
+\begin_inset Formula $E\left[A_{k}^{2}\right]$
+\end_inset
+
+, la variance du signal (
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+).
+ Soit :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+R_{s_{l}}(t,\tau)=0,25+\sum_{k}\sigma^{2}p(t-kT_{s})p(t+\tau-kT_{s})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 6
+\end_layout
+
+\begin_layout Standard
+Un processus aléatoire 
+\begin_inset Formula $x(t)$
+\end_inset
+
+ est cyclo-stationnaire, avec 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+ la période de cyclo-stationnarité, lorsque 
+\begin_inset Formula $R_{xx}(t+T_{s},\tau)=R_{xx}(t,\tau)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+R_{s_{l}}(t+T_{s},\tau)=E\left[\left(0,5+\sum_{k\in Z}A_{k}p(t+T_{s}-kT_{s})\right)\left(0,5+\sum_{k'\in Z}A_{k'}p(t+T_{s}+\tau-k'T_{s})\right)\right]\label{eq:cyclostat}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il suffit alors, dans l'équation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:cyclostat"
+
+\end_inset
+
+, de faire le changement de valeur suivant : 
+\begin_inset Formula $k=k-1$
+\end_inset
+
+ et 
+\begin_inset Formula $k'=k'-1$
+\end_inset
+
+.
+ On trouve ainsi la relation :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+R_{s_{l}}(t+T_{s},\tau)=R_{s_{l}}(t,\tau)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le processus est donc cyclo-stationnaire de période 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+.
 \end_layout
 
 \end_body
