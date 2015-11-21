@@ -4,8 +4,12 @@ function [ lat lon ] = decode_coordonnees( cprFlag, LAT, LON )
 %                   a la latitude et longitude
 
 %% Latitude
-Nz = 15 % nb de lat geographiques considerees entre equateur et un pole
-Nb = 17 % nb de bits constituants le registre de latitude
+Nz = 15; % nb de lat geographiques considerees entre equateur et un pole
+Nb = 17; % nb de bits constituants le registre de latitude
+
+% Coordonees reference de l'antenne (ici l'enseirb)
+LATref = 44.8067;
+LONref = -0.605744;
 
 % Etape 1
 Dlati = 360 / (4 * Nz - cprFlag);
@@ -13,7 +17,7 @@ Dlati = 360 / (4 * Nz - cprFlag);
 % Etape 2
 % TO VERIFY : j'ai change la formule a voir avec le prof
 % mais bon resultat
-j = ceil(Dlati) + ceil(0.5 + (MOD(LAT, Dlati) / Dlati) - (LAT / 2^Nb ) );
+j = floor(LATref/Dlati) + floor(0.5 + (mod(LATref, Dlati) / Dlati) - (LAT / 2^Nb ));
 
 % Etape 3
 lat = Dlati*(j + (LAT/(2^Nb)));
@@ -30,11 +34,10 @@ else
 end
 
 % Etape 2
-m = ceil(Dloni) + ceil(0.5 + (MOD(LON, Dloni)/Dloni) - (LON/2^Nb));
+m = floor(LONref/Dloni) + floor(0.5 + (mod(LONref, Dloni)/Dloni) - (LON/2^Nb));
 
 % Etape 3
 lon = Dloni*(m + (LON/2^Nb));
-lon
-    
+
 end
 
