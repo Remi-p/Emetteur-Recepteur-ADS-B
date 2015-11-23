@@ -11,11 +11,11 @@ clear all; close all; clc;
 %% ================================= Definition des variables =============
 
 % Frequence d'echantillonnage
-fe = 20e3;
+fe = 20e6;
 Te = 1/fe;
 
 % Debit symbole
-Ds = 1e3;
+Ds = 1e6;
 Ts = 1/Ds;
 
 % Facteur de surechantillonnage
@@ -72,6 +72,8 @@ grid on;
 nb_bit = 100;
 
 eyediagram(sl(1:nb_bit*Fse), 2*Ts*fe);
+V=axis;
+axis([V(1) V(2) -0.1 1.1]);
 
 %                             Question 13. Densite spectrale de puissance %
 % ----------------------------------------------------------------------- %

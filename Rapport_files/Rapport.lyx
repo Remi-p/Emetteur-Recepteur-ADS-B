@@ -4,8 +4,8 @@
 \begin_header
 \textclass article
 \begin_preamble
-\usepackage{tikz}
-\usepackage{wallpaper}
+\input{../../../Template/LatexPreamble.tex}
+
 \usepackage{pgfplots}
 
 % Für graphs
@@ -23,14 +23,6 @@
 }
 
 \tikzset{>=stealth}
-
-\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
-
-\DeclareFixedFont{\titlefont}{T1}{ppl}{b}{it}{0.5in}
-
-                       
-\def\printauthor{%                  
-    {\@author}}              
 
 \author{%
     Thibaut Gourdel \\
@@ -72,7 +64,7 @@ logicalmkup
 \use_package amsmath 2
 \use_package amssymb 0
 \use_package cancel 0
-\use_package esint 1
+\use_package esint 0
 \use_package mathdots 0
 \use_package mathtools 0
 \use_package mhchem 0
@@ -92,9 +84,9 @@ logicalmkup
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 3cm
+\leftmargin 2cm
 \topmargin 3cm
-\rightmargin 3cm
+\rightmargin 2cm
 \bottommargin 3cm
 \secnumdepth 3
 \tocdepth 3
@@ -156,7 +148,7 @@ put
 
 \end_inset
 
-(45,-345)
+(65,-345)
 \begin_inset ERT
 status collapsed
 
@@ -708,6 +700,17 @@ status open
 
 \begin_layout Plain Layout
 \align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
 	filename Question1-3.dia
 	width 50line%
@@ -715,6 +718,10 @@ status open
 \end_inset
 
 
+\end_layout
+
+\begin_layout LyX-Code
+// TODO : Add le +0.5
 \end_layout
 
 \begin_layout Plain Layout
@@ -742,10 +749,6 @@ name "fig:Arch-sl-0.5"
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -853,12 +856,20 @@ Question 5
 
 \begin_layout Standard
 Calcul de la fonction d'autocorrélation.
+ À la ligne 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:slconj"
+
+\end_inset
+
+, on peut enlever le terme de conjugué (*), puisque le signal est réel.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align}
-R_{s_{l}}(t,\tau) & =E\left[s_{l}(t)s_{l}^{*}(t+\tau)\right]\nonumber \\
+R_{s_{l}}(t,\tau) & =E\left[s_{l}(t)s_{l}^{*}(t+\tau)\right]\label{eq:slconj}\\
  & =E\left[\left(0,5+\sum_{k\in Z}A_{k}p(t-kT_{s})\right)\left(0,5+\sum_{k'\in Z}A_{k'}p(t+\tau-k'T_{s})\right)\right]\nonumber \\
  & =E[0,25+\sum_{k}\sum_{k'}A_{k}A_{k'}p(t-kT_{s})p(t+\tau-k'T_{s})\nonumber \\
  & \;+\underbrace{0,5\sum_{k\in Z}A_{k}p(t-kT_{s})+0,5\sum_{k'\in Z}A_{k'}p(t+\tau-k'T_{s})}_{\text{=0, puisque }E[A_{k}]=0}]\nonumber \\
@@ -892,7 +903,11 @@ Lorsque
 \begin_inset Formula $E\left[A_{k}^{2}\right]$
 \end_inset
 
-, la variance du signal (
+, la variance des 
+\begin_inset Formula $A_{k}$
+\end_inset
+
+ (
 \begin_inset Formula $\sigma^{2}$
 \end_inset
 
@@ -909,6 +924,14 @@ R_{s_{l}}(t,\tau)=0,25+\sum_{k}\sigma^{2}p(t-kT_{s})p(t+\tau-kT_{s})
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+À noter que la variance 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ est égale à 1.
 \end_layout
 
 \begin_layout Paragraph
@@ -979,6 +1002,492 @@ Le processus est donc cyclo-stationnaire de période
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Paragraph
+Question 7
+\end_layout
+
+\begin_layout Standard
+La formule de l'autocorrélation moyennée d'un signal 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ est donnée ci-après :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+R_{s_{l}}(\tau)=\frac{1}{T_{s}}\int_{0}^{T_{S}}R_{s_{l}}(t,\tau)dt
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Soit, en développant :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\tilde{R_{s_{l}}}(\tau) & =\frac{1}{T_{s}}\int_{0}^{T_{s}}\left(0,25+\sum_{k}p(t-kT_{s})p(t+\tau-kT_{s})\right)dt\nonumber \\
+ & =\frac{1}{T_{s}}\left(0,25T_{s}+\int_{0}^{T_{s}}\sum_{k}p(t-kT_{s})p(t+\tau-kT_{s})\right)dt\nonumber \\
+ & =0,25+\frac{1}{T_{s}}\sum_{k}\int_{0}^{T_{s}}p(t-kT_{s})p(t+\tau-kT_{s})dt\label{eq:Rsl moyennee}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On pose 
+\begin_inset Formula $\nu=t-kT_{s}$
+\end_inset
+
+.
+ Ainsi, en remplaçant à la ligne 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Rsl moyennee"
+
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\tilde{R_{s_{l}}}(\tau) & =0,25+\frac{1}{T_{s}}\sum_{k}\int_{-kT_{s}}^{(-k+1)T_{s}}p(\nu)p(\nu+\tau)d\nu\nonumber \\
+ & =0,25+\frac{1}{T_{s}}\int_{R}p(\nu)p(\nu+\tau)d\nu\label{eq:Rsl moyennee nu}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En observant la ligne 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Rsl moyennee nu"
+
+\end_inset
+
+, on remarque qu'il y a la présence de la fonction d'autocorrélation de
+ p : 
+\begin_inset Formula $R_{pp}(\tau)=\int_{R}p(\nu)p^{*}(\nu+\tau)d\nu$
+\end_inset
+
+.
+ Ainsi :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\tilde{R_{s_{l}}}(\tau)=0,25+\frac{1}{T_{s}}R_{pp}(\tau)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tout d'abord, calculons la fonction d'autocorrélation de 
+\begin_inset Formula $p(t)$
+\end_inset
+
+.
+ Graphiquement, on trouve l'autocorrélation de la fonction.
+ En la moyennant par 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+ (le temps symbole donné dans l'énoncé correspond à 
+\begin_inset Formula $1\mu s$
+\end_inset
+
+), puis en ajoutant 
+\begin_inset Formula $0,25$
+\end_inset
+
+, on trouve finalement la représentation de 
+\begin_inset Formula $\tilde{R_{s_{l}}}(\tau)$
+\end_inset
+
+, présentée figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Calcul-graphique-de l'autocorr moy"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "Question7-1.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+// TODO : Vérifier axes de la fct d'autocorr moyennée
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Calcul graphique de l'autocorrélation moyennée
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Calcul-graphique-de l'autocorr moy"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 8
+\end_layout
+
+\begin_layout Standard
+En utilisant la formule donnée dans l'énoncé, on trouve :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\varGamma_{s_{l}}(f) & =\int\tilde{_{R}R_{s_{l}}}(\tau)e^{-j2\pi f\tau}d\tau\nonumber \\
+ & =\int_{R}[0,25+\frac{1}{T_{s}}R_{p}(\tau)e^{-j2\pi f\tau}]d\tau\nonumber \\
+ & =\int_{R}0.25e^{-j2\pi f\tau}d\tau+\frac{1}{T_{s}}\int_{R}R_{p}(\tau)e^{-j2\pi f\tau}d\tau\nonumber \\
+ & =0.25\delta(f)+\frac{1}{T_{s}}\left|P(f)\right|^{2}\label{eq:Densité spectrale TF p(t)}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+// TODO : Vérifier la TF d'une variable constante
+\end_layout
+
+\begin_layout Standard
+On remplace la transformée de Fourier de 
+\begin_inset Formula $R_{p}(\tau)$
+\end_inset
+
+ par le module au carré de la transformée de Fourier de 
+\begin_inset Formula $p(t)$
+\end_inset
+
+ dans l'équation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Densité spectrale TF p(t)"
+
+\end_inset
+
+, en utilisant le théorème de Wiener Khintchine.
+\end_layout
+
+\begin_layout Standard
+Il nous reste donc à calculer 
+\begin_inset Formula $P(f)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $p(t)$
+\end_inset
+
+ est la combinaison de deux portes : 
+\begin_inset Formula $p(t)=-0.5\times\Pi_{0.5T_{s}}(t-0.25)+0.5\times\Pi_{0.5T_{s}}(t-0.75)$
+\end_inset
+
+.
+ On rappelle la transformée de Fourier d'une porte :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\mathcal{F}\left(\Pi_{T}(t)\right)=T\text{sinc}(\nu T)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le sinus cardinal étant défini comme : 
+\begin_inset Formula $\text{sinc}(x)=\frac{sin(2\pi x)}{2\pi x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ainsi :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\left|P(f)\right|^{2} & =\left|\mathcal{F}\left(-0.5\times\Pi_{0.5T_{s}}(t-0.25)+0.5\times\Pi_{0.5T_{s}}(t-0.75)\right)\right|^{2}\nonumber \\
+ & =\left|0.5\times\left(-0.5T_{s}\text{sinc}(0.5T_{s}\times f)\times\exp(-i2\pi f\times0.25T_{s})+0.5T_{s}\text{sinc}(0.5T_{s}\times f)\times\exp(-i2\pi f\times0.75T_{s})\right)\right|^{2}\nonumber \\
+ & =\left|0.25T_{s}\text{sinc}(0.5T_{s}\times f)\left(\exp(-i2\pi f\times0.75T_{s})-\exp(-i2\pi f\times0.25T_{s})\right)\right|^{2}\nonumber \\
+ & =\left|\frac{T_{s}\text{sinc}(0.5T_{s}\times f)}{4}\left(e^{-i2\pi f\times0.5T_{s}}\left(e^{-i2\pi f\times0.25T_{s}}-e^{+i2\pi f\times0.25T_{s}}\right)\right)\right|^{2}\label{eq:P(f) eix - e-ix}\\
+ & =\left|\frac{T_{s}\text{sinc}(0.5\times f)}{4}\left(e^{-i\pi fT_{s}}\times\sin(\frac{1}{2}\pi fT_{s})\times2i\right)\right|^{2}\label{eq:P(f) => donne sin}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour passer de 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:P(f) eix - e-ix"
+
+\end_inset
+
+ à 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:P(f) => donne sin"
+
+\end_inset
+
+, on utilise la formule d'Euler : 
+\begin_inset Formula $\frac{e^{_{ix}}-e^{-ix}}{2i}=\sin(x)$
+\end_inset
+
+.
+ On remarque qu'à la ligne 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:P(f) => donne sin"
+
+\end_inset
+
+, on peut remplacer le module de l'exponentielle par 1.
+ De même, 
+\begin_inset Formula $\left|i\right|=1$
+\end_inset
+
+.
+ Soit finalement :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left|P(f)\right|^{2}=\left|\frac{T_{s}}{2}\text{sinc}(T_{s}\nicefrac{f}{2})\times\sin(T_{s}\nicefrac{f}{2}\pi)\right|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 11
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ sur les 25 premier bits est représenté figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:slt-25-bits"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+À noter que, pour sélectionner les 25 premiers bits, il faut prendre en
+ compte le suréchantillonnage.
+ On prend donc les 
+\begin_inset Formula $25\times\frac{T_{s}}{T_{e}}$
+\end_inset
+
+ premiers éléments du vecteur.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Part1-Question11.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ sur les 25 premiers bits
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:slt-25-bits"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 12
+\end_layout
+
+\begin_layout Standard
+Le diagramme de l'œil de 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ est présenté à la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Diag oeil part1quest12"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Part1-Question12.png
+	width 80line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diagramme de l'œil de de
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+, d'une durée de 
+\begin_inset Formula $2T_{s}$
+\end_inset
+
+, des 100 premiers bits
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Diag oeil part1quest12"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 13
+\end_layout
+
+\begin_layout Standard
+On trace la densité spectrale de puissance théorique de 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ sans fenêtre ni chevauchement.
 \end_layout
 
 \end_body
