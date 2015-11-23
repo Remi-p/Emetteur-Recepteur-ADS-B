@@ -19,6 +19,7 @@ h = crc.detector([1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1])
 
 error
 
+% S'il n'y a pas d'erreur dans la sequence
 if error == 0
 
     registre = registre_old;
@@ -88,11 +89,17 @@ if error == 0
                         lat = b2d(extract(datas, 1, 23, 39));
                         lon = b2d(extract(datas, 1, 40, 56));
                         [ latitude longitude ] = decode_coordonnees(cprFlag, lat, lon);
+                        
+                        registre.latitude = latitude;
+                        registre.longitude = longitude;
 
                     case message.airborne_vel
 
-
-
+                        % velocity
+                        vel_mes = extract(datas, 1, 14, 35);
+                        velocity = decode_velocity( vel_mes );
+                        registre.velocity = velocity;
+                        
                     otherwise
                 end
             end
