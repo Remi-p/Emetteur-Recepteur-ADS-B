@@ -655,8 +655,8 @@ http://docwiki.cisco.com
 \end_inset
 
 .
- Ce code est lié à une modulation PSK, Phase Shift Keying, où le signal
- est un signal carré (plutôt que - habituellement - une sinusoïde).
+ Ce code est lié à une modulation en bande de base : PSK, Phase Shift Keying,
+ où le signal est un signal carré (plutôt que - habituellement - une sinusoïde).
  
 \end_layout
 
@@ -687,6 +687,23 @@ Pour retrouver les bits d'entrées, on peut donc convoluer avec le filtre
 LatexCommand ref
 reference "fig:Arch-sl-0.5"
 
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Remarque Il faut garder à l'esprit que cette modulation fonctionne pour
+ 
+\begin_inset Formula $s_{l}(t)-0,5$
+\end_inset
+
+, pour l'implémenter dans Matlab il faudra soustraire 
+\begin_inset Formula $0,5$
+\end_inset
+
+ au signal 
+\begin_inset Formula $s_{l}(t)$
 \end_inset
 
 .
@@ -781,9 +798,28 @@ Question 2
 \end_layout
 
 \begin_layout Standard
-Ce sont des filtres adaptés.
- L'utilisation de ces filtres permet de maximiser le SNR (Signal-to-Noise
- Ratio).
+\begin_inset Formula $p_{0}^{*}(-t)$
+\end_inset
+
+ et 
+\begin_inset Formula $p_{1}^{*}(-t)$
+\end_inset
+
+ sont, respectivement, les filtres de mise en forme de 
+\begin_inset Formula $p_{0}(t)$
+\end_inset
+
+ et 
+\begin_inset Formula $p_{1}(t)$
+\end_inset
+
+.
+ Ce sont les filtres adaptés ; l'utilisation de tels filtres permet de maximiser
+ le SNR (Signal-to-Noise Ratio).
+\end_layout
+
+\begin_layout Standard
+De ce fait, on minimise la probabilité qu'il y ait une erreur binaire.
 \end_layout
 
 \begin_layout Paragraph
@@ -831,7 +867,7 @@ reference "eq:Sortir p(t-kTs)"
 \begin{align}
 m_{s_{l}}(t) & =E\left[s_{l}(t)\right]=E\left[0,5+\sum_{k\in Z}A_{k}p(t-kT_{s})\right]\nonumber \\
  & =0,5+\sum_{k\in Z}E\left[A_{k}\right]p(t-kTs)\label{eq:Sortir p(t-kTs)}\\
- & =0,5=m_{s_{l}}
+ & =0,5=m_{s_{l}}\label{eq:question 4}
 \end{align}
 
 \end_inset
@@ -840,10 +876,14 @@ m_{s_{l}}(t) & =E\left[s_{l}(t)\right]=E\left[0,5+\sum_{k\in Z}A_{k}p(t-kT_{s})\
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $m_{s_{l}}(t)$
+\end_inset
+
+ ne dépend donc pas de t, et de plus 
 \begin_inset Formula $m_{s_{l}}$
 \end_inset
 
- est donc égal à 0,5 (puisque 
+ est égal à 0,5 (puisque 
 \begin_inset Formula $E[A_{k}]=0$
 \end_inset
 
@@ -856,7 +896,10 @@ Question 5
 
 \begin_layout Standard
 Calcul de la fonction d'autocorrélation.
- À la ligne 
+\end_layout
+
+\begin_layout Standard
+À la ligne 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:slconj"
@@ -918,7 +961,7 @@ Lorsque
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-R_{s_{l}}(t,\tau)=0,25+\sum_{k}\sigma^{2}p(t-kT_{s})p(t+\tau-kT_{s})
+\boxed{R_{s_{l}}(t,\tau)=0,25+\sum_{k}\sigma^{2}p(t-kT_{s})p(t+\tau-kT_{s})}\label{eq:question 5}
 \end{equation}
 
 \end_inset
@@ -939,6 +982,11 @@ Question 6
 \end_layout
 
 \begin_layout Standard
+On utilise les résultats des questions précédentes pour prouver la cyclostationn
+arité.
+\end_layout
+
+\begin_layout Standard
 Un processus aléatoire 
 \begin_inset Formula $x(t)$
 \end_inset
@@ -952,6 +1000,7 @@ Un processus aléatoire
 \end_inset
 
 .
+ Soit, dans notre cas :
 \end_layout
 
 \begin_layout Standard
@@ -988,7 +1037,7 @@ reference "eq:cyclostat"
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-R_{s_{l}}(t+T_{s},\tau)=R_{s_{l}}(t,\tau)
+\boxed{R_{s_{l}}(t+T_{s},\tau)=R_{s_{l}}(t,\tau)}
 \end{equation}
 
 \end_inset
@@ -1001,7 +1050,7 @@ Le processus est donc cyclo-stationnaire de période
 \begin_inset Formula $T_{s}$
 \end_inset
 
-.
+ (temps symbole).
 \end_layout
 
 \begin_layout Paragraph
@@ -1019,7 +1068,7 @@ La formule de l'autocorrélation moyennée d'un signal
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-R_{s_{l}}(\tau)=\frac{1}{T_{s}}\int_{0}^{T_{S}}R_{s_{l}}(t,\tau)dt
+\tilde{R_{s_{l}}}(\tau)=\frac{1}{T_{s}}\int_{0}^{T_{S}}R_{s_{l}}(t,\tau)dt
 \end{equation}
 
 \end_inset
@@ -1028,7 +1077,8 @@ R_{s_{l}}(\tau)=\frac{1}{T_{s}}\int_{0}^{T_{S}}R_{s_{l}}(t,\tau)dt
 \end_layout
 
 \begin_layout Standard
-Soit, en développant :
+Soit, en développant (on rappelle que le symbole du conjugué disparait en
+ raison de la nature réelle du signal) :
 \end_layout
 
 \begin_layout Standard
@@ -1092,7 +1142,7 @@ reference "eq:Rsl moyennee nu"
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-\tilde{R_{s_{l}}}(\tau)=0,25+\frac{1}{T_{s}}R_{pp}(\tau)
+\boxed{\tilde{R_{s_{l}}}(\tau)=0,25+\frac{1}{T_{s}}R_{pp}(\tau)}
 \end{equation}
 
 \end_inset
@@ -1102,11 +1152,32 @@ reference "eq:Rsl moyennee nu"
 
 \begin_layout Standard
 Tout d'abord, calculons la fonction d'autocorrélation de 
-\begin_inset Formula $p(t)$
+\begin_inset Formula $p(\frac{t}{T_{s}})$
 \end_inset
 
 .
- Graphiquement, on trouve l'autocorrélation de la fonction.
+ Graphiquement, on trouve l'autocorrélation de la fonction (voir figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Calcul-graphique-de l'autocorr moy"
+
+\end_inset
+
+.a).
+ On prend 
+\begin_inset Formula $\nicefrac{t}{T_{s}}$
+\end_inset
+
+ pour pouvoir gérer tous les 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+, même si dans notre exemple 
+\begin_inset Formula $T_{s}=1$
+\end_inset
+
+.
  En la moyennant par 
 \begin_inset Formula $T_{s}$
 \end_inset
@@ -1130,7 +1201,7 @@ reference "fig:Calcul-graphique-de l'autocorr moy"
 
 \end_inset
 
-.
+.b.
 \end_layout
 
 \begin_layout Standard
@@ -1149,10 +1220,6 @@ filename "Question7-1.tex"
 
 \end_layout
 
-\begin_layout LyX-Code
-// TODO : Vérifier axes de la fct d'autocorr moyennée
-\end_layout
-
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
@@ -1169,10 +1236,6 @@ name "fig:Calcul-graphique-de l'autocorr moy"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1201,10 +1264,6 @@ En utilisant la formule donnée dans l'énoncé, on trouve :
 \end_inset
 
 
-\end_layout
-
-\begin_layout LyX-Code
-// TODO : Vérifier la TF d'une variable constante
 \end_layout
 
 \begin_layout Standard
@@ -1238,8 +1297,13 @@ Il nous reste donc à calculer
 \begin_inset Formula $p(t)$
 \end_inset
 
- est la combinaison de deux portes : 
-\begin_inset Formula $p(t)=-0.5\times\Pi_{0.5T_{s}}(t-0.25)+0.5\times\Pi_{0.5T_{s}}(t-0.75)$
+ est la combinaison de deux portes (on prend bien garde à ne pas oublier
+ 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+) : 
+\begin_inset Formula $p(t)=-0.5\times\Pi_{0.5T_{s}}(t-\frac{T_{s}}{4})+0.5\times\Pi_{0.5T_{s}}(t-\frac{3T_{s}}{4})$
 \end_inset
 
 .
@@ -1258,8 +1322,8 @@ Il nous reste donc à calculer
 \end_layout
 
 \begin_layout Standard
-Le sinus cardinal étant défini comme : 
-\begin_inset Formula $\text{sinc}(x)=\frac{sin(2\pi x)}{2\pi x}$
+On défini le sinus cardinal comme : 
+\begin_inset Formula $\text{sinc}(x)=\frac{sin(\pi x)}{\pi x}$
 \end_inset
 
 .
@@ -1272,11 +1336,12 @@ Ainsi :
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align}
-\left|P(f)\right|^{2} & =\left|\mathcal{F}\left(-0.5\times\Pi_{0.5T_{s}}(t-0.25)+0.5\times\Pi_{0.5T_{s}}(t-0.75)\right)\right|^{2}\nonumber \\
- & =\left|0.5\times\left(-0.5T_{s}\text{sinc}(0.5T_{s}\times f)\times\exp(-i2\pi f\times0.25T_{s})+0.5T_{s}\text{sinc}(0.5T_{s}\times f)\times\exp(-i2\pi f\times0.75T_{s})\right)\right|^{2}\nonumber \\
- & =\left|0.25T_{s}\text{sinc}(0.5T_{s}\times f)\left(\exp(-i2\pi f\times0.75T_{s})-\exp(-i2\pi f\times0.25T_{s})\right)\right|^{2}\nonumber \\
- & =\left|\frac{T_{s}\text{sinc}(0.5T_{s}\times f)}{4}\left(e^{-i2\pi f\times0.5T_{s}}\left(e^{-i2\pi f\times0.25T_{s}}-e^{+i2\pi f\times0.25T_{s}}\right)\right)\right|^{2}\label{eq:P(f) eix - e-ix}\\
- & =\left|\frac{T_{s}\text{sinc}(0.5\times f)}{4}\left(e^{-i\pi fT_{s}}\times\sin(\frac{1}{2}\pi fT_{s})\times2i\right)\right|^{2}\label{eq:P(f) => donne sin}
+\left|P(f)\right|^{2} & =\left|\mathcal{F}\left(-0.5\times\Pi_{0.5T_{s}}(t-\nicefrac{T_{s}}{4})+0.5\times\Pi_{0.5T_{s}}(t-\nicefrac{3T_{s}}{4})\right)\right|^{2}\nonumber \\
+ & =\left|0.5T_{s}\times\left(-0.5\text{sinc}(0.5T_{s}\times f)\times\exp(-i2\pi f\times\frac{T_{s}}{4})\right.\right.\nonumber \\
+ & \quad\left.\left.+0.5\text{sinc}(0.5T_{s}\times f)\times\exp(-i2\pi f\times\frac{3T_{s}}{4})\right)\right|^{2}\nonumber \\
+ & =\left|0.25T_{s}\text{sinc}(0.5T_{s}\times f)\left(\exp(-i\pi f\times\frac{3T_{s}}{2})-\exp(-i2\pi f\times\frac{T_{s}}{2})\right)\right|^{2}\nonumber \\
+ & =\left|\frac{T_{s}\text{sinc}(0.5T_{s}\times f)}{4}\left(e^{-i\pi fT_{s}}\left(e^{-i\pi f\times0.5T_{s}}-e^{+i\pi f\times0.5T_{s}}\right)\right)\right|^{2}\label{eq:P(f) eix - e-ix}\\
+ & =\left|\frac{T_{s}\text{sinc}(0.5T_{s}\times f)}{4}\left(e^{-i\pi fT_{s}}\times\sin(\frac{1}{2}\pi fT_{s})\times2i\right)\right|^{2}\label{eq:P(f) => donne sin}
 \end{align}
 
 \end_inset
@@ -1322,13 +1387,56 @@ reference "eq:P(f) => donne sin"
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-\left|P(f)\right|^{2}=\left|\frac{T_{s}}{2}\text{sinc}(T_{s}\nicefrac{f}{2})\times\sin(T_{s}\nicefrac{f}{2}\pi)\right|^{2}
-\]
+\begin{align}
+\left|P(f)\right|^{2} & =\left(\frac{T_{s}}{2}\text{sinc}(\frac{T_{s}f}{2})\times\sin(\frac{T_{s}f\pi}{2})\right)^{2}\nonumber \\
+ & =\left(\frac{T_{s}^{2}f\pi}{4}\times\text{sinc}^{2}(\frac{T_{s}f}{2})\right)^{2}\nonumber \\
+ & =\frac{T_{s}^{4}\left(f\pi\right)^{2}}{16}\times\text{sinc}^{4}(\frac{T_{s}f}{2})
+\end{align}
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+D'où, ainsi, l'expression de la densité spectrale de puissance de 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+, en 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:densite spec sl"
+
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\varGamma_{s_{l}}(f) & =0.25\delta(f)+\frac{1}{T_{s}}\left(\frac{T_{s}^{4}\left(f\pi\right)^{2}}{16}\times\text{sinc}^{4}(\frac{T_{s}f}{2})\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boxed{\varGamma_{s_{l}}(f)=0.25\delta(f)+\frac{T_{s}^{3}\left(f\pi\right)^{2}}{16}\times\text{sinc}^{4}(\frac{T_{s}f}{2})}\label{eq:densite spec sl}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 9
 \end_layout
 
 \begin_layout Paragraph
@@ -1446,7 +1554,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Diagramme de l'œil de de
+Diagramme de l'œil de de 
 \begin_inset Formula $s_{l}(t)$
 \end_inset
 
