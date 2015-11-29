@@ -1403,6 +1403,13 @@ D'où, ainsi, l'expression de la densité spectrale de puissance de
 \begin_inset Formula $s_{l}(t)$
 \end_inset
 
+, en 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:densite spec sl"
+
+\end_inset
+
  :
 \end_layout
 
@@ -1420,7 +1427,7 @@ D'où, ainsi, l'expression de la densité spectrale de puissance de
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-\boxed{\varGamma_{s_{l}}(f)=0.25\delta(f)+\frac{T_{s}^{3}\left(f\pi\right)^{2}}{16}\times\text{sinc}^{4}(\frac{T_{s}f}{2})}
+\boxed{\varGamma_{s_{l}}(f)=0.25\delta(f)+\frac{T_{s}^{3}\left(f\pi\right)^{2}}{16}\times\text{sinc}^{4}(\frac{T_{s}f}{2})}\label{eq:densite spec sl}
 \end{equation}
 
 \end_inset
@@ -1589,6 +1596,79 @@ On trace la densité spectrale de puissance théorique de
 \end_inset
 
  sans fenêtre ni chevauchement.
+\end_layout
+
+\begin_layout Subsubsection*
+Question 15
+\end_layout
+
+\begin_layout Subsubsection*
+Question 16
+\end_layout
+
+\begin_layout Standard
+Pour déterminer l'ordre de grandeur du décalage de fréquence Doppler d'un
+ avion se déplaçant à 900km/h on utilise la formule suivante :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{recepteur}=\frac{f_{source}}{1-\frac{V_{source}}{V_{phase}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+où 
+\begin_inset Formula $f_{source}$
+\end_inset
+
+ et 
+\begin_inset Formula $f_{recepteur}$
+\end_inset
+
+ sont respectivement les fréquences des signaux émetteur et recepteur, 
+\begin_inset Formula $V_{source}$
+\end_inset
+
+ et 
+\begin_inset Formula $V_{phase}$
+\end_inset
+
+ sont respectivement la vitesse de la source et la vitesse de phase du signal
+ émis.
+ Faisons l'application numérique dans le cas de l'exemple :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\triangle f=f_{recepteur}-f_{source}=1,09.10^{9}-\frac{1,09.10^{9}}{1-\frac{250}{3.10^{8}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\triangle f\HF900Hz
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour un avion se déplaçant à 900km/h, l'ordre de grandeur du décalage introduit
+ par l'effet Doppler est d'environ 900 Hz.
 \end_layout
 
 \end_body

@@ -14,10 +14,9 @@ message = struct('identification',1, ...
 				 'airborne_vel', 4);
 
 % detection d'erreurs
-h = crc.detector([1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1])
-[outdata error] = detect(h, trame); 
-
-error
+%~ h = crc.detector([1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1])
+%~ [outdata error] = detect(h, trame); 
+%~ error 
 
 % S'il n'y a pas d'erreur dans la sequence
 if error == 0
@@ -101,6 +100,8 @@ if error == 0
                         registre.velocity = velocity;
                         
                     otherwise
+                    
+                    
                 end
             end
         end

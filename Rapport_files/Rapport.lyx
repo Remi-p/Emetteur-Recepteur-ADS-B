@@ -1598,5 +1598,167 @@ On trace la densité spectrale de puissance théorique de
  sans fenêtre ni chevauchement.
 \end_layout
 
+\begin_layout Subsubsection*
+Question 15
+\end_layout
+
+\begin_layout Standard
+On a :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\rho(\delta_{t}^{'},\delta_{f}^{'})=\frac{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt}{\sqrt{\intop_{0}^{T_{p}}}|s_{p(t)}|^{2}dt\,\sqrt{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|y_{l(t)}|^{2}dt}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nous allons montrer que 
+\begin_inset Formula $|\rho(\delta_{t}^{'},\delta_{f}^{'})|\leq1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D'après l'inégalité de Cauchy-Schwartz : 
+\begin_inset Formula $|\intop_{R}u(t)v^{*}(t)dt|\leq\sqrt{\intop_{R}|u(t)|^{2}dt}\sqrt{\intop_{R}|v(t)|^{2}dt}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tout d'abord posons 
+\begin_inset Formula $u(t)=y_{l(t)}$
+\end_inset
+
+ et 
+\begin_inset Formula $v^{*}(t)=s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Donc
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt|\leq\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|s_{p}(t-\delta_{t}^{'})|^{2}dt}\,\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|y_{l}(t)|^{2}dt}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Effectuons un changement de variable pour la première racine carré du second
+ membre : 
+\begin_inset Formula $t^{'}=t-\delta_{t}^{'}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D'où 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt|\leq\sqrt{\int_{0}^{T_{p}}|s_{p}(t)|^{2}dt}\,\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|y_{l}(t)|^{2}dt}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On a donc bien le résultat suivant :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+|\rho(\delta_{t}^{'},\delta_{f}^{'})|\leq1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Question 16
+\end_layout
+
+\begin_layout Standard
+Pour déterminer l'ordre de grandeur du décalage de fréquence Doppler d'un
+ avion se déplaçant à 900km/h on utilise la formule suivante :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{recepteur}=\frac{f_{source}}{1-\frac{V_{source}}{V_{phase}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+où 
+\begin_inset Formula $f_{source}$
+\end_inset
+
+ et 
+\begin_inset Formula $f_{recepteur}$
+\end_inset
+
+ sont respectivement les fréquences des signaux émetteur et recepteur, 
+\begin_inset Formula $V_{source}$
+\end_inset
+
+ et 
+\begin_inset Formula $V_{phase}$
+\end_inset
+
+ sont respectivement la vitesse de la source et la vitesse de phase du signal
+ émis.
+ Faisons l'application numérique dans le cas de l'exemple :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\triangle f=f_{recepteur}-f_{source}=1,09.10^{9}-\frac{1,09.10^{9}}{1-\frac{250}{3.10^{8}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\triangle f\HF900Hz
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour un avion se déplaçant à 900km/h, l'ordre de grandeur du décalage introduit
+ par l'effet Doppler est d'environ 900 Hz.
+\end_layout
+
 \end_body
 \end_document
