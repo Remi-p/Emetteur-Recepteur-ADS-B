@@ -1,0 +1,2104 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\input{../../../Template/LatexPreamble.tex}
+
+\usepackage{pgfplots}
+
+% Für graphs
+\pgfplotsset{every axis/.append style={
+    axis x line=middle,    % put the x axis in the middle
+    axis y line=middle,    % put the y axis in the middle
+    axis line style={<->}, % arrows on the axis
+    xlabel={$x$},          % default put x on x-axis
+    ylabel={$y$},          % default put y on y-axis
+    },
+    normplot/.style={color=blue,mark=none,line width=1pt,-},
+    %cmhplot/.style={color=blue,mark=none,line width=1pt,<->},
+    %soldot/.style={color=blue,only marks,mark=*},
+    %holdot/.style={color=blue,fill=white,only marks,mark=*},
+}
+
+\tikzset{>=stealth}
+
+\author{%
+    Thibaut Gourdel \\
+    Perrot Rémi \\
+    \texttt{tgourdel@enseirb-matmeca.fr} \\
+    \texttt{rperrot@enseirb-matmeca.fr}
+    }
+\end_preamble
+\options reqno
+\use_default_options false
+\begin_modules
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language french
+\language_package none
+\inputencoding utf8
+\fontencoding T1
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 0
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 3cm
+\rightmargin 2cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{titlepage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{picture}
+\end_layout
+
+\end_inset
+
+(0,0)
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+put
+\end_layout
+
+\end_inset
+
+(65,-345)
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+titlefont
+\end_layout
+
+\end_inset
+
+ 
+\color white
+TS 226 : ADS-B
+\color inherit
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+put
+\end_layout
+
+\end_inset
+
+(0, 0) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "30line%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Novembre 2015
+\end_layout
+
+\begin_layout Plain Layout
+Communications numériques
+\end_layout
+
+\begin_layout Plain Layout
+TS226
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+put
+\end_layout
+
+\end_inset
+
+(0,-660)
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "b"
+use_parbox 0
+use_makebox 0
+width "30line%"
+special "none"
+height "1in"
+height_special "totalheight"
+status collapsed
+
+\begin_layout Plain Layout
+\align left
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+printauthor
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{picture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+ThisCenterWallPaper
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+1
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+../../../Template/PageGarde.pdf
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{titlepage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Couche physique ADS-B
+\end_layout
+
+\begin_layout Section
+Travail préliminaire
+\end_layout
+
+\begin_layout Paragraph
+Question 1
+\end_layout
+
+\begin_layout Standard
+On a le signal 
+\begin_inset Formula $s_{l}(t)=\sum_{k\in Z}p_{b_{k}}(t-kT_{s})$
+\end_inset
+
+, avec 
+\begin_inset Formula $p_{b_{k}}(t)$
+\end_inset
+
+ défini par 
+\begin_inset Formula $p_{0}(t)$
+\end_inset
+
+ pour 
+\begin_inset Formula $b_{k}=0$
+\end_inset
+
+, et 
+\begin_inset Formula $p_{1}(t)$
+\end_inset
+
+ pour 
+\begin_inset Formula $b_{k}=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Soit les fonctions intermédiaires : 
+\begin_inset Formula 
+\begin{align}
+p_{0\_int}(t) & =p_{0}(t)\\
+p_{1\_int}(t) & =p_{1}(t)
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On obtient les fonctions de la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pbk_int"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align left
+\begin_inset CommandInset include
+LatexCommand include
+filename "Question1-1.tex"
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Représentation de 
+\begin_inset Formula $p_{b_{k}\_int}(t)$
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Pbk_int"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ainsi, on peut définir la fonction 
+\begin_inset Formula $s_{int}(t)$
+\end_inset
+
+, elle aussi intermédiaire :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+s_{int}(t) & =s_{l}(t)-0,5=\left(\sum_{k\in Z}p_{b_{k}}(t-kT_{s})\right)-0,5\nonumber \\
+ & =\sum_{k\in Z}p_{b_{k}\_int}(t-kT_{s})\label{eq:pbk_int}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On remarque aux sous-figures de la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pbk_int"
+
+\end_inset
+
+ que :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{cases}
+\text{Pour \ensuremath{b_{k}}=0} & \rightarrow p_{0\_int}(t)=p(t)\\
+\text{Pour \ensuremath{b_{k}}=1} & \rightarrow p_{1\_int}(t)=-p(t)
+\end{cases}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Grâce aux symboles 
+\begin_inset Formula $A_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Ak=\begin{cases}
+1 & \text{pour \ensuremath{b_{k}=0}}\\
+-1 & \text{pour }b_{k}=1
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On peut directement remplacer dans l'équation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pbk_int"
+
+\end_inset
+
+ 
+\begin_inset Formula $p_{b_{k}\_int}(t)$
+\end_inset
+
+ par 
+\begin_inset Formula $p(t)$
+\end_inset
+
+, en utilisant 
+\begin_inset Formula $A_{k}$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+s_{int}(t)=\sum_{k\in Z}A_{k}p(t-kT_{s})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Soit finalement 
+\begin_inset Formula $s_{l}(t)=s_{int}(t)+0,5=0,5+\sum_{k\in Z}A_{k}p(t-kT_{s})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subparagraph
+Modulation obtenue :
+\end_layout
+
+\begin_layout Standard
+La modulation obtenue avec 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ nous mets face à un code biphase (Manchester), standardisé par l'IEEE 802.3
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+http://docwiki.cisco.com
+\end_layout
+
+\end_inset
+
+.
+ Ce code est lié à une modulation en bande de base : PSK, Phase Shift Keying,
+ où le signal est un signal carré (plutôt que - habituellement - une sinusoïde).
+ 
+\end_layout
+
+\begin_layout Standard
+Avec ce code, la modulation est effectuée en faisant une convolution entre
+ les symboles 
+\begin_inset Formula $A_{k}$
+\end_inset
+
+ et le filtre 
+\begin_inset Formula $p(t)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Pour retrouver les bits d'entrées, on peut donc convoluer avec le filtre
+ adapté 
+\begin_inset Formula $p^{*}(-t)$
+\end_inset
+
+.
+ Cela à pour effet de créer une sorte de signal triangulaire, dont les points
+ aux moments d'échantillonnage correspondent aux symboles.
+ Voir figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Arch-sl-0.5"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Remarque Il faut garder à l'esprit que cette modulation fonctionne pour
+ 
+\begin_inset Formula $s_{l}(t)-0,5$
+\end_inset
+
+, pour l'implémenter dans Matlab il faudra soustraire 
+\begin_inset Formula $0,5$
+\end_inset
+
+ au signal 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Question1-3.dia
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+// TODO : Add le +0.5
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Architecture pour une modulation avec 
+\begin_inset Formula $s_{l}(t)-0,5$
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Arch-sl-0.5"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+//TODO : Juste waiting for a subfloat
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $p_{0}^{*}(-t)$
+\end_inset
+
+ et 
+\begin_inset Formula $p_{1}^{*}(-t)$
+\end_inset
+
+ sont, respectivement, les filtres de mise en forme de 
+\begin_inset Formula $p_{0}(t)$
+\end_inset
+
+ et 
+\begin_inset Formula $p_{1}(t)$
+\end_inset
+
+.
+ Ce sont les filtres adaptés ; l'utilisation de tels filtres permet de maximiser
+ le SNR (Signal-to-Noise Ratio).
+\end_layout
+
+\begin_layout Standard
+De ce fait, on minimise la probabilité qu'il y ait une erreur binaire.
+\end_layout
+
+\begin_layout Paragraph
+Question 3
+\end_layout
+
+\begin_layout Standard
+On calcule les convolutions entre chaque filtre, pour prouver le fait qu'ils
+ vérifient les critères de Nyquist.
+\end_layout
+
+\begin_layout Standard
+// TODO (soit graphiquement, soit calculatoirement)
+\end_layout
+
+\begin_layout Paragraph
+Question 4
+\end_layout
+
+\begin_layout Standard
+Calculons le moment d'ordre 1 du signal 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+On peut sortir, dans 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Sortir p(t-kTs)"
+
+\end_inset
+
+, 
+\begin_inset Formula $p(t-kT_{S})$
+\end_inset
+
+ puisqu'elle n'est pas aléatoire.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+m_{s_{l}}(t) & =E\left[s_{l}(t)\right]=E\left[0,5+\sum_{k\in Z}A_{k}p(t-kT_{s})\right]\nonumber \\
+ & =0,5+\sum_{k\in Z}E\left[A_{k}\right]p(t-kTs)\label{eq:Sortir p(t-kTs)}\\
+ & =0,5=m_{s_{l}}\label{eq:question 4}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $m_{s_{l}}(t)$
+\end_inset
+
+ ne dépend donc pas de t, et de plus 
+\begin_inset Formula $m_{s_{l}}$
+\end_inset
+
+ est égal à 0,5 (puisque 
+\begin_inset Formula $E[A_{k}]=0$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Paragraph
+Question 5
+\end_layout
+
+\begin_layout Standard
+Calcul de la fonction d'autocorrélation.
+\end_layout
+
+\begin_layout Standard
+À la ligne 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:slconj"
+
+\end_inset
+
+, on peut enlever le terme de conjugué (*), puisque le signal est réel.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+R_{s_{l}}(t,\tau) & =E\left[s_{l}(t)s_{l}^{*}(t+\tau)\right]\label{eq:slconj}\\
+ & =E\left[\left(0,5+\sum_{k\in Z}A_{k}p(t-kT_{s})\right)\left(0,5+\sum_{k'\in Z}A_{k'}p(t+\tau-k'T_{s})\right)\right]\nonumber \\
+ & =E[0,25+\sum_{k}\sum_{k'}A_{k}A_{k'}p(t-kT_{s})p(t+\tau-k'T_{s})\nonumber \\
+ & \;+\underbrace{0,5\sum_{k\in Z}A_{k}p(t-kT_{s})+0,5\sum_{k'\in Z}A_{k'}p(t+\tau-k'T_{s})}_{\text{=0, puisque }E[A_{k}]=0}]\nonumber \\
+ & =0,25+\sum_{k}\sum_{k'}E\left[A_{k}A_{k'}\right]p(t-kT_{s})p(t+\tau-k'T_{s})
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lorsque 
+\begin_inset Formula $k\neq k'$
+\end_inset
+
+, on a 
+\begin_inset Formula $E\left[A_{k}A_{k'}\right]=E\left[A_{k}\right]E\left[A_{k'}\right]=0$
+\end_inset
+
+, et donc 
+\begin_inset Formula $R_{s_{l}}(t,\tau)=0,25$
+\end_inset
+
+.
+ Par contre, pour 
+\begin_inset Formula $k=k'$
+\end_inset
+
+, on est face à 
+\begin_inset Formula $E\left[A_{k}^{2}\right]$
+\end_inset
+
+, la variance des 
+\begin_inset Formula $A_{k}$
+\end_inset
+
+ (
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+).
+ Soit :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boxed{R_{s_{l}}(t,\tau)=0,25+\sum_{k}\sigma^{2}p(t-kT_{s})p(t+\tau-kT_{s})}\label{eq:question 5}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+À noter que la variance 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ est égale à 1.
+\end_layout
+
+\begin_layout Paragraph
+Question 6
+\end_layout
+
+\begin_layout Standard
+On utilise les résultats des questions précédentes pour prouver la cyclostationn
+arité.
+\end_layout
+
+\begin_layout Standard
+Un processus aléatoire 
+\begin_inset Formula $x(t)$
+\end_inset
+
+ est cyclo-stationnaire, avec 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+ la période de cyclo-stationnarité, lorsque 
+\begin_inset Formula $R_{xx}(t+T_{s},\tau)=R_{xx}(t,\tau)$
+\end_inset
+
+.
+ Soit, dans notre cas :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+R_{s_{l}}(t+T_{s},\tau)=E\left[\left(0,5+\sum_{k\in Z}A_{k}p(t+T_{s}-kT_{s})\right)\left(0,5+\sum_{k'\in Z}A_{k'}p(t+T_{s}+\tau-k'T_{s})\right)\right]\label{eq:cyclostat}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il suffit alors, dans l'équation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:cyclostat"
+
+\end_inset
+
+, de faire le changement de valeur suivant : 
+\begin_inset Formula $k=k-1$
+\end_inset
+
+ et 
+\begin_inset Formula $k'=k'-1$
+\end_inset
+
+.
+ On trouve ainsi la relation :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boxed{R_{s_{l}}(t+T_{s},\tau)=R_{s_{l}}(t,\tau)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le processus est donc cyclo-stationnaire de période 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+ (temps symbole).
+\end_layout
+
+\begin_layout Paragraph
+Question 7
+\end_layout
+
+\begin_layout Standard
+La formule de l'autocorrélation moyennée d'un signal 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ est donnée ci-après :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\tilde{R_{s_{l}}}(\tau)=\frac{1}{T_{s}}\int_{0}^{T_{S}}R_{s_{l}}(t,\tau)dt
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Soit, en développant (on rappelle que le symbole du conjugué disparait en
+ raison de la nature réelle du signal) :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\tilde{R_{s_{l}}}(\tau) & =\frac{1}{T_{s}}\int_{0}^{T_{s}}\left(0,25+\sum_{k}p(t-kT_{s})p(t+\tau-kT_{s})\right)dt\nonumber \\
+ & =\frac{1}{T_{s}}\left(0,25T_{s}+\int_{0}^{T_{s}}\sum_{k}p(t-kT_{s})p(t+\tau-kT_{s})\right)dt\nonumber \\
+ & =0,25+\frac{1}{T_{s}}\sum_{k}\int_{0}^{T_{s}}p(t-kT_{s})p(t+\tau-kT_{s})dt\label{eq:Rsl moyennee}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On pose 
+\begin_inset Formula $\nu=t-kT_{s}$
+\end_inset
+
+.
+ Ainsi, en remplaçant à la ligne 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Rsl moyennee"
+
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\tilde{R_{s_{l}}}(\tau) & =0,25+\frac{1}{T_{s}}\sum_{k}\int_{-kT_{s}}^{(-k+1)T_{s}}p(\nu)p(\nu+\tau)d\nu\nonumber \\
+ & =0,25+\frac{1}{T_{s}}\int_{R}p(\nu)p(\nu+\tau)d\nu\label{eq:Rsl moyennee nu}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En observant la ligne 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Rsl moyennee nu"
+
+\end_inset
+
+, on remarque qu'il y a la présence de la fonction d'autocorrélation de
+ p : 
+\begin_inset Formula $R_{pp}(\tau)=\int_{R}p(\nu)p^{*}(\nu+\tau)d\nu$
+\end_inset
+
+.
+ Ainsi :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boxed{\tilde{R_{s_{l}}}(\tau)=0,25+\frac{1}{T_{s}}R_{pp}(\tau)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tout d'abord, calculons la fonction d'autocorrélation de 
+\begin_inset Formula $p(\frac{t}{T_{s}})$
+\end_inset
+
+.
+ Graphiquement, on trouve l'autocorrélation de la fonction (voir figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Calcul-graphique-de l'autocorr moy"
+
+\end_inset
+
+.a).
+ On prend 
+\begin_inset Formula $\nicefrac{t}{T_{s}}$
+\end_inset
+
+ pour pouvoir gérer tous les 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+, même si dans notre exemple 
+\begin_inset Formula $T_{s}=1$
+\end_inset
+
+.
+ En la moyennant par 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+ (le temps symbole donné dans l'énoncé correspond à 
+\begin_inset Formula $1\mu s$
+\end_inset
+
+), puis en ajoutant 
+\begin_inset Formula $0,25$
+\end_inset
+
+, on trouve finalement la représentation de 
+\begin_inset Formula $\tilde{R_{s_{l}}}(\tau)$
+\end_inset
+
+, présentée figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Calcul-graphique-de l'autocorr moy"
+
+\end_inset
+
+.b.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "Question7-1.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Calcul graphique de l'autocorrélation moyennée
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Calcul-graphique-de l'autocorr moy"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 8
+\end_layout
+
+\begin_layout Standard
+Le signal 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ étant cyclo-stationnaire, on peut calculer sa densité de spectrale via
+ la transformée de Fourier de la fonction d'autocorrélation moyennée 
+\begin_inset Formula $\tilde{R_{s_{l}}}(\tau)$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\varGamma_{s_{l}}(f) & =\int\tilde{_{R}R_{s_{l}}}(\tau)e^{-j2\pi f\tau}d\tau\nonumber \\
+ & =\int_{R}[0,25+\frac{1}{T_{s}}R_{p}(\tau)e^{-j2\pi f\tau}]d\tau\nonumber \\
+ & =\int_{R}0.25e^{-j2\pi f\tau}d\tau+\frac{1}{T_{s}}\int_{R}R_{p}(\tau)e^{-j2\pi f\tau}d\tau\nonumber \\
+ & =0.25\delta(f)+\frac{1}{T_{s}}\left|P(f)\right|^{2}\label{eq:Densité spectrale TF p(t)}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On remplace la transformée de Fourier de 
+\begin_inset Formula $R_{p}(\tau)$
+\end_inset
+
+ par le module au carré de la transformée de Fourier de 
+\begin_inset Formula $p(t)$
+\end_inset
+
+ dans l'équation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Densité spectrale TF p(t)"
+
+\end_inset
+
+, en utilisant le théorème de Wiener Khintchine.
+\end_layout
+
+\begin_layout Standard
+Il nous reste donc à calculer 
+\begin_inset Formula $P(f)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $p(t)$
+\end_inset
+
+ est la combinaison de deux portes (on prend bien garde à ne pas oublier
+ 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+) : 
+\begin_inset Formula $p(t)=-0.5\times\Pi_{0.5T_{s}}(t-\frac{T_{s}}{4})+0.5\times\Pi_{0.5T_{s}}(t-\frac{3T_{s}}{4})$
+\end_inset
+
+.
+ On rappelle la transformée de Fourier d'une porte :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\mathcal{F}\left(\Pi_{T}(t)\right)=T\text{sinc}(\nu T)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On défini le sinus cardinal comme : 
+\begin_inset Formula $\text{sinc}(x)=\frac{sin(\pi x)}{\pi x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ainsi :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\left|P(f)\right|^{2} & =\left|\mathcal{F}\left(-0.5\times\Pi_{0.5T_{s}}(t-\nicefrac{T_{s}}{4})+0.5\times\Pi_{0.5T_{s}}(t-\nicefrac{3T_{s}}{4})\right)\right|^{2}\nonumber \\
+ & =\left|0.5T_{s}\times\left(-0.5\text{sinc}(0.5T_{s}\times f)\times\exp(-i2\pi f\times\frac{T_{s}}{4})\right.\right.\nonumber \\
+ & \quad\left.\left.+0.5\text{sinc}(0.5T_{s}\times f)\times\exp(-i2\pi f\times\frac{3T_{s}}{4})\right)\right|^{2}\nonumber \\
+ & =\left|0.25T_{s}\text{sinc}(0.5T_{s}\times f)\left(\exp(-i\pi f\times\frac{3T_{s}}{2})-\exp(-i2\pi f\times\frac{T_{s}}{2})\right)\right|^{2}\nonumber \\
+ & =\left|\frac{T_{s}\text{sinc}(0.5T_{s}\times f)}{4}\left(e^{-i\pi fT_{s}}\left(e^{-i\pi f\times0.5T_{s}}-e^{+i\pi f\times0.5T_{s}}\right)\right)\right|^{2}\label{eq:P(f) eix - e-ix}\\
+ & =\left|\frac{T_{s}\text{sinc}(0.5T_{s}\times f)}{4}\left(e^{-i\pi fT_{s}}\times\sin(\frac{1}{2}\pi fT_{s})\times2i\right)\right|^{2}\label{eq:P(f) => donne sin}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour passer de 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:P(f) eix - e-ix"
+
+\end_inset
+
+ à 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:P(f) => donne sin"
+
+\end_inset
+
+, on utilise la formule d'Euler : 
+\begin_inset Formula $\frac{e^{_{ix}}-e^{-ix}}{2i}=\sin(x)$
+\end_inset
+
+.
+ On remarque qu'à la ligne 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:P(f) => donne sin"
+
+\end_inset
+
+, on peut remplacer le module de l'exponentielle par 1.
+ De même, 
+\begin_inset Formula $\left|i\right|=1$
+\end_inset
+
+.
+ Soit finalement :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\left|P(f)\right|^{2} & =\left(\frac{T_{s}}{2}\text{sinc}(\frac{T_{s}f}{2})\times\sin(\frac{T_{s}f\pi}{2})\right)^{2}\nonumber \\
+ & =\left(\frac{T_{s}^{2}f\pi}{4}\times\text{sinc}^{2}(\frac{T_{s}f}{2})\right)^{2}\nonumber \\
+ & =\frac{T_{s}^{4}\left(f\pi\right)^{2}}{16}\times\text{sinc}^{4}(\frac{T_{s}f}{2})
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D'où, ainsi, l'expression de la densité spectrale de puissance de 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+, en 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:densite spec sl"
+
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\varGamma_{s_{l}}(f) & =0.25\delta(f)+\frac{1}{T_{s}}\left(\frac{T_{s}^{4}\left(f\pi\right)^{2}}{16}\times\text{sinc}^{4}(\frac{T_{s}f}{2})\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boxed{\varGamma_{s_{l}}(f)=0.25\delta(f)+\frac{T_{s}^{3}\left(f\pi\right)^{2}}{16}\times\text{sinc}^{4}(\frac{T_{s}f}{2})}\label{eq:densite spec sl}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 9
+\end_layout
+
+\begin_layout Standard
+On rappelle les propriétés du bruit 
+\begin_inset Formula $n_{l}(t)$
+\end_inset
+
+ en bande de base : 
+\end_layout
+
+\begin_layout Itemize
+Il suit la loi normale 
+\begin_inset Formula $\mathcal{N}(0,\sigma_{n_{l}}^{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Sa densité bilatérale de puissance est 
+\begin_inset Formula $\varGamma_{n_{l}}(f)=\frac{N_{0}}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+De plus, rappelons la formule du filtrage (avec 
+\begin_inset Formula $G_{a}(f)$
+\end_inset
+
+ la transformée de Fourier du filtre adapté 
+\begin_inset Formula $g_{a}(t)$
+\end_inset
+
+)
+\begin_inset space ~
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\varGamma_{n_{l}'}(f)=\left|G_{a}(f)\right|^{2}\varGamma_{n_{l}}(f)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Enfin, d'après le théorème de Wiener Khintchine (également utilisé pour
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Densité spectrale TF p(t)"
+
+\end_inset
+
+), 
+\begin_inset Formula 
+\begin{equation}
+\varGamma_{n_{l}}(f)=\mathcal{F}(R_{n_{l}}(\tau))\label{eq:wiener}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On note, enfin, que, la densité spectrale du filtre adapté 
+\begin_inset Formula $p_{0}^{*}(-t)$
+\end_inset
+
+ est 
+\begin_inset Formula $\varGamma_{p_{1}}=\left|P_{1}(f)\right|^{2}$
+\end_inset
+
+, et - de même - la densité spectrale de 
+\begin_inset Formula $p_{1}^{*}(-t)$
+\end_inset
+
+ est 
+\begin_inset Formula $\varGamma_{p_{0}}=\left|P_{0}(f)\right|^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Connaissant ses informations, on peut calculer la fonction d'autocorrélation
+ des composantes de ce bruit après filtrage adapté par les deux filtres.
+ Détaillons les étapes pour la première composante.
+ On commence par calculer la densité spectrale de puissance :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\varGamma_{n_{l,0}'}(f)=\left|P_{1}(f)\right|^{2}\varGamma_{n_{l}}(f)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Puisque 
+\begin_inset Formula $p_{1}(t)=\Pi_{\nicefrac{T_{s}}{2}}(t-\frac{T_{s}}{4})$
+\end_inset
+
+, on a 
+\begin_inset Formula 
+\begin{equation}
+P_{1}(f)=\frac{T_{s}}{2}\mbox{sinc}(\pi f\frac{T_{s}}{2})\exp(-j\pi f\frac{T_{s}}{2})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Soit, au final, 
+\begin_inset Formula 
+\begin{equation}
+\varGamma_{p_{1}}=\left|\frac{T_{s}}{2}\mbox{sinc}(\pi f\frac{T_{s}}{2})\exp(-j\pi f\frac{T_{s}}{2})\right|^{2}=\frac{T_{s}^{2}}{4}\mbox{sinc}^{2}(\pi f\frac{T_{s}}{2})
+\end{equation}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Dans l'énoncé, on a l'information 
+\begin_inset Formula $\varGamma_{n_{l}}(f)=\frac{N_{0}}{2}$
+\end_inset
+
+.
+ Soit :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\varGamma_{n_{l,0}'}(f) & =\frac{1}{8}\times N_{0}\times T_{s}^{2}\mbox{sinc}^{2}(\pi f\frac{T_{s}}{2})
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D'après 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:wiener"
+
+\end_inset
+
+, on a :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+R_{n_{l,0}'}(\tau) & =\mathcal{F}^{-1}\left(\varGamma_{n_{l,0}'}(f)\right)\\
+ & =\frac{N_{0}}{2}\mathcal{\times F}^{-1}\left(\left(\frac{T_{s}}{2}\mbox{sinc}(\pi f\frac{T_{s}}{2})\right)\times\left(\frac{T_{s}}{2}\mbox{sinc}(\pi f\frac{T_{s}}{2})\right)\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boxed{R_{n_{l,0}'}(\tau)=\frac{N_{0}}{2}\times\left(\Pi_{\nicefrac{T_{s}}{2}}(t)*\Pi_{\nicefrac{T_{s}}{2}}(t)\right)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+De la même façon, on trouve :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boxed{R_{n_{l,1}'}(\tau)=\frac{N_{0}}{2}\times\left(\Pi_{\nicefrac{T_{s}}{2}}(t)*\Pi_{\nicefrac{T_{s}}{2}}(t)\right)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 10
+\end_layout
+
+\begin_layout Standard
+On rappelle la formule général de 
+\begin_inset Formula $P_{b}$
+\end_inset
+
+ : 
+\begin_inset Formula $P_{b}=2\frac{M-1}{M\log_{2}(M)}Q\left(\frac{v(0)}{\sigma}\right)$
+\end_inset
+
+.
+ Donc, dans notre cas binaire :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+P_{b}=Q\left(\sqrt{\frac{2E_{g}}{N_{0}}}\right)=\frac{1}{2}\mbox{erfc}\left(\sqrt{\frac{E_{g}}{N_{0}}}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il semble cependant intéressant d'observer cette probabilité d'erreur enfonction
+ de l'énergie moyenne par bit, 
+\begin_inset Formula $E_{b}$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+E_{b}=P_{moy}T_{b}=\frac{P_{moy}}{D_{b}}\label{eq:eb_pmoy}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dans 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:eb_pmoy"
+
+\end_inset
+
+, on a 
+\begin_inset Formula $P_{moy}$
+\end_inset
+
+ la puissance moyenne du signal utile reçu, et 
+\begin_inset Formula $T_{b}$
+\end_inset
+
+ le temps bit.
+ La puissance moyenne est l'integral sur 
+\begin_inset Formula $\mathcal{R}$
+\end_inset
+
+ de la densité spectrale de puissance.
+\end_layout
+
+\begin_layout Standard
+Or, on sait - d'après le cours - que la puissance moyenne correspond à l'express
+ion : 
+\begin_inset Formula $P_{moy}=\frac{\sigma_{A}^{2}}{T_{s}}E_{g}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Soit finalement :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+E_{b} & =\frac{\sigma_{A}^{2}}{T_{s}}E_{g}T_{b}=\frac{\sigma_{A}^{2}E_{g}}{\log_{2}(M)}\nonumber \\
+E_{g} & =\frac{E_{b}}{\sigma_{A}^{2}}\label{eq:Eg}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Eg"
+
+\end_inset
+
+, on a 
+\begin_inset Formula $\log_{2}(M)=\log_{2}(2)=1$
+\end_inset
+
+.
+ De plus, 
+\begin_inset Formula $\sigma_{A}^{2}=1$
+\end_inset
+
+.
+ En remplaçant, on obtient donc :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+P_{b}=\frac{1}{2}\mbox{erfc}\left(\sqrt{\frac{E_{b}}{N_{0}}}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 11
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ sur les 25 premier bits est représenté figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:slt-25-bits"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+À noter que, pour sélectionner les 25 premiers bits, il faut prendre en
+ compte le suréchantillonnage.
+ On prend donc les 
+\begin_inset Formula $25\times\frac{T_{s}}{T_{e}}$
+\end_inset
+
+ premiers éléments du vecteur.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Part1-Question11.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ sur les 25 premiers bits
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:slt-25-bits"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 12
+\end_layout
+
+\begin_layout Standard
+Le diagramme de l'œil de 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ est présenté à la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Diag oeil part1quest12"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Part1-Question12.png
+	width 80line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diagramme de l'œil de de 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+, d'une durée de 
+\begin_inset Formula $2T_{s}$
+\end_inset
+
+, des 100 premiers bits
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Diag oeil part1quest12"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 13
+\end_layout
+
+\begin_layout Standard
+On trace la densité spectrale de puissance théorique de 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ sans fenêtre ni chevauchement.
+\end_layout
+
+\begin_layout Subsubsection*
+Question 15
+\end_layout
+
+\begin_layout Standard
+On a :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\rho(\delta_{t}^{'},\delta_{f}^{'})=\frac{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt}{\sqrt{\intop_{0}^{T_{p}}}|s_{p(t)}|^{2}dt\,\sqrt{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|y_{l(t)}|^{2}dt}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nous allons montrer que 
+\begin_inset Formula $|\rho(\delta_{t}^{'},\delta_{f}^{'})|\leq1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D'après l'inégalité de Cauchy-Schwartz : 
+\begin_inset Formula $|\intop_{R}u(t)v^{*}(t)dt|\leq\sqrt{\intop_{R}|u(t)|^{2}dt}\sqrt{\intop_{R}|v(t)|^{2}dt}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tout d'abord posons 
+\begin_inset Formula $u(t)=y_{l(t)}$
+\end_inset
+
+ et 
+\begin_inset Formula $v^{*}(t)=s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Donc
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt|\leq\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|s_{p}(t-\delta_{t}^{'})|^{2}dt}\,\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|y_{l}(t)|^{2}dt}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Effectuons un changement de variable pour la première racine carré du second
+ membre : 
+\begin_inset Formula $t^{'}=t-\delta_{t}^{'}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D'où 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt|\leq\sqrt{\int_{0}^{T_{p}}|s_{p}(t)|^{2}dt}\,\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|y_{l}(t)|^{2}dt}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On a donc bien le résultat suivant :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+|\rho(\delta_{t}^{'},\delta_{f}^{'})|\leq1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Question 16
+\end_layout
+
+\begin_layout Standard
+Pour déterminer l'ordre de grandeur du décalage de fréquence Doppler d'un
+ avion se déplaçant à 900km/h on utilise la formule suivante :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{recepteur}=\frac{f_{source}}{1-\frac{V_{source}}{V_{phase}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+où 
+\begin_inset Formula $f_{source}$
+\end_inset
+
+ et 
+\begin_inset Formula $f_{recepteur}$
+\end_inset
+
+ sont respectivement les fréquences des signaux émetteur et recepteur, 
+\begin_inset Formula $V_{source}$
+\end_inset
+
+ et 
+\begin_inset Formula $V_{phase}$
+\end_inset
+
+ sont respectivement la vitesse de la source et la vitesse de phase du signal
+ émis.
+ Faisons l'application numérique dans le cas de l'exemple :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\triangle f=f_{recepteur}-f_{source}=1,09.10^{9}-\frac{1,09.10^{9}}{1-\frac{250}{3.10^{8}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\triangle f\approx900Hz
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour un avion se déplaçant à 900km/h, l'ordre de grandeur du décalage introduit
+ par l'effet Doppler est d'environ 900 Hz.
+\end_layout
+
+\end_body
+\end_document

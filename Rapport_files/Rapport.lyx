@@ -1849,6 +1849,10 @@ name "fig:slt-25-bits"
 
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
 \end_inset
 
 
@@ -1949,7 +1953,7 @@ On a :
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\rho(\delta_{t}^{'},\delta_{f}^{'})=\frac{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt}{\sqrt{\intop_{0}^{T_{p}}}|s_{p(t)}|^{2}dt\,\sqrt{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|y_{l(t)}|^{2}dt}}
+\rho(\delta_{t}^{'},\delta_{f}^{'})=\frac{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt}{\sqrt{\intop_{0}^{T_{p}}}\left|s_{p(t)}\right|{}^{2}dt\,\sqrt{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|y_{l(t)}\right|{}^{2}dt}}
 \]
 
 \end_inset
@@ -1959,7 +1963,7 @@ On a :
 
 \begin_layout Standard
 Nous allons montrer que 
-\begin_inset Formula $|\rho(\delta_{t}^{'},\delta_{f}^{'})|\leq1$
+\begin_inset Formula $\left|\rho(\delta_{t}^{'},\delta_{f}^{'})\right|\leq1$
 \end_inset
 
 
@@ -1967,7 +1971,7 @@ Nous allons montrer que
 
 \begin_layout Standard
 D'après l'inégalité de Cauchy-Schwartz : 
-\begin_inset Formula $|\intop_{R}u(t)v^{*}(t)dt|\leq\sqrt{\intop_{R}|u(t)|^{2}dt}\sqrt{\intop_{R}|v(t)|^{2}dt}$
+\begin_inset Formula $\left|\intop_{R}u(t)v^{*}(t)dt\right|\leq\sqrt{\intop_{R}\left|u(t)\right|{}^{2}dt}\sqrt{\intop_{R}\left|v(t)\right|{}^{2}dt}$
 \end_inset
 
 
@@ -1990,7 +1994,7 @@ Donc
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt|\leq\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|s_{p}(t-\delta_{t}^{'})|^{2}dt}\,\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|y_{l}(t)|^{2}dt}$
+\begin_inset Formula $|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt|\leq\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|s_{p}(t-\delta_{t}^{'}){}^{2}\right|dt}\,\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|y_{l}(t)\right|{}^{2}dt}$
 \end_inset
 
 
@@ -2010,7 +2014,7 @@ D'où
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt|\leq\sqrt{\int_{0}^{T_{p}}|s_{p}(t)|^{2}dt}\,\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|y_{l}(t)|^{2}dt}$
+\begin_inset Formula $\left|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt\right|\leq\sqrt{\int_{0}^{T_{p}}\left|s_{p}(t)\right|{}^{2}dt}\,\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|y_{l}(t)\right|{}^{2}dt}$
 \end_inset
 
 
@@ -2023,7 +2027,7 @@ On a donc bien le résultat suivant :
 \begin_layout Standard
 \begin_inset Formula 
 \[
-|\rho(\delta_{t}^{'},\delta_{f}^{'})|\leq1
+\left|\rho(\delta_{t}^{'},\delta_{f}^{'})\right|\leq1
 \]
 
 \end_inset
@@ -2098,6 +2102,77 @@ où
 \begin_layout Standard
 Pour un avion se déplaçant à 900km/h, l'ordre de grandeur du décalage introduit
  par l'effet Doppler est d'environ 900 Hz.
+\end_layout
+
+\begin_layout Subsubsection*
+Question 18
+\end_layout
+
+\begin_layout Itemize
+Les trames de position en vol correspondent à des valeurs de FTC de 9 à
+ 18 et 20 à 22.
+\end_layout
+
+\begin_layout Itemize
+Les trames d'identifications correspondent à des valeurs de FTC de 1 à 4.
+\end_layout
+
+\begin_layout Subsubsection*
+Question 20
+\end_layout
+
+\begin_layout Standard
+Après extraction des informations sur les 21 trames issues d'un même appareil,
+ on peut enregistrer les différentes coordonnées de l'avion provenant des
+ trames de position en vol.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/thibaut/Bureau/Flight_radar/Emetteur-Recepteur-ADS-B/question20.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Trajectoire de l'appareil sur une carte google map.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Question 21
+\end_layout
+
+\begin_layout Standard
+D'après des informations issues du site flightradar24.com, l'avion d'adresse
+ 393324 (hexadecimal) appartient à la compagnie AIRFRANCE.
+ C'est un avion de modèle A321 et d'après sa trajectoire il se dirigeait
+ vers le nord.
 \end_layout
 
 \end_body
