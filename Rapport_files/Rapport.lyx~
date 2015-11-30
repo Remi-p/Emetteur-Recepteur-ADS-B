@@ -1249,7 +1249,16 @@ Question 8
 \end_layout
 
 \begin_layout Standard
-En utilisant la formule donnée dans l'énoncé, on trouve :
+Le signal 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+ étant cyclo-stationnaire, on peut calculer sa densité de spectrale via
+ la transformée de Fourier de la fonction d'autocorrélation moyennée 
+\begin_inset Formula $\tilde{R_{s_{l}}}(\tau)$
+\end_inset
+
+ :
 \end_layout
 
 \begin_layout Standard
@@ -1439,6 +1448,313 @@ reference "eq:densite spec sl"
 Question 9
 \end_layout
 
+\begin_layout Standard
+On rappelle les propriétés du bruit 
+\begin_inset Formula $n_{l}(t)$
+\end_inset
+
+ en bande de base : 
+\end_layout
+
+\begin_layout Itemize
+Il suit la loi normale 
+\begin_inset Formula $\mathcal{N}(0,\sigma_{n_{l}}^{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Sa densité bilatérale de puissance est 
+\begin_inset Formula $\varGamma_{n_{l}}(f)=\frac{N_{0}}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+De plus, rappelons la formule du filtrage (avec 
+\begin_inset Formula $G_{a}(f)$
+\end_inset
+
+ la transformée de Fourier du filtre adapté 
+\begin_inset Formula $g_{a}(t)$
+\end_inset
+
+)
+\begin_inset space ~
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\varGamma_{n_{l}'}(f)=\left|G_{a}(f)\right|^{2}\varGamma_{n_{l}}(f)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Enfin, d'après le théorème de Wiener Khintchine (également utilisé pour
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Densité spectrale TF p(t)"
+
+\end_inset
+
+), 
+\begin_inset Formula 
+\begin{equation}
+\varGamma_{n_{l}}(f)=\mathcal{F}(R_{n_{l}}(\tau))\label{eq:wiener}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On note, enfin, que, la densité spectrale du filtre adapté 
+\begin_inset Formula $p_{0}^{*}(-t)$
+\end_inset
+
+ est 
+\begin_inset Formula $\varGamma_{p_{1}}=\left|P_{1}(f)\right|^{2}$
+\end_inset
+
+, et - de même - la densité spectrale de 
+\begin_inset Formula $p_{1}^{*}(-t)$
+\end_inset
+
+ est 
+\begin_inset Formula $\varGamma_{p_{0}}=\left|P_{0}(f)\right|^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Connaissant ses informations, on peut calculer la fonction d'autocorrélation
+ des composantes de ce bruit après filtrage adapté par les deux filtres.
+ Détaillons les étapes pour la première composante.
+ On commence par calculer la densité spectrale de puissance :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\varGamma_{n_{l,0}'}(f)=\left|P_{1}(f)\right|^{2}\varGamma_{n_{l}}(f)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Puisque 
+\begin_inset Formula $p_{1}(t)=\Pi_{\nicefrac{T_{s}}{2}}(t-\frac{T_{s}}{4})$
+\end_inset
+
+, on a 
+\begin_inset Formula 
+\begin{equation}
+P_{1}(f)=\frac{T_{s}}{2}\mbox{sinc}(\pi f\frac{T_{s}}{2})\exp(-j\pi f\frac{T_{s}}{2})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Soit, au final, 
+\begin_inset Formula 
+\begin{equation}
+\varGamma_{p_{1}}=\left|\frac{T_{s}}{2}\mbox{sinc}(\pi f\frac{T_{s}}{2})\exp(-j\pi f\frac{T_{s}}{2})\right|^{2}=\frac{T_{s}^{2}}{4}\mbox{sinc}^{2}(\pi f\frac{T_{s}}{2})
+\end{equation}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Dans l'énoncé, on a l'information 
+\begin_inset Formula $\varGamma_{n_{l}}(f)=\frac{N_{0}}{2}$
+\end_inset
+
+.
+ Soit :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\varGamma_{n_{l,0}'}(f) & =\frac{1}{8}\times N_{0}\times T_{s}^{2}\mbox{sinc}^{2}(\pi f\frac{T_{s}}{2})
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D'après 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:wiener"
+
+\end_inset
+
+, on a :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+R_{n_{l,0}'}(\tau) & =\mathcal{F}^{-1}\left(\varGamma_{n_{l,0}'}(f)\right)\\
+ & =\frac{N_{0}}{2}\mathcal{\times F}^{-1}\left(\left(\frac{T_{s}}{2}\mbox{sinc}(\pi f\frac{T_{s}}{2})\right)\times\left(\frac{T_{s}}{2}\mbox{sinc}(\pi f\frac{T_{s}}{2})\right)\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boxed{R_{n_{l,0}'}(\tau)=\frac{N_{0}}{2}\times\left(\Pi_{\nicefrac{T_{s}}{2}}(t)*\Pi_{\nicefrac{T_{s}}{2}}(t)\right)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+De la même façon, on trouve :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boxed{R_{n_{l,1}'}(\tau)=\frac{N_{0}}{2}\times\left(\Pi_{\nicefrac{T_{s}}{2}}(t)*\Pi_{\nicefrac{T_{s}}{2}}(t)\right)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Question 10
+\end_layout
+
+\begin_layout Standard
+On rappelle la formule général de 
+\begin_inset Formula $P_{b}$
+\end_inset
+
+ : 
+\begin_inset Formula $P_{b}=2\frac{M-1}{M\log_{2}(M)}Q\left(\frac{v(0)}{\sigma}\right)$
+\end_inset
+
+.
+ Donc, dans notre cas binaire :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+P_{b}=Q\left(\sqrt{\frac{2E_{g}}{N_{0}}}\right)=\frac{1}{2}\mbox{erfc}\left(\sqrt{\frac{E_{g}}{N_{0}}}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il semble cependant intéressant d'observer cette probabilité d'erreur enfonction
+ de l'énergie moyenne par bit, 
+\begin_inset Formula $E_{b}$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+E_{b}=P_{moy}T_{b}=\frac{P_{moy}}{D_{b}}\label{eq:eb_pmoy}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dans 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:eb_pmoy"
+
+\end_inset
+
+, on a 
+\begin_inset Formula $P_{moy}$
+\end_inset
+
+ la puissance moyenne du signal utile reçu, et 
+\begin_inset Formula $T_{b}$
+\end_inset
+
+ le temps bit.
+ La puissance moyenne est l'integral sur 
+\begin_inset Formula $\mathcal{R}$
+\end_inset
+
+ de la densité spectrale de puissance.
+\end_layout
+
+\begin_layout Standard
+Or, on sait - d'après le cours - que la puissance moyenne correspond à l'express
+ion : 
+\begin_inset Formula $P_{moy}=\frac{\sigma_{A}^{2}}{T_{s}}E_{g}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Soit finalement :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+E_{b} & =\frac{\sigma_{A}^{2}}{T_{s}}E_{g}T_{b}=\frac{\sigma_{A}^{2}E_{g}}{\log_{2}(M)}\nonumber \\
+E_{g} & =\frac{E_{b}\log_{2}(M)}{\sigma_{A}^{2}}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
 \begin_layout Paragraph
 Question 11
 \end_layout
@@ -1502,10 +1818,6 @@ name "fig:slt-25-bits"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1602,6 +1914,95 @@ On trace la densité spectrale de puissance théorique de
 Question 15
 \end_layout
 
+\begin_layout Standard
+On a :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\rho(\delta_{t}^{'},\delta_{f}^{'})=\frac{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt}{\sqrt{\intop_{0}^{T_{p}}}|s_{p(t)}|^{2}dt\,\sqrt{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|y_{l(t)}|^{2}dt}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nous allons montrer que 
+\begin_inset Formula $|\rho(\delta_{t}^{'},\delta_{f}^{'})|\leq1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D'après l'inégalité de Cauchy-Schwartz : 
+\begin_inset Formula $|\intop_{R}u(t)v^{*}(t)dt|\leq\sqrt{\intop_{R}|u(t)|^{2}dt}\sqrt{\intop_{R}|v(t)|^{2}dt}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tout d'abord posons 
+\begin_inset Formula $u(t)=y_{l(t)}$
+\end_inset
+
+ et 
+\begin_inset Formula $v^{*}(t)=s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Donc
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt|\leq\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|s_{p}(t-\delta_{t}^{'})|^{2}dt}\,\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|y_{l}(t)|^{2}dt}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Effectuons un changement de variable pour la première racine carré du second
+ membre : 
+\begin_inset Formula $t^{'}=t-\delta_{t}^{'}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D'où 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt|\leq\sqrt{\int_{0}^{T_{p}}|s_{p}(t)|^{2}dt}\,\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}|y_{l}(t)|^{2}dt}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On a donc bien le résultat suivant :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+|\rho(\delta_{t}^{'},\delta_{f}^{'})|\leq1
+\]
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection*
 Question 16
 \end_layout
@@ -1658,7 +2059,7 @@ où
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\triangle f\HF900Hz
+\triangle f\approx900Hz
 \]
 
 \end_inset
