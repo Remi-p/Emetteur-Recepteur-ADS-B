@@ -2135,6 +2135,17 @@ status open
 
 \begin_layout Plain Layout
 \align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
 	filename /home/thibaut/Bureau/Flight_radar/Emetteur-Recepteur-ADS-B/question20.eps
 

@@ -27,9 +27,9 @@ Nfft = 512;
 % Nombre de bits du message de test
 lngr = 1000;
 
-% g(t) le filtre de mise en forme
-g = ones(1, (Fse)) * 0.5;
-g(Fse/2:Fse) = - g(Fse/2:Fse);
+% p(t) le filtre de mise en forme
+p = ones(1, (Fse)) * 0.5;
+p(Fse/2:Fse) = - p(Fse/2:Fse);
 
 %% ========================================= Calculs ======================
 
@@ -44,7 +44,7 @@ ss = pammod(sb, 2, 0);
 ss_sur = upsample(ss, Fse);
 
 % Convolution du signal ss(t) et g(t)
-sl = conv(ss_sur, g) + 0.5;
+sl = conv(ss_sur, p) + 0.5;
 
 %% ======================================== Affichage =====================
 
@@ -78,3 +78,30 @@ axis([V(1) V(2) -0.1 1.1]);
 %                             Question 13. Densite spectrale de puissance %
 % ----------------------------------------------------------------------- %
 
+% == Densite spectrale de sl(t)
+N = length(sl);
+Sl = fft(sl, N); % Transformee de Fourier
+dsp_pra = (1/(fe*N)) * (abs(Sl).^2); % Formule de la DSP
+f = -fe/2 : fe/N : fe/2-fe/N; % Frequences observees
+
+% == Theorique (basee sur f)
+% Tout d'abord, il faut decrire le dirac ; il est au centre des frequences
+dirac = zeros(1, N);
+dirac(ceil(1/N + 1)) = 1;
+
+% A present, on cree la DSP avec la formule de la question 8 :
+dsp_theo = 0.25*dirac + ...
+    ((Ts^3 * (f*pi).^2)/16) .* ...
+    (sinc((Ts * f) ./ 2)).^4;
+
+figure('Name', 'DSP de sl(t)');
+
+semilogy(f, dsp_pra, 'b');
+hold on;
+semilogy(f(2:end), dsp_theo(2:end), 'r');
+% (la premiere valeur de dsp_theo altere le graph)
+
+legend('DSP pratique', 'DSP theorique');
+title('Densite Spectrale de Puissance de sl(t)');
+xlabel('Frequence (Hz)');
+ylabel('Densite spectrale de puissance (W)');
