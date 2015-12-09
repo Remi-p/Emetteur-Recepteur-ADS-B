@@ -13,13 +13,11 @@ message = struct('identification',1, ...
 				 'airborne_pos',3, ...
 				 'airborne_vel', 4);
 
-% detection d'erreurs
-%~ h = crc.detector([1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1])
-%~ [outdata error] = detect(h, trame); 
-%~ error 
+h = crc.detector([1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1])
+[outdata err] = detect(h, trame); 
 
 % S'il n'y a pas d'erreur dans la sequence
-if error == 0
+if err == 0
 
     registre = registre_old;
 
