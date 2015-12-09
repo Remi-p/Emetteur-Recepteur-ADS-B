@@ -31,7 +31,7 @@ lngr = 100000;
 p = - ones(1, (Fse)) * 0.5;
 p(Fse/2:Fse) = - p(Fse/2:Fse);
 
-%% ========================================= Calculs ======================
+%% =========================================== Canal ======================
 
 % Generation de la sequence binaire ([imin, imax], pas, Nbe de symbole)
 sb = randi([0, 1], 1, lngr);
@@ -47,7 +47,7 @@ ss_sur = upsample(ss, Fse);
 % sl = conv(ss_sur, p) + 0.5;
 sl = filter(p, 1, ss_sur) + 0.5;
 
-%% ======================================== Affichage =====================
+%% ========================================== Courbes =====================
 
 %                                          Question 11. Allure temporelle %
 % ----------------------------------------------------------------------- %
@@ -79,7 +79,7 @@ axis([V(1) V(2) -0.1 1.1]);
 %                             Question 13. Densite spectrale de puissance %
 % ----------------------------------------------------------------------- %
 
-% == Densite spectrale de sl(t)
+% == Densite spectrale de sl(t) ---------------
 
 % On commence par "decouper" notre vecteur, pour effectuer un moyennage
 
@@ -103,7 +103,8 @@ dsp_pra = (1/(fe*Nfft)) * (abs(Sl_dec).^2);
 % Frequences observees
 f = -fe/2 : fe/Nfft : fe/2-fe/Nfft;
 
-% == Theorique (basee sur f)
+% == Theorique (basee sur f) ------------------
+
 % Tout d'abord, il faut decrire le dirac ; il est au centre des frequences
 dirac = zeros(1, Nfft);
 dirac(ceil(Nfft/2 + 1)) = 1;

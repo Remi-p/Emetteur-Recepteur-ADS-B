@@ -1,83 +1,118 @@
 %% =================== Communications numeriques ==================== %%
 %  Gourdel Thibaut                                           . \|/ /,  %
-%  Perrot Remi            =================                  \\`''/_-- %
-%  TS226                  |  Partie 1     |           Bordeaux INP --- %
-%  Decembre 2015          |  Section 3    |           ENSEIRB  ,..\\`  %
-%                         =================           MATMECA / | \\`  %
+%  Perrot Remi          =======================              \\`''/_-- %
+%  TS226                | 4.4 Synchronisation |       Bordeaux INP --- %
+%  Decembre 2015        |  temps/frequence    |       ENSEIRB  ,..\\`  %
+%                       =======================       MATMECA / | \\`  %
 % ==================================================================== %
 
-close all
-clear all
-clc
-
-%% Question 14
+close all;clear all;clc;
 
 %% ================== Initialisation des variables =================== %
 
-fe = 20E6; % Frequence d'echantillonnage
-Te = 1/fe; % Periode d'echantillonnage
-Ds = 1E6; % Debit : symboles/s
-Ts = 1/Ds; % Periode symbole :
-M = 2; % Nombre de symboles
-f0 = 1090E6; % Frequence porteuse en Hz
-P = 1/2; % Probabilite (bk = 0) et (bk = 1)
-Ns = 5000; % Nombre de symbole a emmettre
-retard = 0; % Retard lors de l'echantillonnage
-Fse = Ts/Te; % Facteur de sur-echantillonnage
-N = 512; % Precision pour les transformees de Fourier
+% Frequence/periode d'echantillonnage
+fe = 20E6;
+Te = 1/fe;
 
-% Interval des spectres
-Int = [-fe/2, fe/2 - fe/N];
+% Debit : symboles/s
+Ds = 1E6;
+% Periode symbole :
+Ts = 1/Ds;
 
-% g(t) le filtre de mise en forme
-g = ones(1, (Fse)) * 0.5; 
-g(Fse/2:Fse) = - g(Fse/2:Fse); 
-h = ones(1, 1); % h(t) le filtre du canal
-ga = fliplr(g); 
-Nfft = 512; % Precision des dsp
+% Nombre de symboles
+M = 2;
+
+% Probabilite (bk = 0) et (bk = 1)
+P = 1/2;
+
+% Nombre de symboles a emettre
+Ns = 112;
+
+% Taille d'un buffer
+buff = 132;
+
+% Facteur de sur-echantillonnage
+Fse = Ts/Te;
+
+% p(t) le filtre de mise en forme
+p = - ones(1, (Fse)) * 0.5;
+p(Fse/2:Fse) = - p(Fse/2:Fse);
+
+% h(t) le filtre du canal
+h = ones(1, 1);
+
+% Filtre de reception : Pour maximiser le rapport signal sur bruit,
+% on prend pa(t) = p*(-t)
+pa = fliplr(p);
+
+% Generation des decalages temporels et frequentiels
+dec_t_max = 100;
+dec_f_max = 1e3;
+delta_t = randi(dec_t_max)
+delta_f = randi([-dec_f_max dec_f_max])
+
+% Le preambule correspond au signal donne dans l'enonce. Il n'a pas de lien
+% avec la visualisation en termes de bits, meme si on le code avec eux
+preamb_faux_bits = [ 1 0 1 0 0 0 0 1 0 1 0 0 0 0 0 0 ];
+% Temps entre chaque 'faux' bits ci-dessus / Temps symbole
+frac_tps_symb = 0.5e-6 / Ts ;
+preamb_upsample = upsample(preamb_faux_bits, Fse * frac_tps_symb);
+% Soit :
+preambule_tmp = conv(preamb_upsample, ones(1, Fse * frac_tps_symb));
+% Vis a vis de la convolution, pour retomber sur le signal qu'on cherche
+preambule = preambule_tmp(1:end - Fse*frac_tps_symb + 1);
+
+% -------------------------------Initialisation liees au calcul du TEB %
+% Nombre d'iteration pour le TEB
+iter = 100;
 
 % Eb/N0 est etendu de 0 a 10 dB, avec un pas de 1
+
+% SNR = 10.^((0:1:10)/10);
+% On utilise pas 'SNR' => trop de definitions differentes existent
 EbN0dB = 0:1:10;
 EbN0 = 10.^(EbN0dB/10);
 
+% (En enlevant 0.5 apres le passage du canal, on est face a un BPSK)
 % Pour un BPSK, on a sigma_a^2 = E[|A_k|^2] - |E[Ak]|^2 = 1
 % Puisque E[A_k] = 0 / A_k => -1 ou +1 avec meme proba; E[|a_K|^2] = 1
 sigma_a_2 = 1;
-Eg = sum(abs(g).^2);
-% Puisque Eb/N0 = sigma_a^2 * Eg / 2 sigma^2
 
-%%  Generation des decalges temporels et frequentiels
-delta_t = randi(100);
-delta_f = randi([-1E3 1E3]);
+Eg = sum(abs(p).^2);
+
+% Puisque Eb/N0 = sigma_a^2 * Eg / 2 sigma^2
+sigma = sqrt((sigma_a_2 * Eg)./(2*EbN0));
 
 %% =============== Calcul du taux d'erreur binaire =================== %
 
-iter = 100;
+Teb = zeros(length(sigma), iter);
 
-TEB = zeros(length(sigma), iter);
+% for i=1:length(sigma)
+%     
+%     for j=1:iter
+i = length(sigma);
+j = 1;
 
-for i=1:length(sigma)
-    
-    for j=1:iter
         % Generation des bits d'informations
         sb = randi([0, 1], 1, Ns);
-        % Generation du bruit
-        % n_l = sqrt(sigma_n_l)*randn(1,length(s_l_sync));
-        nl = 0 + sigma(i)*randn(1, Ts/Te*Ns + Ts/Te - 1);
         
-        s = bdb( sb, M, Ts, Te, g, h, nl, ga, Ns, retard );
+        % Passage dans le systeme, en bande de base, avec decalage. La
+        % gestion du preambule + detection se fait dans la fonction
+        s = bdb_sync( sb, sigma(i), Ts, Te, p, h, pa, Ns, 0.5, ...
+            preambule, [delta_t, delta_f], [dec_t_max, dec_f_max], buff );
         
         Teb(i, j) = sum(abs(sb - s)) / length(s);
-    end
-    
-end
+        Teb(i, j)
+%     end
+%     
+% end
 
 %% ==================== Resultats / Figures ========================== %
 
 % Erreurs
 Teb = mean(Teb, 2);
 
-% Evolution theorique du TEB
+% Evolution theorique du TEB, calculee en question 10
 theorie = erfc(sqrt(EbN0))/2;
 
 % Ligne => TEB = 10^-3
@@ -89,6 +124,3 @@ xlabel('Eb/N0 (dB)');
 ylabel('TEB');
 title('TEB en fonction de EbN0');
 legend('TEB Theorique', 'TEB Pratique', '10^-^3');
-
-
-
