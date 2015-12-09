@@ -18,7 +18,6 @@ M = 2;
 
 dec_t = dec(1);
 dec_f = dec(2);
-dec_f = 0; %TODELETE
 
 Fse = int32(Ts/Te);
 Ns_sur = Fse*Ns;
@@ -55,9 +54,6 @@ buff = zeros(1, taille_buff*Fse);
 % dec_t est definit par rapport a Te.
 buff(dec_t + 1:dec_t + length(sl) + length(preamb)) = [preamb sl];
 
-figure;
-plot(buff);
-
 % ----------------- Desynchronisation frequentielle ------------------ %
 t = 0:Te:length(buff)*Te-Te;
 buff = buff .* exp(-j * 2 * pi * dec_f * t);
@@ -69,19 +65,23 @@ sl_canal = conv(buff, h);
 nl = sigma*randn(1, length(sl_canal));
 yl = sl_canal + nl;
 
-figure;
-plot(yl);
-
 % ------------------------ Resynchronisation ------------------------- %
 % Dans notre cas, on aurait pu implementer cela avec le module : ainsi,
 % on aurait fait disparaitre l'exponentiel.
 
-[dec_t_est dec_f_est] = est_sync(yl, preamb, dec_max, Te)
+[dec_t_est dec_f_est] = est_sync(yl, preamb, dec_max, Te, length(sl), Fse);
 
 yl = yl .* exp( j * 2 * pi * dec_f_est * t );
 
-yl_resynch = yl( (dec_t_est:dec_t_est + length(sb)) + length(preamb) );
+% size(yl)
+% size(preamb)
+% dec_t_est
 
+% yl_resynch = abs( yl( (dec_t_est + length(preamb) +1:dec_t_est + length(preamb) + length(sl))) );
+yl_resynch = abs( yl( (dec_t_est + Fse + length(preamb) +1:dec_t_est + Fse + length(preamb) + length(sl))) );
+
+% Erreur sur l'estimation de frequence :
+% (dec_f_est - dec_f) / dec_f
 
 %% ========================== Recepteur ============================== %
 
@@ -89,7 +89,8 @@ yl_resynch = yl( (dec_t_est:dec_t_est + length(sb)) + length(preamb) );
 rl = conv(yl_resynch - decalage, ga);
 
 % ------------------------- Echantillonnage -------------------------- %
-rl_d = downsample(rl, Ts/Te);
+% rl_d = downsample(rl, Ts/Te);
+rl_d = rl(1:Fse:Ns*Fse);
 
 % -------------------------- Bloc decision --------------------------- %
 % ------------------ Bloc association symbole->bits ------------------ %

@@ -29,7 +29,7 @@ P = 1/2;
 Ns = 112;
 
 % Taille d'un buffer
-buff = 132;
+buff = 150;
 
 % Facteur de sur-echantillonnage
 Fse = Ts/Te;
@@ -48,8 +48,8 @@ pa = fliplr(p);
 % Generation des decalages temporels et frequentiels
 dec_t_max = 100;
 dec_f_max = 1e3;
-delta_t = randi(dec_t_max)
-delta_f = randi([-dec_f_max dec_f_max])
+delta_t = randi(dec_t_max);
+delta_f = randi([-dec_f_max dec_f_max]);
 
 % Le preambule correspond au signal donne dans l'enonce. Il n'a pas de lien
 % avec la visualisation en termes de bits, meme si on le code avec eux
@@ -87,11 +87,11 @@ sigma = sqrt((sigma_a_2 * Eg)./(2*EbN0));
 
 Teb = zeros(length(sigma), iter);
 
-% for i=1:length(sigma)
-%     
-%     for j=1:iter
-i = length(sigma);
-j = 1;
+for i=1:length(sigma)
+    
+    for j=1:iter
+% j = 1;
+% i = length(sigma);
 
         % Generation des bits d'informations
         sb = randi([0, 1], 1, Ns);
@@ -102,10 +102,10 @@ j = 1;
             preambule, [delta_t, delta_f], [dec_t_max, dec_f_max], buff );
         
         Teb(i, j) = sum(abs(sb - s)) / length(s);
-        Teb(i, j)
-%     end
-%     
-% end
+%         Teb(i, j)
+    end
+    
+end
 
 %% ==================== Resultats / Figures ========================== %
 

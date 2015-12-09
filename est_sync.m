@@ -1,49 +1,61 @@
-function [ dec_t_est dec_f_est ] = est_sync( yl, preambule, dec_max, Te )
+function [ dec_t_est dec_f_est ] = est_sync( yl, preambule, dec_max, Te, taille_sl, Fse )
 %EST_SYNC Estimation des decalages temporel et frequentiel
 %   yl : signal avant le passage dans le filtre adapte
 %   preambule : signal correspondant au preambule
 %   Te : temps d'echantillonnage
+%   taille_sl : taille du vecteur d'information
 
 dec_t_max = dec_max(1);
 dec_f_max = dec_max(2);
 Tp = length(preambule);
 
-% Initialisation :
-corr = zeros(dec_f_max * 2 +1, length(yl) - Tp);
 
-t = 0:Te:Te*length(yl)-Te;
+% Le decalage frequentiel n'impacte pas la detection du decalage temporel.
+% On separe donc les deux operations !
 
-% Premiere boucle : boucle d'estimation frequentielle
-% for dec_f = -dec_f_max : dec_f_max
-%TODELETE
-dec_f = 0;
-    
-    % Correlation (numerateur de l'equation)
-    numerateur_compl = xcorr(yl .* exp(j * 2 * pi * dec_f * t), preambule);
-    numerateur = numerateur_compl(length(yl):end-Tp);
-    
-    % Denominateur :
-    Eg_sp = sum(abs(preambule).^2);
-    
-    Egs_yl = zeros(1, length(yl) - Tp);
-    for dec_t = 0 : length(yl) - Tp -1
-        Egs_yl(dec_t+1) = sum(abs(yl(dec_t+1:dec_t+1+Tp)).^2);
-    end
-    
-    denominateur = sqrt(Eg_sp) * sqrt(Egs_yl);
-    
-    corr(dec_f + dec_f_max +1, :) = numerateur ./ denominateur;
-    
-% end
+% ------------------------------------ Decalage temporel
 
-% http://www.mathworks.com/matlabcentral/newsreader/view_thread/298526
+% Correlation (numerateur de l'equation)
+numerateur_compl = xcorr(yl, preambule);
+numerateur = numerateur_compl(length(yl):end - Tp - taille_sl - Fse);
 
-[val, ind] = max(corr(:));
+% Denominateur :
+Eg_sp = sum(abs(preambule).^2);
 
-[lig, col] = ind2sub(size(corr), ind);
+Egs_yl = zeros(1, length(yl) - Tp - taille_sl - Fse);
+for dec_t = 0 : length(yl) - Tp - taille_sl - Fse -  1
+    Egs_yl(dec_t+1) = sum(abs(yl(dec_t+1:dec_t+1+Tp)).^2);
+end
 
-dec_f_est = lig - dec_f_max - 1;
-dec_t_est = col - 1;
+denominateur = sqrt(Eg_sp) * sqrt(Egs_yl);
+
+corr_t = numerateur ./ denominateur;
+
+% Estimation :
+[val, ind] = max(corr_t);
+dec_t_est = ind - 1;
+    
+% --------------------------------- Decalage frequentiel
+preamb_est =  yl( dec_t_est + 1:dec_t_est + Tp );
+
+t = Te * dec_t_est : Te : Te*(Tp + dec_t_est - 1);
+
+corr_f = zeros(1, 2 * dec_f_max + 1);
+
+% Boucle d'estimation frequentielle
+for dec_f = -dec_f_max : dec_f_max
+    
+    % Seul le numerateur est lie au decalage de frequence. La correlation
+    % disparait puisqu'on fixe le decalage t.
+    
+    corr_f(dec_f + dec_f_max + 1) = ...
+        sum( preamb_est .* exp(j * 2 * pi * dec_f * t) .* preambule );
+
+end
+
+% Estimation :
+[val, ind] = max(corr_f);
+dec_f_est = ind - dec_f_max - 1;
 
 end
 
