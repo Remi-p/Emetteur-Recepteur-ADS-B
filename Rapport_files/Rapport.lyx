@@ -1654,6 +1654,10 @@ De la même façon, on trouve :
 
 \end_layout
 
+\begin_layout Standard
+De plus,
+\end_layout
+
 \begin_layout Paragraph
 Question 10
 \end_layout
@@ -1668,7 +1672,61 @@ On rappelle la formule général de
 \end_inset
 
 .
- Donc, dans notre cas binaire :
+\end_layout
+
+\begin_layout Standard
+Il est important de noter qu'il faut, soit adapter les résultats du cours
+ à notre cas particulier, soit adapter notre chaîne de communication, à
+ la réception normalement.
+ Par exemple, dans notre cas on aurait, tel quel, 
+\begin_inset Formula $y_{l}$
+\end_inset
+
+ à la sortie du canal :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{l}(t)=\sum_{k}A_{k}p(t-kT_{s})+0,5+n_{l}(t)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Et donc à l'échantillonnage, il faudrait prendre en compte le terme 
+\begin_inset Formula $0,5$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+r_{l}[n]=p(0)A_{n}+0,5*p^{*}(-nT_{s})+n_{l}(t)*p^{*}(-nT_{s})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On choisit d'enlever le terme 
+\begin_inset Formula $0,5$
+\end_inset
+
+ à 
+\begin_inset Formula $y_{l}$
+\end_inset
+
+, ce qui nous permet de nous rapprocher des résultats obtenus en cours l'année
+ dernière.
+ Soit finalement :
 \end_layout
 
 \begin_layout Standard
@@ -1683,8 +1741,8 @@ P_{b}=Q\left(\sqrt{\frac{2E_{g}}{N_{0}}}\right)=\frac{1}{2}\mbox{erfc}\left(\sqr
 \end_layout
 
 \begin_layout Standard
-Il semble cependant intéressant d'observer cette probabilité d'erreur enfonction
- de l'énergie moyenne par bit, 
+Il semble cependant intéressant d'observer cette probabilité d'erreur en
+ fonction de l'énergie moyenne par bit, 
 \begin_inset Formula $E_{b}$
 \end_inset
 
