@@ -2,7 +2,7 @@
 %  Gourdel Thibaut                                           . \|/ /,  %
 %  Perrot Remi            =================                  \\`''/_-- %
 %  TS226                  | 4.3 Travail   |           Bordeaux INP --- %
-%  Novembre 2015          |  a effectuer  |           ENSEIRB  ,..\\`  %
+%  Decembre 2015          |  a effectuer  |           ENSEIRB  ,..\\`  %
 %                         =================           MATMECA / | \\`  %
 % ==================================================================== %
 
@@ -22,16 +22,16 @@ Ts = 1/Ds;
 Fse = Ts/Te;
 
 % Precision des ffts :
-Nfft = 512;
+Nfft = 2048;
 
 % Nombre de bits du message de test
-lngr = 1000;
+lngr = 100000;
 
 % p(t) le filtre de mise en forme
-p = ones(1, (Fse)) * 0.5;
+p = - ones(1, (Fse)) * 0.5;
 p(Fse/2:Fse) = - p(Fse/2:Fse);
 
-%% ========================================= Calculs ======================
+%% =========================================== Canal ======================
 
 % Generation de la sequence binaire ([imin, imax], pas, Nbe de symbole)
 sb = randi([0, 1], 1, lngr);
@@ -44,9 +44,10 @@ ss = pammod(sb, 2, 0);
 ss_sur = upsample(ss, Fse);
 
 % Convolution du signal ss(t) et g(t)
-sl = conv(ss_sur, p) + 0.5;
+% sl = conv(ss_sur, p) + 0.5;
+sl = filter(p, 1, ss_sur) + 0.5;
 
-%% ======================================== Affichage =====================
+%% ========================================== Courbes =====================
 
 %                                          Question 11. Allure temporelle %
 % ----------------------------------------------------------------------- %
@@ -78,16 +79,35 @@ axis([V(1) V(2) -0.1 1.1]);
 %                             Question 13. Densite spectrale de puissance %
 % ----------------------------------------------------------------------- %
 
-% == Densite spectrale de sl(t)
-N = length(sl);
-Sl = fft(sl, N); % Transformee de Fourier
-dsp_pra = (1/(fe*N)) * (abs(Sl).^2); % Formule de la DSP
-f = -fe/2 : fe/N : fe/2-fe/N; % Frequences observees
+% == Densite spectrale de sl(t) ---------------
 
-% == Theorique (basee sur f)
+% On commence par "decouper" notre vecteur, pour effectuer un moyennage
+
+% Nombre de lignes pour le moyennage
+nbr_lignes = ceil(length(sl) / Nfft);
+% Zero-padding
+sl_zero = zeros(1, nbr_lignes*Nfft);
+sl_zero(1:length(sl)) = sl;
+% "Decoupage" du vecteur
+sl_mat = reshape(sl_zero, Nfft, nbr_lignes);
+
+% DSP
+% Transformee de Fourier
+Sl = fft(sl_mat, Nfft);
+Sl_moy = mean(Sl, 2);
+% On centre la TF
+Sl_dec = fftshift(Sl_moy);
+% Formule de la DSP
+dsp_pra = (1/(fe*Nfft)) * (abs(Sl_dec).^2);
+
+% Frequences observees
+f = -fe/2 : fe/Nfft : fe/2-fe/Nfft;
+
+% == Theorique (basee sur f) ------------------
+
 % Tout d'abord, il faut decrire le dirac ; il est au centre des frequences
-dirac = zeros(1, N);
-dirac(ceil(1/N + 1)) = 1;
+dirac = zeros(1, Nfft);
+dirac(ceil(Nfft/2 + 1)) = 1;
 
 % A present, on cree la DSP avec la formule de la question 8 :
 dsp_theo = 0.25*dirac + ...

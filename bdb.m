@@ -1,7 +1,8 @@
-function [ s, ss, sl, rl ] = bdb( sb, M, Ts, Te, g, h, nl, ga, Ns, retard )
+function [ s, ss, sl, rl ] = bdb( sb, M, Ts, Te, g, h, nl, ga, Ns, retard, decalage )
 %BDB Retourne le signal apres passage dans le systeme
 %	 Gourdel Thibaut / Perrot Remi
-%	 TS113 - juin 2015
+%	 TS113 - Juin 2015
+%    TS226 - Decembre 2015 : Rajout du 0.5 (decalage)
 
 % Sous Octave il faut faire attention aux types des variables
 Fse = int32(Ts/Te);
@@ -23,7 +24,8 @@ ss_sur(1:Fse:Ns_sur) = ss;
 % // Ne fonctionne pas sous GNU Octave :
 % // ss_sur = upsample(ss, Fse);
 
-sl = conv(ss_sur, g);
+sl = conv(ss_sur, g) + decalage;
+%sl = filter(p, 1, ss_sur) + decalage;
 
 %% ============================= Canal =============================== %
 
@@ -36,7 +38,7 @@ yl = sl2 + nl;
 %% ========================== Recepteur ============================== %
 
 % ----------------------- Filtre de reception ------------------------ %
-rl = conv(yl, ga);
+rl = conv(yl - decalage, ga);
 
 % ------------------------- Echantillonnage -------------------------- %
 %rl_d = downsample(rl, Ts/Te);

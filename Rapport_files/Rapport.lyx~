@@ -1264,7 +1264,7 @@ Le signal
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align}
-\varGamma_{s_{l}}(f) & =\int\tilde{_{R}R_{s_{l}}}(\tau)e^{-j2\pi f\tau}d\tau\nonumber \\
+\varGamma_{s_{l}}(f) & =\int_{R}\tilde{R_{s_{l}}}(\tau)e^{-j2\pi f\tau}d\tau\nonumber \\
  & =\int_{R}[0,25+\frac{1}{T_{s}}R_{p}(\tau)e^{-j2\pi f\tau}]d\tau\nonumber \\
  & =\int_{R}0.25e^{-j2\pi f\tau}d\tau+\frac{1}{T_{s}}\int_{R}R_{p}(\tau)e^{-j2\pi f\tau}d\tau\nonumber \\
  & =0.25\delta(f)+\frac{1}{T_{s}}\left|P(f)\right|^{2}\label{eq:Densité spectrale TF p(t)}
@@ -1654,6 +1654,10 @@ De la même façon, on trouve :
 
 \end_layout
 
+\begin_layout Standard
+De plus,
+\end_layout
+
 \begin_layout Paragraph
 Question 10
 \end_layout
@@ -1668,7 +1672,61 @@ On rappelle la formule général de
 \end_inset
 
 .
- Donc, dans notre cas binaire :
+\end_layout
+
+\begin_layout Standard
+Il est important de noter qu'il faut, soit adapter les résultats du cours
+ à notre cas particulier, soit adapter notre chaîne de communication, à
+ la réception normalement.
+ Par exemple, dans notre cas on aurait, tel quel, 
+\begin_inset Formula $y_{l}$
+\end_inset
+
+ à la sortie du canal :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{l}(t)=\sum_{k}A_{k}p(t-kT_{s})+0,5+n_{l}(t)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Et donc à l'échantillonnage, il faudrait prendre en compte le terme 
+\begin_inset Formula $0,5$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+r_{l}[n]=p(0)A_{n}+0,5*p^{*}(-nT_{s})+n_{l}(t)*p^{*}(-nT_{s})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On choisit d'enlever le terme 
+\begin_inset Formula $0,5$
+\end_inset
+
+ à 
+\begin_inset Formula $y_{l}$
+\end_inset
+
+, ce qui nous permet de nous rapprocher des résultats obtenus en cours l'année
+ dernière.
+ Soit finalement :
 \end_layout
 
 \begin_layout Standard
@@ -1683,8 +1741,8 @@ P_{b}=Q\left(\sqrt{\frac{2E_{g}}{N_{0}}}\right)=\frac{1}{2}\mbox{erfc}\left(\sqr
 \end_layout
 
 \begin_layout Standard
-Il semble cependant intéressant d'observer cette probabilité d'erreur enfonction
- de l'énergie moyenne par bit, 
+Il semble cependant intéressant d'observer cette probabilité d'erreur en
+ fonction de l'énergie moyenne par bit, 
 \begin_inset Formula $E_{b}$
 \end_inset
 
@@ -1775,7 +1833,7 @@ reference "eq:Eg"
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-P_{b}=\frac{1}{2}\mbox{erfc}\left(\sqrt{\frac{E_{b}}{N_{0}}}\right)
+\boxed{P_{b}=\frac{1}{2}\mbox{erfc}\left(\sqrt{\frac{E_{b}}{N_{0}}}\right)}\label{eq:Pb}
 \end{equation}
 
 \end_inset
@@ -1942,6 +2000,83 @@ On trace la densité spectrale de puissance théorique de
  sans fenêtre ni chevauchement.
 \end_layout
 
+\begin_layout Paragraph
+Question 14
+\end_layout
+
+\begin_layout Standard
+Pour calculer le taux d'erreur binaire, on se base sur nos fichiers de l'année
+ dernière (TS113).
+ On trace également la courbe d'erreur théorique (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Pb"
+
+\end_inset
+
+, page 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "eq:Pb"
+
+\end_inset
+
+), visible à la figure 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "fig:TEB"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Q14_TEB.png
+	width 60line%
+	groupId graph
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Taux d'Erreur Binaire en fonction du rapport signal sur bruit
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:TEB"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection*
 Question 15
 \end_layout
@@ -1952,9 +2087,9 @@ On a :
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-\rho(\delta_{t}^{'},\delta_{f}^{'})=\frac{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt}{\sqrt{\intop_{0}^{T_{p}}}\left|s_{p(t)}\right|{}^{2}dt\,\sqrt{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|y_{l(t)}\right|{}^{2}dt}}
-\]
+\begin{equation}
+\rho(\delta_{t}^{'},\delta_{f}^{'})=\frac{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt}{\sqrt{\intop_{0}^{T_{p}}\left|s_{p(t)}\right|{}^{2}dt}.\sqrt{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|y_{l(t)}\right|{}^{2}dt}}\label{eq:corr_decalage}
+\end{equation}
 
 \end_inset
 
@@ -1966,35 +2101,50 @@ Nous allons montrer que
 \begin_inset Formula $\left|\rho(\delta_{t}^{'},\delta_{f}^{'})\right|\leq1$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
-D'après l'inégalité de Cauchy-Schwartz : 
-\begin_inset Formula $\left|\intop_{R}u(t)v^{*}(t)dt\right|\leq\sqrt{\intop_{R}\left|u(t)\right|{}^{2}dt}\sqrt{\intop_{R}\left|v(t)\right|{}^{2}dt}$
+L'inégalité de Cauchy-Schwarz est donnée en équation 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "eq:Cauchy-Schwarz"
+
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\left|\intop_{R}u(t)v^{*}(t)dt\right|\leq\sqrt{\intop_{R}\left|u(t)\right|{}^{2}dt}\sqrt{\intop_{R}\left|v(t)\right|{}^{2}dt}\label{eq:Cauchy-Schwarz}
+\end{equation}
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-Tout d'abord posons 
-\begin_inset Formula $u(t)=y_{l(t)}$
+Tout d'abord, posons 
+\begin_inset Formula $u(t)=y_{l}(t)$
 \end_inset
 
  et 
 \begin_inset Formula $v^{*}(t)=s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}$
 \end_inset
 
-
+.
+ Ainsi :
 \end_layout
 
 \begin_layout Standard
-Donc
-\end_layout
+\begin_inset Formula 
+\begin{equation}
+\left|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt\right|\leq\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|s_{p}(t-\delta_{t}^{'}){}^{2}\right|dt}.\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|y_{l}(t)\right|{}^{2}dt}
+\end{equation}
 
-\begin_layout Standard
-\begin_inset Formula $|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt|\leq\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|s_{p}(t-\delta_{t}^{'}){}^{2}\right|dt}\,\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|y_{l}(t)\right|{}^{2}dt}$
 \end_inset
 
 
@@ -2006,29 +2156,30 @@ Effectuons un changement de variable pour la première racine carré du second
 \begin_inset Formula $t^{'}=t-\delta_{t}^{'}$
 \end_inset
 
-
+.
+ D'où
 \end_layout
 
 \begin_layout Standard
-D'où 
-\end_layout
+\begin_inset Formula 
+\begin{equation}
+\left|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt\right|\leq\sqrt{\int_{0}^{T_{p}}\left|s_{p}(t)\right|{}^{2}dt}\,\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|y_{l}(t)\right|{}^{2}dt}
+\end{equation}
 
-\begin_layout Standard
-\begin_inset Formula $\left|\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt\right|\leq\sqrt{\int_{0}^{T_{p}}\left|s_{p}(t)\right|{}^{2}dt}\,\sqrt{\int_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|y_{l}(t)\right|{}^{2}dt}$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-On a donc bien le résultat suivant :
+On a donc bien le résultat de l'énoncé.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-\left|\rho(\delta_{t}^{'},\delta_{f}^{'})\right|\leq1
-\]
+\begin{equation}
+\boxed{\left|\rho(\delta_{t}^{'},\delta_{f}^{'})\right|\leq1}
+\end{equation}
 
 \end_inset
 
@@ -2046,9 +2197,9 @@ Pour déterminer l'ordre de grandeur du décalage de fréquence Doppler d'un
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
+\begin{equation}
 f_{recepteur}=\frac{f_{source}}{1-\frac{V_{source}}{V_{phase}}}
-\]
+\end{equation}
 
 \end_inset
 
@@ -2079,9 +2230,9 @@ où
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
+\begin{equation}
 \triangle f=f_{recepteur}-f_{source}=1,09.10^{9}-\frac{1,09.10^{9}}{1-\frac{250}{3.10^{8}}}
-\]
+\end{equation}
 
 \end_inset
 
@@ -2090,9 +2241,9 @@ où
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-\triangle f\approx900Hz
-\]
+\begin{equation}
+\boxed{\triangle f\approx900Hz}
+\end{equation}
 
 \end_inset
 
@@ -2102,6 +2253,54 @@ où
 \begin_layout Standard
 Pour un avion se déplaçant à 900km/h, l'ordre de grandeur du décalage introduit
  par l'effet Doppler est d'environ 900 Hz.
+\end_layout
+
+\begin_layout Paragraph
+Question 17
+\end_layout
+
+\begin_layout Standard
+En observant l'équation 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "eq:corr_decalage"
+
+\end_inset
+
+, on remarque qu'on est fasse à une convolution entre le preambule inversé
+ temporellement (utilisation de 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+fliplr
+\end_layout
+
+\end_inset
+
+) d'un côté, et le signal reçu mulitplié par l'exponentielle de l'autre.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\rho(\delta_{t}^{'},\delta_{f}^{'})=\frac{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt}{\sqrt{\intop_{0}^{T_{p}}\left|s_{p(t)}\right|{}^{2}dt}.\sqrt{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|y_{l}(t)\right|{}^{2}dt}}\label{eq:corr_decalage-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\rho(\delta_{t}^{'},\delta_{f}^{'})=\frac{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}y_{l}(t)s_{p}^{*}(t-\delta_{t}^{'})e^{-j2\pi\delta_{f}^{'}t}dt}{\sqrt{\intop_{0}^{T_{p}}\left|s_{p(t)}\right|{}^{2}dt}.\sqrt{\intop_{\delta_{t}^{'}}^{\delta_{t}^{'}+T_{p}}\left|y_{l(t)}\right|{}^{2}dt}}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2135,6 +2334,17 @@ status open
 
 \begin_layout Plain Layout
 \align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\end_inset
+
+
 \begin_inset Graphics
 	filename /home/thibaut/Bureau/Flight_radar/Emetteur-Recepteur-ADS-B/question20.eps
 
