@@ -5,9 +5,7 @@ function [ registre ] = bit2registre( trame, registre_old )
 %
 %   Prend en argument un vecteur de 112 bits et un registre a mettre a 
 %   jour avec un registre sous la forme d'une structure.
-
 registre = registre_old;
-
 % defined by x^4+x^3+x^2+x+1:
 % Kind of enum
 message = struct('identification',1, ...
@@ -18,23 +16,19 @@ message = struct('identification',1, ...
 h = crc.detector([1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1]);
 [outdata err] = detect(h, trame);
 err = 0;
+
 % S'il n'y a pas d'erreur dans la sequence
 if err == 0
-
-    %registre = registre_old;
-
         if(~isempty(trame))
-
+            
             % Downlink Format (5 first bits)
             DF = b2d(extract(trame, 1, 1, 5));
-            registre.format = DF;
- 
+            %registre.adresse =  [registre.adresse AA];
+            
             if(DF == 17)
 
             % ICAO aircraft address (AA)
-            AA = b2d(extract(trame, 1, 9,32));
-            AA = dec2hex(AA);
-            AA = cellstr(AA);
+            AA = cellstr(dec2hex(b2d(extract(trame, 1, 9,32))));
         
             if ~isempty(registre.adresse)
                 index = -1;
@@ -46,21 +40,24 @@ if err == 0
                 end
                 % Si l'avion n'existe pas dans la structure
                 if index == -1
-                   index = length(registre.adresse) +1;
-                   registre.adresse =  [registre.adresse AA];
+                   [registre index] = newplane2registre(registre, AA);
                 end
             else
                 fprintf('Premier avion');
-                registre.adresse = AA;
                 index =1;
+                registre.adresse =  [registre.adresse AA];
             end
+            
+            % Format
+            registre.format(index) = DF;
+            
             index
             %% ******* Datas ********
             datas = trame(33:88,1);
 
             % Format Type Code (FTC)
             FTC = b2d(extract(datas, 1, 1,5));
-            registre.type = FTC;
+            registre.type(index) = FTC;
 
                 switch type_message(FTC)
 
@@ -72,7 +69,7 @@ if err == 0
                             name = extract( datas, 1 , 9 , 56);
                             name = sprintf('%d', name);
                             name = decode_name(name);
-                            registre.nom{1} = name;
+                            registre.nom{index} = name;
                         else
                             fprintf('Identification deja faite');
                         end
@@ -94,20 +91,19 @@ if err == 0
                         % latitude & lonitude
                         lat = b2d(extract(datas, 1, 23, 39));
                         lon = b2d(extract(datas, 1, 40, 56));
-                        [ latitude longitude ] = decode_coordonnees(cprFlag, lat, lon);
-
-                        registre.latitude(index) = latitude;
-                        registre.longitude(index) = longitude;
+                        [ latitude, longitude ] = decode_coordonnees(cprFlag, lat, lon);
+                        registre.latitude(index,size(registre.latitude,2)+1) = latitude;
+                        registre.longitude(index,size(registre.latitude,2)+1) = longitude;
 
                     case message.surface_pos
 
                         % timeFlag
                         TFlag = b2d(extract(datas, 1, 21, 21));
-                        registre.timeFlag = TFlag;
+                        registre.timeFlag(index) = TFlag;
 
                         % cprFlag
                         cprFlag = b2d(extract(datas, 1, 22, 22));
-                        registre.cprFlag = cprFlag;
+                        registre.cprFlag(index) = cprFlag;
 
                         % latitude & lonitude
                         lat = b2d(extract(datas, 1, 23, 39));
@@ -122,7 +118,7 @@ if err == 0
                         % velocity
                         vel_mes = extract(datas, 1, 14, 35);
                         velocity = decode_velocity( vel_mes );
-                        registre.velocity = velocity;
+                        registre.velocity(index) = velocity;
                         
                     otherwise
                 end
