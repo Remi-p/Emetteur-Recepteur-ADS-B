@@ -93,7 +93,7 @@ if err == 0
                         lon = b2d(extract(datas, 1, 40, 56));
                         [ latitude, longitude ] = decode_coordonnees(cprFlag, lat, lon);
                         registre.latitude(index,size(registre.latitude,2)+1) = latitude;
-                        registre.longitude(index,size(registre.latitude,2)+1) = longitude;
+                        registre.longitude(index,size(registre.longitude,2)+1) = longitude;
 
                     case message.surface_pos
 
@@ -110,8 +110,8 @@ if err == 0
                         lon = b2d(extract(datas, 1, 40, 56));
                         [ latitude longitude ] = decode_coordonnees(cprFlag, lat, lon);
                         
-                        registre.latitude = latitude;
-                        registre.longitude = longitude;
+                        registre.latitude(index,size(registre.latitude,2)+1) = latitude;
+                        registre.longitude(index,size(registre.longitude,2)+1) = longitude;
 
                     case message.airborne_vel
 

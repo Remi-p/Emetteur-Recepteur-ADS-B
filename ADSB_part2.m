@@ -23,7 +23,13 @@ for i=1:24
     i
 	registre = bit2registre(trames_20141120Copy(:,i), registre);
     registre
+
     %plot(registre.longitude, registre.latitude,'.b','MarkerSize',20);
+end
+
+for j=1:size(registre.latitude,2)
+   plot(registre.longitude(1,j), registre.latitude(1,j),'.b','MarkerSize',20); 
+    
 end
 xlabel('Longitude en degres');
 ylabel('Lattitude en degres');
