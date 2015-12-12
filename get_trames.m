@@ -21,7 +21,8 @@ for i = 1 : length(decalages)
     % Indices de la trame a la sortie du canal :
     indices = decalages(i) + (1:lg_trame_canal);
     
-    trame_cod = bufferabs( indices );  
+    trame_cod = bufferabs( indices - 1 );
+    % (le -1 permet de recadrer l'echantillonnage)
     
     trame_decod = decod(trame_cod, mean(trame_cod), pa, Fse);
     

@@ -87,17 +87,12 @@ sigma = sqrt((sigma_a_2 * Eg)./(2*EbN0));
 
 Teb = zeros(1, length(sigma));
 
-
 for i=1:length(sigma)
-% sigma(end+1) = 0;
-% i = length(sigma);
 
     nb_erreurs = 0;
     k = 0;
 
-%     for j=1:iter
     while nb_erreurs < 100
-% j = 1;
 
         k = k+1;
         if (mod(k, 100) == 0)

@@ -58,12 +58,12 @@ pa = fliplr(p);
 
 [trames, decalages] = get_trames( buffer, preambule, ...
     Te, Fse, pa, seuil_empirique, taille_trame_canal, h );
-
+    
 fprintf('Il y a %i pics de correlation.\n', length(decalages));
 fprintf('Nous avons trouve %i trame(s) valide(s).\n', size(trames, 2));
 
 for i=1:size(trames,2)
-    if verbose;cprintf('_blue', 'Trame %i\n', i);end
+    if verbose; cprintf('_blue', 'Trame %i\n', i); end
 	registre = bit2registre(trames(:,i), registre);
 end
 

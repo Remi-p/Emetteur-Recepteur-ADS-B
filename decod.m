@@ -22,7 +22,6 @@ ss_sur(1:Fse:length(rl_d)*Fse) = rl_d;
 
 % plot(rl_d);
 
-% MODIF
 display = false;
 if display
     figure;
