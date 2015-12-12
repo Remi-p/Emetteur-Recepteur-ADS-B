@@ -40,12 +40,18 @@ if err == 0
                 end
                 % Si l'avion n'existe pas dans la structure
                 if index == -1
-                   [registre index] = newplane2registre(registre, AA);
+                   L = length(registre.adresse)
+                   index = length(registre.adresse) +1;
+                   registre = newplane2registre(registre, AA, index);
                 end
             else
                 fprintf('Premier avion');
-                index =1;
-                registre.adresse =  [registre.adresse AA];
+                index = 1;
+                registre.adresse = [registre.adresse AA];
+                registre.positions{index} = [];
+                registre.velocity(index)  = 0;
+                registre.nom  = {};
+                
             end
             
             % Format
@@ -92,8 +98,8 @@ if err == 0
                         lat = b2d(extract(datas, 1, 23, 39));
                         lon = b2d(extract(datas, 1, 40, 56));
                         [ latitude, longitude ] = decode_coordonnees(cprFlag, lat, lon);
-                        registre.latitude(index,size(registre.latitude,2)+1) = latitude;
-                        registre.longitude(index,size(registre.longitude,2)+1) = longitude;
+                        
+                        registre.positions{index}{end+1} = [ latitude longitude ];
 
                     case message.surface_pos
 

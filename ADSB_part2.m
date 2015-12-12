@@ -4,7 +4,7 @@ clear all
        
 registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
                   'timeFlag', [], 'cprFlag', [], ...
-                  'longitude', [], 'latitude', [], 'velocity', []);
+                  'positions', [], 'velocity', []);
               
 
               
@@ -27,10 +27,10 @@ for i=1:24
     %plot(registre.longitude, registre.latitude,'.b','MarkerSize',20);
 end
 
-for j=1:size(registre.latitude,2)
-   plot(registre.longitude(1,j), registre.latitude(1,j),'.b','MarkerSize',20); 
-    
-end
+% for j=1:size(registre.latitude,2)
+%    plot(registre.longitude(1,j), registre.latitude(1,j),'.b','MarkerSize',20); 
+%     
+% end
 xlabel('Longitude en degres');
 ylabel('Lattitude en degres');
 
