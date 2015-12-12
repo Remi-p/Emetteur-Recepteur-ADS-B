@@ -23,12 +23,15 @@ ss_sur(1:Fse:length(rl_d)*Fse) = rl_d;
 % plot(rl_d);
 
 % MODIF
-% figure;
-% hold on;
-% plot(rl, 'g');
-% stem(ss_sur, 'b');
-% pause;
-% close;
+display = false;
+if display
+    figure;
+    hold on;
+    plot(rl, 'g');
+    stem(ss_sur, 'b');
+    pause;
+    close;
+end
 
 % -------------------------- Bloc decision --------------------------- %
 % ------------------ Bloc association symbole->bits ------------------ %
