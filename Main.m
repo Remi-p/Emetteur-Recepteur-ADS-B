@@ -8,6 +8,12 @@
 
 clear all; close all; clc;
 
+global verbose;
+
+registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
+                  'timeFlag', [], 'cprFlag', [], ...
+                  'positions', [], 'velocity', []);
+
 % Buffer de Simon
 buff = load('fichierbuffer1.mat');
 
@@ -55,3 +61,12 @@ pa = fliplr(p);
 
 fprintf('Il y a %i pics de correlation.\n', length(decalages));
 fprintf('Nous avons trouve %i trame(s) valide(s).\n', size(trames, 2));
+
+for i=1:size(trames,2)
+    if verbose;cprintf('_blue', 'Trame %i\n', i);end
+	registre = bit2registre(trames(:,i), registre);
+end
+
+registre
+
+%planes_on_map( registre.positions, registre.adresse );
