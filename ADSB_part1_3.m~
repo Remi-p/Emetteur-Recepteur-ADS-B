@@ -100,7 +100,7 @@ for i=1:length(sigma)
 % j = 1;
 
         k = k+1;
-        if (mod(k, 100) == 0)
+        if (mod(k, 10) == 0)
             fprintf('i=%i : iteration #%i, %i erreurs \n', i, k, nb_erreurs);
         end
 
@@ -118,15 +118,20 @@ for i=1:length(sigma)
         
         erreurs = sum(abs(sb - s));
         
-        nb_erreurs = nb_erreurs + erreurs;
+        nb_erreurs = nb_erreurs + 1;
         
+        Teb(i, j) = erreurs / length(s);
+%         Teb(i, j)
     end
     
-    Teb(i) = nb_erreurs / (k * length(s));
+    Teb(i) = nb_erreurs
     
 end
 
 %% ==================== Resultats / Figures ========================== %
+
+% Erreurs
+Teb = mean(Teb, 2);
 
 % Evolution theorique du TEB, calculee en question 10
 theorie = erfc(sqrt(EbN0))/2;
