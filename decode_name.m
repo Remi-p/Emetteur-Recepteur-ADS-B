@@ -7,7 +7,7 @@ function [ string ] = decode_name( sequence )
 
 % Ecriture du tableaux
 % Chaque case vide est represente par un #
-table = '#ABCDEFGHIJKLMNOPQRSTUVWXYZ#####_###############0123456789######'
+table = '#ABCDEFGHIJKLMNOPQRSTUVWXYZ#####_###############0123456789######';
 
 name = '';
 name = strcat(name, table(bin2dec(sequence(1,1:6))+1));

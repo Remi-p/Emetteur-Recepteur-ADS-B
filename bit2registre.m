@@ -15,7 +15,7 @@ message = struct('identification',1, ...
 
 h = crc.detector([1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1]);
 [outdata err] = detect(h, trame);
-err = 0;
+cprintf('green','\tCRC correct\n');
 
 % S'il n'y a pas d'erreur dans la sequence
 if err == 0
@@ -35,17 +35,17 @@ if err == 0
                 for i=1:length(registre.adresse)
                     if (strcmpi(registre.adresse{i},AA) == 1)
                         index = i;
-                        fprintf('Avion deja dans la base');
+                        fprintf('\tPlane already in database -> OACI : %s\n', AA{:});
                     end
                 end
                 % Si l'avion n'existe pas dans la structure
                 if index == -1
-                   L = length(registre.adresse)
+                   fprintf('\tNew plane -> OACI : %s\n', AA{:});
                    index = length(registre.adresse) +1;
                    registre = newplane2registre(registre, AA, index);
                 end
             else
-                fprintf('Premier avion');
+                fprintf('\tFirst plane -> OACI : %s\n', AA{:});
                 index = 1;
                 registre.adresse = [registre.adresse AA];
                 registre.positions{index} = [];
@@ -56,8 +56,6 @@ if err == 0
             
             % Format
             registre.format(index) = DF;
-            
-            index
             %% ******* Datas ********
             datas = trame(33:88,1);
 
@@ -68,16 +66,16 @@ if err == 0
                 switch type_message(FTC)
 
                     case message.identification
-                        fprintf('Trame Identification');
+                        fprintf('\tIdentification for %s\n', AA{:});
                         % Si l'identification n' pas ete faite
-                        if isempty(registre.nom)
+                        if ~isempty(registre.nom)
                             % Name
                             name = extract( datas, 1 , 9 , 56);
                             name = sprintf('%d', name);
                             name = decode_name(name);
                             registre.nom{index} = name;
                         else
-                            fprintf('Identification deja faite');
+                            fprintf('\tIdentification already done for %s\n', AA{:});
                         end
                             
                     case message.airborne_pos
@@ -98,7 +96,6 @@ if err == 0
                         lat = b2d(extract(datas, 1, 23, 39));
                         lon = b2d(extract(datas, 1, 40, 56));
                         [ latitude, longitude ] = decode_coordonnees(cprFlag, lat, lon);
-                        
                         registre.positions{index}{end+1} = [ latitude longitude ];
 
                     case message.surface_pos
@@ -115,23 +112,26 @@ if err == 0
                         lat = b2d(extract(datas, 1, 23, 39));
                         lon = b2d(extract(datas, 1, 40, 56));
                         [ latitude longitude ] = decode_coordonnees(cprFlag, lat, lon);
-                        
-                        registre.latitude(index,size(registre.latitude,2)+1) = latitude;
-                        registre.longitude(index,size(registre.longitude,2)+1) = longitude;
+                        registre.positions{index}{end+1} = [ latitude longitude ];
+
 
                     case message.airborne_vel
 
-                        % velocity
+                        %velocity
+                        fprintf('\tTrame de vitesse detectée pour %s\n', AA{:});
                         vel_mes = extract(datas, 1, 14, 35);
                         velocity = decode_velocity( vel_mes );
                         registre.velocity(index) = velocity;
                         
                     otherwise
                 end
+            else
+            cprintf('err', '\tPas un message ADSB -> debug code DF : %d\n', DF); 
+                
             end
         end
 else
-    fprintf('Le CRC detetcte une/des erreurs');
+    cprintf('err','Le CRC detetcte une/des erreurs');
 end
 end
 

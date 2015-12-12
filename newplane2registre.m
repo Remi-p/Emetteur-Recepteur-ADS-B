@@ -1,10 +1,6 @@
 function [ registre ] = newplane2registre( old_registre, AA, index )
 % bit2registre Renseigne une nouvelle adresse OACI dans le registre 
 %              et prepare les vecteurs des registres.
-
-index2 = index;
-
-
 registre.adresse =  [old_registre.adresse AA];
 registre.format = [old_registre.format 0];
 registre.nom =  [old_registre.nom {''}];

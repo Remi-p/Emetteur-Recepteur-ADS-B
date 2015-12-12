@@ -8,7 +8,8 @@ registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
               
 
               
-load('trame2.mat')
+%load('trames_13.mat')
+matrice_binaire2 = [1,0,1;0,1,0;0,0,0;0,1,0;1,1,1;1,1,1;0,0,0;1,1,1;0,0,0;0,0,0;1,1,1;1,1,1;0,0,0;1,1,1;0,0,0;0,0,0;0,0,0;1,1,1;0,0,0;0,0,0;0,0,0;1,1,1;0,0,0;1,1,1;1,1,1;0,0,0;0,0,0;0,0,0;0,0,0;0,0,0;1,1,1;1,1,1;0,0,1;1,1,0;0,1,0;1,1,1;1,1,1;0,0,0;0,0,0;0,1,1;1,1,0;0,1,0;1,0,0;1,1,0;1,0,0;1,0,1;0,1,0;1,1,0;1,0,1;1,1,1;1,1,0;1,0,0;0,1,1;0,1,1;0,1,0;1,1,0;1,0,1;0,0,0;1,0,1;0,0,0;0,0,1;0,0,1;0,0,1;0,0,0;1,0,0;1,0,0;0,0,1;0,0,0;1,0,1;0,0,0;0,0,0;1,0,0;1,0,0;1,0,0;0,0,0;0,0,0;1,0,0;0,0,1;0,0,1;1,0,1;0,0,0;0,0,0;1,0,0;1,0,1;1,0,0;0,0,1;1,0,1;1,0,1;0,0,1;1,0,0;0,0,0;1,0,0;0,0,1;1,0,0;0,0,1;1,0,1;0,0,0;0,0,1;0,0,1;1,0,0;0,0,1;0,0,0;0,0,1;1,0,1;1,0,0;0,0,0;1,0,1;0,0,1;0,0,0;0,0,1;1,0,1;1,0,1];
 
 %% La fonction plot_google_map affiche des longitudes/lattitudes en degre decimaux,
 MER_LON = -0.710648; % Longitude de l'aeroport de Merignac
@@ -19,18 +20,30 @@ plot(MER_LON,MER_LAT,'.r','MarkerSize',20);% On affiche l'aeroport de Merignac s
 text(MER_LON+0.05,MER_LAT,'Merignac airport','color','r')
 plot_google_map('MapType','terrain','ShowLabels',0) % On affiche une carte sans le nom des villes
 
-for i=1:24
-    i
-	registre = bit2registre(trames_20141120Copy(:,i), registre);
-    registre
+%matrice_binaire2 = matrice_binaire(9:120,:);
 
-    %plot(registre.longitude, registre.latitude,'.b','MarkerSize',20);
+for i=1:size(matrice_binaire2,2)
+    cprintf('_blue', 'Trame %i\n', i);
+	registre = bit2registre(matrice_binaire2(:,i), registre);
 end
 
-% for j=1:size(registre.latitude,2)
-%    plot(registre.longitude(1,j), registre.latitude(1,j),'.b','MarkerSize',20); 
-%     
-% end
+registre
+
+for ind=1:size(registre.adresse,2)
+    for k=1:length(registre.positions{ind})
+    
+    p = registre.positions{ind}{k};
+    
+        if k ==1
+            plot(p(2), p(1),'.b','MarkerSize',20); 
+            text(p(2)+0.1, p(1),registre.adresse{ind},'color','b');
+        else
+            plot(p(2), p(1),'+b','MarkerSize',10)
+        end
+        
+    end
+end
+
 xlabel('Longitude en degres');
 ylabel('Lattitude en degres');
 
