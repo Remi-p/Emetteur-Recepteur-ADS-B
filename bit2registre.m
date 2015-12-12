@@ -1,10 +1,28 @@
-function [ registre ] = bit2registre( trame, registre_old )
+function [ registre ] = bit2registre( trame, registre_old, varargin )
 % bit2registre Extrait les informations du vecteur binaire et renvoie le
 %              registre mis a jour seulement si le CRC ne detecte pas
 %              d'erreur
 %
 %   Prend en argument un vecteur de 112 bits et un registre a mettre a 
 %   jour avec un registre sous la forme d'une structure.
+%   Ainsi qu'un varargin pour des parametres eventuels
+
+% ---- Parametres variables
+crc = true;
+
+nVar = length(varargin);
+
+if (nVar ~= 2)
+    error('Arguments incorrects');
+end
+
+switch varargin{1}
+    case 'CRC'
+        crc = varargin{2};
+    otherwise
+        error('Le type de parametre est inconnu');
+end
+
 global verbose;
 
 registre = registre_old;
@@ -15,12 +33,14 @@ message = struct('identification',1, ...
 				 'airborne_pos',3, ...
 				 'airborne_vel', 4);
 
-h = crc.detector([1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1]);
-[outdata err] = detect(h, trame);
-if verbose;cprintf('green','\tCRC correct\n');end
+if crc
+    h = crc.detector([1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1]);
+    [outdata err] = detect(h, trame);
+    if verbose;cprintf('green','\tCRC correct\n');end
+end
 
 % S'il n'y a pas d'erreur dans la sequence
-if err == 0
+if ~crc | err == 0
         if(~isempty(trame))
             
             % Downlink Format (5 first bits)

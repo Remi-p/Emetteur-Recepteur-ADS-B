@@ -37,8 +37,6 @@ Fse = Ts/Te;
 % p(t) le filtre de mise en forme
 p = - ones(1, (Fse)) * 0.5;
 p(Fse/2:Fse) = - p(Fse/2:Fse);
-% Normalisation :
-p = p ./ sqrt(sum(p.^2));
 
 % h(t) le filtre du canal
 h = ones(1, 1);

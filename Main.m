@@ -14,18 +14,12 @@ registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
                   'timeFlag', [], 'cprFlag', [], ...
                   'positions', [], 'velocity', []);
 
-% Buffer de Simon
-buff = load('fichierbuffer1.mat');
-
 %% ================== Initialisation des variables =================== %
 Rs = 4e6; % Le rythme d'echantillonnage (pas plus de 4Mhz)
 Te = 1/Rs;
 
 Rb = 1e6; % debit binaire
 Ts = 1/Rb;
-
-% Permet notamment de faire disparaitre le decalage frequentiel
-buffer = abs(buff.cplxBuffer);
 
 Fse = Ts/Te; % Sur-echantillonnage
 
@@ -47,8 +41,6 @@ h = crc.detector([1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1]);
 % p(t) le filtre de mise en forme
 p = - ones(1, (Fse)) * 0.5;
 p(Fse/2:Fse) = - p(Fse/2:Fse);
-% Normalisation :
-p = p ./ sqrt(sum(p.^2));
 
 % Filtre de reception : Pour maximiser le rapport signal sur bruit,
 % on prend pa(t) = p*(-t)
@@ -56,17 +48,32 @@ pa = fliplr(p);
 
 %% =========================================================== Calculs ===
 
-[trames, decalages] = get_trames( buffer, preambule, ...
-    Te, Fse, pa, seuil_empirique, taille_trame_canal, h );
+% Simulation de temps reel avec les buffers de Simon
+for k = 1:7
     
-fprintf('Il y a %i pics de correlation.\n', length(decalages));
-fprintf('Nous avons trouve %i trame(s) valide(s).\n', size(trames, 2));
+    fprintf('Buffer #%i\n\n', k);
+    
+    buff = load(sprintf('fichierbuffer%i.mat', k));
+    % Permet notamment de faire disparaitre le decalage frequentiel
+    buffer = abs(buff.cplxBuffer);
 
-for i=1:size(trames,2)
-    if verbose; cprintf('_blue', 'Trame %i\n', i); end
-	registre = bit2registre(trames(:,i), registre);
+    [trames, decalages] = get_trames( buffer, preambule, ...
+        Te, Fse, pa, seuil_empirique, taille_trame_canal, h );
+
+    fprintf('Il y a %i pics de correlation.\n', length(decalages));
+    fprintf('Nous avons trouve %i trame(s) valide(s).\n', size(trames, 2));
+
+    for i=1:size(trames,2)
+        if verbose; cprintf('_blue', 'Trame %i\n', i); end
+        registre = bit2registre(trames(:,i), registre, 'CRC', false);
+        % 'CRC' = false permet de ne pas recalculer le CRC (deja fait dans
+        % get_trames)
+    end
+
+    registre
+    
+    clear buff;
+    
 end
-
-registre
 
 %planes_on_map( registre.positions, registre.adresse );
