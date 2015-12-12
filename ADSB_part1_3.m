@@ -37,6 +37,8 @@ Fse = Ts/Te;
 % p(t) le filtre de mise en forme
 p = - ones(1, (Fse)) * 0.5;
 p(Fse/2:Fse) = - p(Fse/2:Fse);
+% Normalisation :
+p = p ./ sqrt(sum(p.^2));
 
 % h(t) le filtre du canal
 h = ones(1, 1);
@@ -45,11 +47,9 @@ h = ones(1, 1);
 % on prend pa(t) = p*(-t)
 pa = fliplr(p);
 
-% Generation des decalages temporels et frequentiels
+% Interval des decalages temporels et frequentiels
 dec_t_max = 100;
 dec_f_max = 1e3;
-delta_t = randi(dec_t_max);
-delta_f = randi([-dec_f_max dec_f_max]);
 
 % Le preambule correspond au signal donne dans l'enonce. Il n'a pas de lien
 % avec la visualisation en termes de bits, meme si on le code avec eux
@@ -88,10 +88,15 @@ sigma = sqrt((sigma_a_2 * Eg)./(2*EbN0));
 Teb = zeros(length(sigma), iter);
 
 for i=1:length(sigma)
-    
+% sigma(end+1) = 0;
+% i = length(sigma);
+
     for j=1:iter
 % j = 1;
-% i = length(sigma);
+
+        % Generation des decalages
+        delta_t = randi(dec_t_max);
+        delta_f = randi([-dec_f_max dec_f_max]);
 
         % Generation des bits d'informations
         sb = randi([0, 1], 1, Ns);

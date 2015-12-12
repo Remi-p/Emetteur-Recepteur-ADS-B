@@ -47,7 +47,7 @@ ss_sur(1:Fse:Ns_sur) = ss;
 % // Ne fonctionne pas sous GNU Octave :
 % // ss_sur = upsample(ss, Fse);
 
-sl = conv(ss_sur, g, 'same') + decalage;
+sl = conv(ss_sur, g) + decalage;
 %sl = filter(p, 1, ss_sur) + decalage;
 
 if (length(sl) + dec_t + length(preamb) > taille_buff*Fse)
@@ -75,7 +75,7 @@ t = 0:Te:length(buff)*Te-Te;
 buff = buff .* exp(-j * 2 * pi * dec_f * t);
 
 % ------------------------- Filtre du canal -------------------------- %
-sl_canal = conv(buff, h, 'same');
+sl_canal = conv(buff, h);
 
 % ------------------------ Bruit additionnel ------------------------- %
 nl = sigma*randn(1, length(sl_canal));
@@ -89,7 +89,7 @@ yl = sl_canal + nl;
 
 yl = yl .* exp( j * 2 * pi * dec_f_est * t );
 
-yl_resynch = abs( yl( dec_t_est + length(preamb) -1 + ...
+yl_resynch = abs( yl( dec_t_est + length(preamb) + ...
                         (1:length(sl)) ) );
 
 % % Erreur sur l'estimation de frequence :
@@ -105,26 +105,19 @@ yl_resynch = abs( yl( dec_t_est + length(preamb) -1 + ...
 %% ========================== Recepteur ============================== %
 
 % ----------------------- Filtre de reception ------------------------ %
-rl = conv(yl_resynch - decalage, ga, 'same');
-
-% figure;
-% hold on;
-% plot(ss_sur, 'b');
-% plot(rl, 'g');
-% pause;
-% close;
+rl = conv(yl_resynch - decalage, ga);
 
 % ------------------------- Echantillonnage -------------------------- %
 % rl_d = downsample(rl, Ts/Te);
 rl_d = rl(1:Fse:Ns*Fse);
 
-% length(ss)
-% length(rl_d)
 % figure;
-% hold on;
+% subplot(311);
 % plot(ss, 'b');
+% subplot(312);
 % plot(rl_d, 'g');
-% % plot(ss - rl_d, 'r');
+% subplot(313);
+% plot(ss - rl_d, 'r');
 % pause;
 % close;
 
@@ -132,11 +125,7 @@ rl_d = rl(1:Fse:Ns*Fse);
 % ------------------ Bloc association symbole->bits ------------------ %
 s = pamdemod(rl_d, M, 0);
 
-% figure;
-% stem(s, 'g');
-% hold on;
-% stem(sb, 'b');
-% pause;
-% close;
+figure;
+ste
 
 end
