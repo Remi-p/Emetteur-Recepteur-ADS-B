@@ -45,7 +45,6 @@ corr_t = numerateur ./ denominateur;
 indices_corr = 1:length(corr_t);
 
 indices = indices_corr(corr_t > seuil);
-length(indices)
 
 % On met nos positions a la fin de chaque preambule
 decalages = indices + length(preambule) - 1;

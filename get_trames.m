@@ -1,4 +1,4 @@
-function [ justes, decalages ] = get_trames( bufferabs, preambule, Te, Fse, pa, seuil, lg_trame_canal, h, todelete )
+function [ justes, decalages ] = get_trames( bufferabs, preambule, Te, Fse, pa, seuil, lg_trame_canal, h )
 %GET_TRAMES Retourne les trames supposees justes du buffer
 %   bufferabs : abs(buffer)
 %   preambule : preambule
@@ -21,7 +21,7 @@ for i = 1 : length(decalages)
     % Indices de la trame a la sortie du canal :
     indices = decalages(i) + (1:lg_trame_canal);
     
-    trame_cod = bufferabs( indices + todelete );  
+    trame_cod = bufferabs( indices );  
     
     trame_decod = decod(trame_cod, mean(trame_cod), pa, Fse);
     
