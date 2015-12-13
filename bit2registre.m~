@@ -8,7 +8,7 @@ function [ registre ] = bit2registre( trame, registre_old, varargin )
 %   Ainsi qu'un varargin pour des parametres eventuels
 
 % ---- Parametres variables
-checkcrc = true;
+crc = true;
 
 nVar = length(varargin);
 
@@ -17,10 +17,10 @@ if (nVar ~= 2 & nVar > 0)
 else if nVar == 2
      switch varargin{1}
         case 'CRC'
-            checkcrc = varargin{2};
-         otherwise
-            error('Le type de parametre est inconnu');
-     end
+        crc = varargin{2};
+        otherwise
+        error('Le type de parametre est inconnu');
+        end
 end
 
 
@@ -35,14 +35,14 @@ message = struct('identification',1, ...
 				 'airborne_pos',3, ...
 				 'airborne_vel', 4);
 
-if checkcrc
+if crc
     h = crc.detector([1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1]);
     [outdata err] = detect(h, trame);
     if verbose;cprintf('green','\tCRC correct\n');end
 end
 
 % S'il n'y a pas d'erreur dans la sequence
-if ~checkcrc | err == 0
+if ~crc | err == 0
         if(~isempty(trame))
             
             % Downlink Format (5 first bits)

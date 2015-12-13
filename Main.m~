@@ -28,7 +28,7 @@ registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
 % 
 % hold on;
 % pause(1);     
-              
+%               
 %% ================== Initialisation des variables =================== %
 Rs = 4e6; % Le rythme d'echantillonnage (pas plus de 4Mhz)
 Te = 1/Rs;
@@ -50,10 +50,7 @@ seuil_empirique = 0.85;
 % decalage_ampl = 0.5;
 
 % CRC
-% On n'utilise pas la fonction propose par MATLAB pour gagner en temps
-% d'execution
-%h = crc.detector([1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1]);
-p_gen = [1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1];
+h = crc.detector([1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1]);
 
 % ------------------------------------- Filtres
 % p(t) le filtre de mise en forme
@@ -76,7 +73,7 @@ for k = 1:7
     buffer = abs(buff.cplxBuffer);
 
     [trames, decalages] = get_trames( buffer, preambule, ...
-        Te, Fse, pa, seuil_empirique, taille_trame_canal, p_gen );
+        Te, Fse, pa, seuil_empirique, taille_trame_canal, h );
 
     fprintf('Il y a %i pics de correlation.\n', length(decalages));
     fprintf('Nous avons trouve %i trame(s) valide(s).\n', size(trames, 2));
@@ -89,7 +86,7 @@ for k = 1:7
     end
 
     registre
-	%planes_on_map( registre.positions, registre.adresse );
+%     planes_on_map( registre.positions, registre.adresse );
     clear buff;
     
 end
