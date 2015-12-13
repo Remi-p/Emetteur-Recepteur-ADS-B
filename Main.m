@@ -29,7 +29,7 @@ preambule = get_preambule(Ts, Fse);
 % Taille d'une trame au rythme Te
 taille_trame_canal = taille_trame * Fse;
 
-seuil_empirique = 0.75;
+seuil_empirique = 0.85;
 
 % Le decalage est calcule pour chaque trame estimee
 % decalage_ampl = 0.5;
@@ -48,7 +48,7 @@ pa = fliplr(p);
 
 %% =========================================================== Calculs ===
 
-% Simulation de temps reel avec les buffers de Simon
+% Simulation de temps reel avec les buffers de Simon & Clement
 for k = 1:7
     
     fprintf('Buffer #%i\n\n', k);
@@ -76,4 +76,4 @@ for k = 1:7
     
 end
 
-%planes_on_map( registre.positions, registre.adresse );
+% planes_on_map( registre.positions, registre.adresse );

@@ -51,6 +51,8 @@ for i = 1 : length(decalages)
                 if err_tmp == 0
                     outdata = outdata_tmp;
                     err = err_tmp;
+                    poids(j)
+                    fprintf('Trame corrigee\n');
                     break;
                 end
                 
@@ -62,6 +64,10 @@ for i = 1 : length(decalages)
     if (err == 0)
         % Enregistrement de la trame
         justes(:, end+1) = outdata;
+        fprintf('Trame juste ; %i\n', mean(poids));
+    else
+        
+        fprintf('Trame juste ; %i\n', mean(poids));
     end
     
 end

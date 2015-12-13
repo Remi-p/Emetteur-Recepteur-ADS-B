@@ -25,7 +25,7 @@ Fse = Ts/Te;
 Nfft = 2048;
 
 % Nombre de bits du message de test
-lngr = 100000;
+lngr = 10000;
 
 % p(t) le filtre de mise en forme
 p = - ones(1, (Fse)) * 0.5;
@@ -38,14 +38,15 @@ sb = randi([0, 1], 1, lngr);
 
 % Modulation de phase (donnee, nombre de symboles, phase)
 % (passage en Ak = +1 et -1)
-ss = pammod(sb, 2, 0);
+% ss = pammod(sb, 2, 0);
+ss = sb * 2 -1;
 
 % On surechantillonne le signal
 ss_sur = upsample(ss, Fse);
 
 % Convolution du signal ss(t) et g(t)
-% sl = conv(ss_sur, p) + 0.5;
-sl = filter(p, 1, ss_sur) + 0.5;
+sl = conv(ss_sur, p) + 0.5;
+% sl = filter(p, 1, ss_sur) + 0.5;
 
 %% ========================================== Courbes =====================
 

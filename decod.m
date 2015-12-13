@@ -1,4 +1,4 @@
-function [ s ] = decod( trame_cod, decalage, ga, Fse )
+function [ s, poids ] = decod( trame_cod, decalage, ga, Fse )
 %DECOD Passe le signal dans la derniere partie de la chaine de
 %      communication
 %   trame_cod : Trame surechantillonnee
@@ -35,6 +35,9 @@ end
 % -------------------------- Bloc decision --------------------------- %
 % ------------------ Bloc association symbole->bits ------------------ %
 s = pamdemod(rl_d, M, 0);
+
+% Pour la correction, on rajoute le poids des bits par rapport aux autres
+poids = abs(rl_d)./sqrt(sum(rl_d.^2));
 
 end
 

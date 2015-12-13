@@ -27,7 +27,8 @@ j=1;
 for j=1:1:11
     j
     k=0;
-    while erreur(j)<100 
+    for z = 1:100
+%     while erreur(j)<100 
         k=k+1;
         %% D?fauts:
         % D?lai de propagation
@@ -95,7 +96,7 @@ for j=1:1:11
         
         % Filtre adapt? 
         p_conj=cat(2,(1/2)*ones(1,Fse/2),(-1/2)*ones(1,Fse/2));
-        % Normalisation du filtre adapté
+        % Normalisation du filtre adapt?
         p_conjnorm=p_conj/sqrt(sum(p_conj.^2));
         % Signal obtenu apr?s le filtre adapt?
         rl=conv(yl,p_conjnorm);
@@ -111,9 +112,9 @@ for j=1:1:11
         B=rltilde>0;
         % Cumul des erreurs
         if length(bk)>=length(B)
-            erreur(j)=erreur(j)+sum(abs(bk(1:length(B))-B(1:end)))
+            erreur(j)=erreur(j)+sum(abs(bk(1:length(B))-B(1:end)));
         else
-            erreur(j)=erreur(j)+sum(abs(bk(1:end)-B(1:length(bk))))
+            erreur(j)=erreur(j)+sum(abs(bk(1:end)-B(1:length(bk))));
         end
         % Taux d'erreur binaire
         Teb(j)=erreur(j)/(k*(Nb));
