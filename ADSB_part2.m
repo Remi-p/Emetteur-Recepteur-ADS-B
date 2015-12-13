@@ -1,6 +1,12 @@
-clc
-close all
-clear all
+%% =================== Communications numeriques ==================== %%
+%  Gourdel Thibaut                                           . \|/ /,  %
+%  Perrot Remi            =================                  \\`''/_-- %
+%  TS226                  | 5.2 Travail   |           Bordeaux INP --- %
+%  Decembre 2015          |   a realiser  |           ENSEIRB  ,..\\`  %
+%                         =================           MATMECA / | \\`  %
+% ==================================================================== %
+
+clc; close all; clear all;
 
 global verbose;
 verbose = false;
