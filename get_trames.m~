@@ -1,4 +1,4 @@
-function [ justes, decalages ] = get_trames( bufferabs, preambule, Te, Fse, pa, seuil, lg_trame_canal, p )
+function [ justes, decalages ] = get_trames( bufferabs, preambule, Te, Fse, pa, seuil, lg_trame_canal, h )
 %GET_TRAMES Retourne les trames supposees justes du buffer
 %   bufferabs : abs(buffer)
 %   preambule : preambule
@@ -6,7 +6,7 @@ function [ justes, decalages ] = get_trames( bufferabs, preambule, Te, Fse, pa, 
 %   pa : (ga) filtre adapte
 %   seuil : seuil determinant une correlation suffisante
 %   lg_trame_canal : longueur de la trame au rythme Te
-%   p : polynome generateur pour le CRC
+%   h : CRC
 
 % Enregistrement des trames probablement justes
 justes = [];
@@ -31,10 +31,8 @@ for i = 1 : length(decalages)
     [trame_decod poids] = decod(trame_cod, mean(trame_cod), pa, Fse);
     
     % Verification du CRC :
-    % On n'utilise pas la fonction propose par MATLAB pour gagner en temps
-    % d'execution
     %[outdata err] = detect(h, trame_decod');
-    [outdata err] = crc24(trame_decod, p);
+    err = crc24(trame_decod);
     
     % Force brut, correction d'une erreur
     % (inspire de https://github.com/antirez/dump1090/blob/master/dump1090.c
@@ -49,9 +47,8 @@ for i = 1 : length(decalages)
 
                 trame_decod_tmp(j) = ~trame_decod_tmp(j);
 
-                %[outdata_tmp err_tmp] = detect(h, trame_decod_tmp);
-                [outdata_tmp err_tmp] = crc24(transpose(trame_decod_tmp), p);
-                
+                [outdata_tmp err_tmp] = detect(h, trame_decod_tmp);
+
                 if err_tmp == 0
                     outdata = outdata_tmp;
                     err = err_tmp;
