@@ -461,11 +461,19 @@ On a le signal
 \end_layout
 
 \begin_layout Standard
-Soit les fonctions intermédiaires : 
+Soit les fonctions intermédiaires (définies uniquement entre 
+\begin_inset Formula $0$
+\end_inset
+
+ et 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+ - nulles sinon) : 
 \begin_inset Formula 
 \begin{align}
-p_{0\_int}(t) & =p_{0}(t)\\
-p_{1\_int}(t) & =p_{1}(t)
+p_{0\_int}(t) & =p_{0}(t)-0.5\\
+p_{1\_int}(t) & =p_{1}(t)-0.5
 \end{align}
 
 \end_inset
@@ -576,17 +584,17 @@ Grâce aux symboles
 \begin_inset Formula $A_{k}$
 \end_inset
 
-
+,
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
+\begin{equation}
 Ak=\begin{cases}
 1 & \text{pour \ensuremath{b_{k}=0}}\\
 -1 & \text{pour }b_{k}=1
 \end{cases}
-\]
+\end{equation}
 
 \end_inset
 
@@ -641,7 +649,7 @@ Modulation obtenue :
 
 \begin_layout Standard
 La modulation obtenue avec 
-\begin_inset Formula $s_{l}(t)$
+\begin_inset Formula $s_{l}(t)-0.5$
 \end_inset
 
  nous mets face à un code biphase (Manchester), standardisé par l'IEEE 802.3
@@ -680,7 +688,7 @@ Pour retrouver les bits d'entrées, on peut donc convoluer avec le filtre
 \end_inset
 
 .
- Cela à pour effet de créer une sorte de signal triangulaire, dont les points
+ Cela a pour effet de créer une sorte de signal triangulaire, dont les points
  aux moments d'échantillonnage correspondent aux symboles.
  Voir figure 
 \begin_inset CommandInset ref
@@ -717,28 +725,13 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\end_inset
-
-
 \begin_inset Graphics
-	filename Question1-3.dia
+	filename Question1-3.eps
 	width 50line%
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout LyX-Code
-// TODO : Add le +0.5
 \end_layout
 
 \begin_layout Plain Layout
@@ -859,7 +852,7 @@ reference "eq:Sortir p(t-kTs)"
 \begin_inset Formula $p(t-kT_{S})$
 \end_inset
 
- puisqu'elle n'est pas aléatoire.
+, puisque la fonction est déterministe.
 \end_layout
 
 \begin_layout Standard
@@ -895,7 +888,7 @@ Question 5
 \end_layout
 
 \begin_layout Standard
-Calcul de la fonction d'autocorrélation.
+Calcul de la fonction d’auto-corrélation.
 \end_layout
 
 \begin_layout Standard
@@ -982,8 +975,8 @@ Question 6
 \end_layout
 
 \begin_layout Standard
-On utilise les résultats des questions précédentes pour prouver la cyclostationn
-arité.
+On utilise les résultats des questions précédentes pour prouver la cyclo-station
+narité.
 \end_layout
 
 \begin_layout Standard
@@ -1058,7 +1051,7 @@ Question 7
 \end_layout
 
 \begin_layout Standard
-La formule de l'autocorrélation moyennée d'un signal 
+La formule de l’auto-corrélation moyennée d'un signal 
 \begin_inset Formula $s_{l}(t)$
 \end_inset
 
@@ -1077,7 +1070,7 @@ La formule de l'autocorrélation moyennée d'un signal
 \end_layout
 
 \begin_layout Standard
-Soit, en développant (on rappelle que le symbole du conjugué disparait en
+Soit, en développant (on rappelle que le symbole du conjugué disparaît en
  raison de la nature réelle du signal) :
 \end_layout
 
@@ -1130,7 +1123,7 @@ reference "eq:Rsl moyennee nu"
 
 \end_inset
 
-, on remarque qu'il y a la présence de la fonction d'autocorrélation de
+, on remarque qu'il y a la présence de la fonction d’auto-corrélation de
  p : 
 \begin_inset Formula $R_{pp}(\tau)=\int_{R}p(\nu)p^{*}(\nu+\tau)d\nu$
 \end_inset
@@ -1151,12 +1144,12 @@ reference "eq:Rsl moyennee nu"
 \end_layout
 
 \begin_layout Standard
-Tout d'abord, calculons la fonction d'autocorrélation de 
+Tout d'abord, calculons la fonction d’auto-corrélation de 
 \begin_inset Formula $p(\frac{t}{T_{s}})$
 \end_inset
 
 .
- Graphiquement, on trouve l'autocorrélation de la fonction (voir figure
+ Graphiquement, on trouve l’auto-corrélation de la fonction (voir figure
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1224,7 +1217,7 @@ filename "Question7-1.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Calcul graphique de l'autocorrélation moyennée
+Calcul graphique de l’auto-corrélation moyennée
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Calcul-graphique-de l'autocorr moy"
@@ -1253,8 +1246,8 @@ Le signal
 \begin_inset Formula $s_{l}(t)$
 \end_inset
 
- étant cyclo-stationnaire, on peut calculer sa densité de spectrale via
- la transformée de Fourier de la fonction d'autocorrélation moyennée 
+ étant cyclo-stationnaire, on peut calculer sa densité spectrale via la
+ transformée de Fourier de la fonction d’auto-corrélation moyennée 
 \begin_inset Formula $\tilde{R_{s_{l}}}(\tau)$
 \end_inset
 
@@ -1331,7 +1324,7 @@ Il nous reste donc à calculer
 \end_layout
 
 \begin_layout Standard
-On défini le sinus cardinal comme : 
+On définit le sinus cardinal comme : 
 \begin_inset Formula $\text{sinc}(x)=\frac{sin(\pi x)}{\pi x}$
 \end_inset
 
@@ -1500,8 +1493,8 @@ De plus, rappelons la formule du filtrage (avec
 \end_layout
 
 \begin_layout Standard
-Enfin, d'après le théorème de Wiener Khintchine (également utilisé pour
- 
+Enfin, d'après le théorème de Wiener Khintchine (également utilisé à la
+ ligne 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:Densité spectrale TF p(t)"
@@ -1540,7 +1533,7 @@ On note, enfin, que, la densité spectrale du filtre adapté
 \end_layout
 
 \begin_layout Standard
-Connaissant ses informations, on peut calculer la fonction d'autocorrélation
+Connaissant ses informations, on peut calculer la fonction d’auto-corrélation
  des composantes de ce bruit après filtrage adapté par les deux filtres.
  Détaillons les étapes pour la première composante.
  On commence par calculer la densité spectrale de puissance :
@@ -1655,7 +1648,18 @@ De la même façon, on trouve :
 \end_layout
 
 \begin_layout Standard
-De plus,
+Les processus aléatoires 
+\begin_inset Formula $n_{l,0^{'}}$
+\end_inset
+
+ et 
+\begin_inset Formula $n_{l,1^{'}}$
+\end_inset
+
+ proviennent tous deux d'un bruit blanc gaussien (théoriquement) centré.
+ Après filtrage, ils restent donc gaussien et de moyennes nulles ; ils restent
+ blancs.
+ Seule la variance est différente si l'énergie des filtres n'est pas unitaire.
 \end_layout
 
 \begin_layout Paragraph
@@ -1677,7 +1681,7 @@ On rappelle la formule général de
 \begin_layout Standard
 Il est important de noter qu'il faut, soit adapter les résultats du cours
  à notre cas particulier, soit adapter notre chaîne de communication, à
- la réception normalement.
+ la réception notamment.
  Par exemple, dans notre cas on aurait, tel quel, 
 \begin_inset Formula $y_{l}$
 \end_inset
@@ -1777,7 +1781,7 @@ reference "eq:eb_pmoy"
 \end_inset
 
  le temps bit.
- La puissance moyenne est l'integral sur 
+ La puissance moyenne est l’intégral sur 
 \begin_inset Formula $\mathcal{R}$
 \end_inset
 
@@ -1861,7 +1865,7 @@ reference "fig:slt-25-bits"
 
 \begin_layout Standard
 À noter que, pour sélectionner les 25 premiers bits, il faut prendre en
- compte le suréchantillonnage.
+ compte le sur-échantillonnage.
  On prend donc les 
 \begin_inset Formula $25\times\frac{T_{s}}{T_{e}}$
 \end_inset
@@ -1933,6 +1937,7 @@ reference "fig:Diag oeil part1quest12"
 \end_inset
 
 .
+ L'œil est ouvert, ce qui signifie que notre signal ne souffre pas de distorsion.
 \end_layout
 
 \begin_layout Standard
@@ -2007,7 +2012,7 @@ Question 14
 \begin_layout Standard
 Pour calculer le taux d'erreur binaire, on se base sur nos fichiers de l'année
  dernière (TS113).
- On trace également la courbe d'erreur théorique (
+ On trace également la courbe d'erreur théorique (équation 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:Pb"
@@ -2029,6 +2034,12 @@ reference "fig:TEB"
 \end_inset
 
 .
+ Plutôt qu'une boucle avec 
+\begin_inset Formula $x$
+\end_inset
+
+ itération, on itère - pour un rapport signal sur bruit donné - jusqu'à
+ atteindre un nombre d'erreurs rencontrées supérieur à 100.
 \end_layout
 
 \begin_layout Standard
@@ -2068,13 +2079,13 @@ name "fig:TEB"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Synchronisation en temps et en fréquence
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2192,7 +2203,7 @@ Question 16
 
 \begin_layout Standard
 Pour déterminer l'ordre de grandeur du décalage de fréquence Doppler d'un
- avion se déplaçant à 900km/h on utilise la formule suivante :
+ avion se déplaçant à 900km/h, on utilise la formule suivante :
 \end_layout
 
 \begin_layout Standard
@@ -2215,7 +2226,7 @@ où
 \begin_inset Formula $f_{recepteur}$
 \end_inset
 
- sont respectivement les fréquences des signaux émetteur et recepteur, 
+ sont respectivement les fréquences des signaux émetteur et récepteur, 
 \begin_inset Formula $V_{source}$
 \end_inset
 
@@ -2255,6 +2266,11 @@ Pour un avion se déplaçant à 900km/h, l'ordre de grandeur du décalage introd
  par l'effet Doppler est d'environ 900 Hz.
 \end_layout
 
+\begin_layout Standard
+C'est pour cela que dans la suite du projet il nous est demandé de tester
+ la corrélation pour toutes les fréquences de -1kHz à 1kHz.
+\end_layout
+
 \begin_layout Paragraph
 Question 17
 \end_layout
@@ -2267,7 +2283,7 @@ reference "eq:corr_decalage"
 
 \end_inset
 
-, on remarque qu'on est fasse à une convolution entre le preambule inversé
+, on remarque qu'on est face à une convolution entre le préambule inversé
  temporellement (utilisation de 
 \begin_inset Flex Code
 status open
@@ -2278,7 +2294,47 @@ fliplr
 
 \end_inset
 
-) d'un côté, et le signal reçu mulitplié par l'exponentielle de l'autre.
+) d'un côté, et le signal reçu multiplié par l'exponentielle de l'autre.
+ L'utilisation de la fonction 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+conv
+\end_layout
+
+\end_inset
+
+ plutôt que 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+xcorr
+\end_layout
+
+\end_inset
+
+ permet de gagner de précieuses secondes pour le temps réel.
+ De même, plutôt qu'une boucle, on met en place une convolution pour le
+ dénominateur.
+ Pour un buffer de 
+\begin_inset Formula $0,5$
+\end_inset
+
+s, on passe d'une dizaine de secondes d’exécution à 
+\begin_inset Formula $0,3$
+\end_inset
+
+s.
+\end_layout
+
+\begin_layout Part
+Traitement / décodage de signaux réels
+\end_layout
+
+\begin_layout Section
+Structure des trames ADS-B
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2292,6 +2348,10 @@ Les trames de position en vol correspondent à des valeurs de FTC de 9 à
 
 \begin_layout Itemize
 Les trames d'identifications correspondent à des valeurs de FTC de 1 à 4.
+\end_layout
+
+\begin_layout Section
+Travail à réaliser
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2312,19 +2372,8 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\end_inset
-
-
 \begin_inset Graphics
-	filename /home/thibaut/Bureau/Flight_radar/Emetteur-Recepteur-ADS-B/question20.eps
+	filename question20.eps
 
 \end_inset
 
@@ -2335,7 +2384,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Trajectoire de l'appareil sur une carte google map.
+Trajectoire de l'appareil sur une carte Google Maps.
 \end_layout
 
 \end_inset
@@ -2358,9 +2407,17 @@ Question 21
 
 \begin_layout Standard
 D'après des informations issues du site flightradar24.com, l'avion d'adresse
- 393324 (hexadecimal) appartient à la compagnie AIRFRANCE.
- C'est un avion de modèle A321 et d'après sa trajectoire il se dirigeait
+ 393324 (hexadecimal) appartient à la compagnie Air France ®.
+ C'est un avion de modèle A321 et, d'après sa trajectoire, il se dirigeait
  vers le nord.
+\end_layout
+
+\begin_layout Part
+Affichage des trajectoires
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \end_body
