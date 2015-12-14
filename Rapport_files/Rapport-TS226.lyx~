@@ -2417,6 +2417,36 @@ Affichage des trajectoires
 \end_layout
 
 \begin_layout Standard
+Ayant pour objectif de traîter les trames reçu en temps réel, nous nous
+ sommes intéressé aux optimisations possibles pour réduire le temps d'execution
+ de programmes.
+\end_layout
+
+\begin_layout Subsubsection*
+Determination du CRC
+\end_layout
+
+\begin_layout Standard
+Les fonctions proposées par matlab pour la detection d'erreur CRC sont très
+ simples d'utilisation mais sont très gourmandes en terme de temps d'exécution
+ (appels à des fonctions tel que bi2dec plusieurs centaines de fois).
+ Nous avons donc cherché à implémenter une fonction plus rudimentaire mais
+ moins chronophage.
+ Nous nous sommes inspiré d'une fonction proposée sur MathWorks
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+http://in.mathworks.com/matlabcentral/fileexchange/26741-crc-16
+\end_layout
+
+\end_inset
+
+ qui calcule le CRC pour un polynome générateur de 16 bits.
+ 
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
