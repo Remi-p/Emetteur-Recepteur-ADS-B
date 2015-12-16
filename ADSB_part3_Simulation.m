@@ -9,27 +9,16 @@
 clear all; close all; clc;
 
 global verbose;
+              
+%% ================== Initialisation des variables =================== %
 
 registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
                   'timeFlag', [], 'cprFlag', [], ...
                   'positions', [], 'velocity', []);
               
-%% La fonction plot_google_map affiche des longitudes/lattitudes en degre decimaux,
-% MER_LON = -0.710648; % Longitude de l'aeroport de Merignac
-% MER_LAT = 44.836316; % Latitude de l'aeroport de Merignac
-% 
-% figure(1);
-% plot(MER_LON,MER_LAT,'.r','MarkerSize',20);% On affiche l'aeroport de Merignac sur la carte
-% text(MER_LON+0.05,MER_LAT,'Merignac airport','color','r')
-% plot_google_map('MapType','terrain','ShowLabels',0) % On affiche une carte sans le nom des villes
-%               
-% xlabel('Longitude en degres');
-% ylabel('Lattitude en degres');
-% 
-% hold on;
-% pause(1);     
-              
-%% ================== Initialisation des variables =================== %
+% Initialisation de la carte
+planes_on_map_init();
+
 Rs = 4e6; % Le rythme d'echantillonnage (pas plus de 4Mhz)
 Te = 1/Rs;
 
@@ -89,8 +78,7 @@ for k = 1:7
     end
 
     registre
-	%planes_on_map( registre.positions, registre.adresse );
+    planes_on_map( registre.positions, registre.adresse );
     clear buff;
     
 end
-

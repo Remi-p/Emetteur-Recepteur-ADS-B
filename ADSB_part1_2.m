@@ -67,11 +67,14 @@ sigma = sqrt((sigma_a_2 * Eg)./(2*EbN0));
 
 %% =============== Calcul du taux d'erreur binaire =================== %
 
-TEB = zeros(length(sigma), iter);
+TEB = zeros(1, length(sigma));
 
 for i=1:length(sigma)
     
-    for j=1:iter
+    nb_erreurs = 0;
+    k = 0;
+    
+    while nb_erreurs < 100
         
         % Generation des bits d'informations
         sb = randi([0, 1], 1, Ns);
@@ -81,15 +84,16 @@ for i=1:length(sigma)
         % Passage dans le systeme, en bande de base
         s = bdb( sb, M, Ts, Te, p, h, nl, pa, Ns, 0, 0.5 );
         
-        Teb(i, j) = sum(abs(sb - s)) / length(s);
+        k = k+1;
+        erreurs = sum(abs(sb - s));
+        
+        nb_erreurs = nb_erreurs + erreurs;
     end
     
+    Teb(i) = nb_erreurs / (k * length(s));
 end
 
 %% ==================== Resultats / Figures ========================== %
-
-% Erreurs
-Teb = mean(Teb, 2);
 
 % Evolution theorique du TEB, calculee en question 10
 theorie = erfc(sqrt(EbN0))/2;
