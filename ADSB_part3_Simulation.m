@@ -17,7 +17,7 @@ registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
                   'positions', [], 'velocity', []);
               
 % Initialisation de la carte
-% planes_on_map_init();
+planes_on_map_init();
 
 Rs = 4e6; % Le rythme d'echantillonnage (pas plus de 4Mhz)
 Te = 1/Rs;
@@ -33,7 +33,7 @@ preambule = get_preambule(Ts, Fse);
 % Taille d'une trame au rythme Te
 taille_trame_canal = taille_trame * Fse;
 
-seuil_empirique = 0.85;
+seuil_empirique = 0.80;
 
 % Le decalage est calcule pour chaque trame estimee
 % decalage_ampl = 0.5;
@@ -46,9 +46,10 @@ p_gen = [1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1];
 
 % ------------------------------------- Filtres
 % p(t) le filtre de mise en forme
-% p = - ones(1, (Fse)) * 0.5;
-% p(Fse/2:Fse) = - p(Fse/2:Fse);
-p = [ -ones(1, Fse/2) ones(1, Fse/2) ] / 0.5;
+% p = [-ones(1, Fse/2) ones(1, Fse/2)] /2;
+% p = p / sqrt(sum(p.^2));
+p = [-ones(1, Fse/2) ones(1, Fse/2)] / 2;
+p = p / sqrt(sum(p.^2));
 
 % Filtre de reception : Pour maximiser le rapport signal sur bruit,
 % on prend pa(t) = p*(-t)
@@ -58,9 +59,9 @@ pa = fliplr(p);
 
 % Simulation de temps reel avec les buffers de Simon & Clement
 for k = 1:7
-    
-    fprintf('Buffer #%i\n\n', k);
-    
+
+    fprintf('\nBuffer #%i\n', k);
+
     buff = load(sprintf('fichierbuffer%i.mat', k));
     % Permet notamment de faire disparaitre le decalage frequentiel
     buffer = abs(buff.cplxBuffer);
@@ -78,8 +79,8 @@ for k = 1:7
         % get_trames)
     end
 
-%     registre
-%     planes_on_map( registre.positions, registre.adresse );
+    registre
+    planes_on_map( registre.positions, registre.adresse );
     clear buff;
     
 end

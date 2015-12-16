@@ -35,7 +35,9 @@ buff = 150;
 Fse = Ts/Te;
 
 % p(t) le filtre de mise en forme
-p = [ -ones(1, Fse/2) ones(1, Fse/2) ] /2;
+p = [ -ones(1, Fse/2) ones(1, Fse/2) ]/2;
+p = p / norm(p);
+% p = [ -ones(1, Fse/2) ones(1, Fse/2) ] /2;
 
 % h(t) le filtre du canal
 h = ones(1, 1);
@@ -83,6 +85,8 @@ sigma = sqrt((sigma_a_2 * Eg)./(2*EbN0));
 Teb = zeros(1, length(sigma));
 
 for i=1:length(sigma)
+% sigma(end+1) = 0;
+% i = length(sigma);
 
     nb_erreurs = 0;
     k = 0;

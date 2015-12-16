@@ -47,11 +47,14 @@ indices_corr = 1:length(corr_t);
 indices = indices_corr(corr_t > seuil);
 
 % On met nos positions a la fin de chaque preambule
-decalages = indices + length(preambule) - 1;
+decalages = indices + Tp - 1;
 
 % Remarque : en utilisant des convolutions, plutot qu'une correlation et
 %            une boucle, on passe - pour un buffer de 0.5 seconde - de 10s
 %            d'execution, a ~0.3s.
+
+% plot(corr_t);
+% pause;
 
 end
 

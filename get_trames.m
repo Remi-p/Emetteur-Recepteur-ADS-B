@@ -16,15 +16,15 @@ justes = [];
 % On calcule tous les indices qui nous interessent en une seule fois.
 decalages = indices_fin_preamb( bufferabs, preambule, lg_trame_canal, Te, seuil );
 
-max_trouve = 0;
-for z = -10 : 10
-clear justes;
-justes = [];
-decalages = decalages + z;
-
 % Eventuellement : regarder les trames un peu decalee
 % concat = [(decalages-1) decalages (decalages+1)];
 % decalages = unique(concat);
+
+% % % % % % % % % % % % % % maxtrouve = 0;
+% % % % % % % % % % % % % % for z = -10:10
+% % % % % % % % % % % % % % decalages = decalages + z;
+% % % % % % % % % % % % % % clear justes;
+% % % % % % % % % % % % % % justes = [];
 
 for i = 1 : length(decalages)
     
@@ -34,8 +34,10 @@ for i = 1 : length(decalages)
     trame_cod = bufferabs( indices );
     % (le -1 permet de recadrer l'echantillonnage)
     
+    %%%%%%%%%% LOOK
     recentrage = ( max(trame_cod) - min(trame_cod) ) / 2;
 %     recentrage = mean(trame_cod);
+%     recentrage = 0;
     [trame_decod poids] = decod(trame_cod, recentrage, pa, Fse);
     
     % Verification du CRC :
@@ -74,15 +76,23 @@ for i = 1 : length(decalages)
     if (err == 0)
         % Enregistrement de la trame
         justes(:, end+1) = outdata;
+
+        % Test de bon fonctionnement du crc :
+%         trame_decod(i) = ~trame_decod(i);
+%         
+%         [outdata err] = crc24(trame_decod, p);
+%         if (err == 0)
+%             fprintf('L''erreur n''a pas ete detectee ?!');
+%         end
     end
     
 end
 
-max_trouve = max(max_trouve, size(justes,2));
-fprintf('(%i:%i)\n', z, size(justes,2));
-decalages = decalages - z;
-end
-max_trouve
+% % % % % % % % % % fprintf('(%i:%i)', z, size(justes,2));
+% % % % % % % % % % maxtrouve = max(maxtrouve, size(justes, 2));
+% % % % % % % % % % decalages = decalages - z;
+% % % % % % % % % % end
+% % % % % % % % % % maxtrouve
 
 end
 

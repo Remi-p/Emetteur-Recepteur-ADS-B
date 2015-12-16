@@ -41,7 +41,6 @@ ylabel('Lattitude en degr?');
 hold on
 drawnow
 
-
 %% Lancement du server
 my_server = ServerSocket (PORT); % D?finition d'un server tcp sur le port 1234
 
@@ -76,9 +75,6 @@ global verbose;
 registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
                   'timeFlag', [], 'cprFlag', [], ...
                   'positions', [], 'velocity', []);
-              
-% Initialisation de la carte
-planes_on_map_init();
 
 Te = 1/Rs;
 Ts = 1/Rb;
@@ -91,7 +87,7 @@ preambule = get_preambule(Ts, Fse);
 % Taille d'une trame au rythme Te
 taille_trame_canal = taille_trame * Fse;
 
-seuil_empirique = 0.85;
+seuil_empirique = 0.78;
 
 % Le decalage est calcule pour chaque trame estimee
 % decalage_ampl = 0.5;
@@ -111,8 +107,13 @@ p(Fse/2:Fse) = - p(Fse/2:Fse);
 % on prend pa(t) = p*(-t)
 pa = fliplr(p);
 
+k = 0;
+
 %% Boucle principale
 while my_input_stream.available % tant qu'on re?oit quelque chose on boucle
+    
+    tic
+    
     disp('new buffer')
     int8Buffer = data_reader.readBuffer(cplxSamplesInBuffer*4)'; % Un complexe est cod? sur 2 entiers 16 bits soit 4 octets et readBuffer lit des octets.
     int16Buffer = typecast(int8Buffer,'int16'); % On fait la conversion de 2 entiers 8 bits ? 1 entier 16 bits
@@ -120,11 +121,14 @@ while my_input_stream.available % tant qu'on re?oit quelque chose on boucle
     
     %% Code utilisateur
     
+    k = k+1;
+    
+    fprintf('(Taille du buffer : %i)\n', length(cplxBuffer));
+    
     fprintf('Buffer #%i\n\n', k);
     
-    buff = load(sprintf('fichierbuffer%i.mat', k));
     % Permet notamment de faire disparaitre le decalage frequentiel
-    buffer = abs(buff.cplxBuffer);
+    buffer = abs(cplxBuffer);
 
     [trames, decalages] = get_trames( buffer, preambule, ...
         Te, Fse, pa, seuil_empirique, taille_trame_canal, p_gen );
@@ -139,11 +143,14 @@ while my_input_stream.available % tant qu'on re?oit quelque chose on boucle
         % get_trames)
     end
 
-    registre
-    planes_on_map( registre.positions, registre.adresse );
-    clear buff;
+%     registre
+    if mod(k, 4) == 0
+        planes_on_map( registre.positions, registre.adresse );
+    end
     
+%     clear buff;
     
+    toc
 end
 
 %% fermeture des flux
@@ -151,5 +158,3 @@ socket.close;
 my_input_stream.close;
 my_server.close;
 disp (['Fin de connexion: ' datestr(now)]);
-
-

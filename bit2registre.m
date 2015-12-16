@@ -142,7 +142,7 @@ if ~checkcrc | err == 0
                     case message.airborne_vel
 
                         %velocity
-                        fprintf('\tVelocity for %s\n', AA{:});
+                        if verbose;fprintf('\tVelocity for %s\n', AA{:});end
                         vel_mes = extract(datas, 1, 14, 35);
                         velocity = decode_velocity( vel_mes );
                         registre.velocity(index) = velocity;
