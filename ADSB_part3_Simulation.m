@@ -46,8 +46,6 @@ p_gen = [1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1];
 
 % ------------------------------------- Filtres
 % p(t) le filtre de mise en forme
-% p = [-ones(1, Fse/2) ones(1, Fse/2)] /2;
-% p = p / sqrt(sum(p.^2));
 p = [-ones(1, Fse/2) ones(1, Fse/2)] / 2;
 p = p / sqrt(sum(p.^2));
 
@@ -79,7 +77,7 @@ for k = 1:7
         % get_trames)
     end
 
-    registre
+%     registre
     planes_on_map( registre.positions, registre.adresse );
     clear buff;
     

@@ -37,7 +37,6 @@ sb = randi([0, 1], 1, lngr);
 
 % Modulation de phase (donnee, nombre de symboles, phase)
 % (passage en Ak = +1 et -1)
-% ss = pammod(sb, 2, 0);
 ss = sb * 2 -1;
 
 % On surechantillonne le signal

@@ -68,7 +68,8 @@ end
 % Lorsque le buffer est non-vide on commence le traitement
 disp('R?ception...')
 
-%% Initilialisation utilisateur
+%% Initilialisations utilisateur =========================================
+% ------------------------------------------------------------------------
 
 global verbose;
 
@@ -108,6 +109,7 @@ p(Fse/2:Fse) = - p(Fse/2:Fse);
 pa = fliplr(p);
 
 k = 0;
+% ------------------------------------------------------------------------
 
 %% Boucle principale
 while my_input_stream.available % tant qu'on re?oit quelque chose on boucle
@@ -119,7 +121,8 @@ while my_input_stream.available % tant qu'on re?oit quelque chose on boucle
     int16Buffer = typecast(int8Buffer,'int16'); % On fait la conversion de 2 entiers 8 bits ? 1 entier 16 bits
     cplxBuffer = double(int16Buffer(1:2:end)) + 1i *double(int16Buffer(2:2:end)); % Les voies I et Q sont entrelac?es, on d?sentrelace pour avoir le buffer complexe.
     
-    %% Code utilisateur
+    %% Code utilisateur ==================================================
+    % --------------------------------------------------------------------
     
     k = k+1;
     
@@ -151,6 +154,8 @@ while my_input_stream.available % tant qu'on re?oit quelque chose on boucle
 %     clear buff;
     
     toc
+    % --------------------------------------------------------------------
+    
 end
 
 %% fermeture des flux

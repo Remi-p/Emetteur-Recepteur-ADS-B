@@ -2,6 +2,10 @@ function [ s, poids ] = decod( trame_cod, decalage, ga, Fse )
 %DECOD Passe le signal dans la derniere partie de la chaine de
 %      communication
 %   trame_cod : Trame surechantillonnee
+%   decalage : Decalage a appliquee (pour correspondre a l'architecture
+%              donnee en question 1)
+%   ga : Filtre adapte
+%   Fse : Facteur de sur-echantillonnage
 
 M = 2;
 

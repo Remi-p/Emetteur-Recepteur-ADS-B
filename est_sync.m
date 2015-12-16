@@ -4,6 +4,7 @@ function [ dec_t_est dec_f_est ] = est_sync( yl, preambule, dec_max, Te, taille_
 %   preambule : signal correspondant au preambule
 %   Te : temps d'echantillonnage
 %   taille_sl : taille du vecteur d'information
+%   Fse : facteur de sur-echantillonnage
 
 dec_t_max = dec_max(1);
 dec_f_max = dec_max(2);

@@ -87,8 +87,10 @@ yl = sl_canal + nl;
 
 [dec_t_est dec_f_est] = est_sync(yl, preamb, dec_max, Te, length(sl), Fse);
 
+% Recalage frequentiel
 yl = yl .* exp( j * 2 * pi * dec_f_est * t );
 
+% Et temporel (on en profite pour prendre l'absolu)
 yl_resynch = abs( yl( dec_t_est + length(preamb) + ...
                         (1:length(sl)) ) );
 
@@ -115,7 +117,6 @@ rl = conv(yl_resynch - decalage, ga);
 % close;
 
 % ------------------------- Echantillonnage -------------------------- %
-% rl_d = downsample(rl, Ts/Te);
 indices = Fse + (0:Fse:(Ns-1)*Fse);
 rl_d = rl(indices);
 

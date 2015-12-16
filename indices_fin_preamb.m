@@ -32,7 +32,7 @@ Eg_sp = sum(abs(preambule).^2);
 % end
 % De meme, pour augmenter les performances, il est possible de reecrire la
 % fonction precedente sous forme de convolution (puisque c'est une somme
-% qui se deplace) :
+% qui se "deplace") :
 % La somme est caracterisee par le nombre de 1 du ones
 Egs_yl = conv(abs(yl_studied.^2), ones(1, Tp), 'valid');
 
