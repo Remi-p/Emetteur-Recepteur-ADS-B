@@ -47,7 +47,7 @@ ss_sur(1:Fse:Ns_sur) = ss;
 % // Ne fonctionne pas sous GNU Octave :
 % // ss_sur = upsample(ss, Fse);
 
-sl = conv(ss_sur, g, 'same') + decalage;
+sl = conv(ss_sur, g) + decalage;
 %sl = filter(p, 1, ss_sur) + decalage;
 
 if (length(sl) + dec_t + length(preamb) > taille_buff*Fse)
@@ -89,7 +89,7 @@ yl = sl_canal + nl;
 
 yl = yl .* exp( j * 2 * pi * dec_f_est * t );
 
-yl_resynch = abs( yl( dec_t_est + length(preamb) -1 + ...
+yl_resynch = abs( yl( dec_t_est + length(preamb) + ...
                         (1:length(sl)) ) );
 
 % % Erreur sur l'estimation de frequence :
@@ -105,18 +105,19 @@ yl_resynch = abs( yl( dec_t_est + length(preamb) -1 + ...
 %% ========================== Recepteur ============================== %
 
 % ----------------------- Filtre de reception ------------------------ %
-rl = conv(yl_resynch - decalage, ga, 'same');
+rl = conv(yl_resynch - decalage, ga);
 
 % figure;
 % hold on;
-% plot(ss_sur, 'b');
+% stem(ss_sur, 'b');
 % plot(rl, 'g');
 % pause;
 % close;
 
 % ------------------------- Echantillonnage -------------------------- %
 % rl_d = downsample(rl, Ts/Te);
-rl_d = rl(1:Fse:Ns*Fse);
+indices = Fse + (0:Fse:(Ns-1)*Fse);
+rl_d = rl(indices);
 
 % length(ss)
 % length(rl_d)

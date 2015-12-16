@@ -16,6 +16,12 @@ justes = [];
 % On calcule tous les indices qui nous interessent en une seule fois.
 decalages = indices_fin_preamb( bufferabs, preambule, lg_trame_canal, Te, seuil );
 
+max_trouve = 0;
+for z = -10 : 10
+clear justes;
+justes = [];
+decalages = decalages + z;
+
 % Eventuellement : regarder les trames un peu decalee
 % concat = [(decalages-1) decalages (decalages+1)];
 % decalages = unique(concat);
@@ -25,10 +31,12 @@ for i = 1 : length(decalages)
     % Indices de la trame a la sortie du canal :
     indices = decalages(i) + (1:lg_trame_canal);
     
-    trame_cod = bufferabs( indices - 1 );
+    trame_cod = bufferabs( indices );
     % (le -1 permet de recadrer l'echantillonnage)
     
-    [trame_decod poids] = decod(trame_cod, mean(trame_cod), pa, Fse);
+    recentrage = ( max(trame_cod) - min(trame_cod) ) / 2;
+%     recentrage = mean(trame_cod);
+    [trame_decod poids] = decod(trame_cod, recentrage, pa, Fse);
     
     % Verification du CRC :
     % On n'utilise pas la fonction propose par MATLAB pour gagner en temps
@@ -41,26 +49,26 @@ for i = 1 : length(decalages)
     % fonction fixSingleBitErrors()
     % et https://www.ll.mit.edu/mission/aviation/publications/publication-files/ms-papers/Harman_1998_DASC_MS-13181_WW-18698.pdf
     % pour cibler les bits avec une probabilite elevee d'erreur)
-    if err ~= 0
-        for (j = 1:length(outdata))
-            if (poids(j) < 0.012)
-            
-                trame_decod_tmp = trame_decod';
-
-                trame_decod_tmp(j) = ~trame_decod_tmp(j);
-
-                %[outdata_tmp err_tmp] = detect(h, trame_decod_tmp);
-                [outdata_tmp err_tmp] = crc24(transpose(trame_decod_tmp), p);
-                
-                if err_tmp == 0
-                    outdata = outdata_tmp;
-                    err = err_tmp;
-                    break;
-                end
-                
-            end
-        end
-    end
+%     if err ~= 0
+%         for (j = 1:length(outdata))
+%             if (poids(j) < 0.012)
+%             
+%                 trame_decod_tmp = trame_decod';
+% 
+%                 trame_decod_tmp(j) = ~trame_decod_tmp(j);
+% 
+%                 %[outdata_tmp err_tmp] = detect(h, trame_decod_tmp);
+%                 [outdata_tmp err_tmp] = crc24(transpose(trame_decod_tmp), p);
+%                 
+%                 if err_tmp == 0
+%                     outdata = outdata_tmp;
+%                     err = err_tmp;
+%                     break;
+%                 end
+%                 
+%             end
+%         end
+%     end
         
     
     if (err == 0)
@@ -69,6 +77,12 @@ for i = 1 : length(decalages)
     end
     
 end
+
+max_trouve = max(max_trouve, size(justes,2));
+fprintf('(%i:%i)\n', z, size(justes,2));
+decalages = decalages - z;
+end
+max_trouve
 
 end
 

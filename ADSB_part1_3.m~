@@ -60,6 +60,8 @@ preambule_tmp = conv(preamb_upsample, ones(1, Fse * frac_tps_symb));
 preambule = preambule_tmp(1:end - Fse*frac_tps_symb + 1);
 
 % -------------------------------Initialisation liees au calcul du TEB %
+% Nombre d'iteration pour le TEB
+iter = 100;
 
 % Eb/N0 est etendu de 0 a 10 dB, avec un pas de 1
 
@@ -82,12 +84,15 @@ sigma = sqrt((sigma_a_2 * Eg)./(2*EbN0));
 
 Teb = zeros(1, length(sigma));
 
-for i=1:length(sigma)
+% for i=1:length(sigma)
+sim
+i = length(sigma)
 
+    i
     nb_erreurs = 0;
     k = 0;
 
-    while nb_erreurs < 100
+    while nb_erreurs < 10
 
         k = k+1;
         if (mod(k, 100) == 0)

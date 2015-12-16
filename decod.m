@@ -12,18 +12,18 @@ yl = trame_cod;
 yl_decal = yl - decalage;
 
 % ----------------------- Filtre de reception ------------------------ %
-rl = conv(yl_decal, ga, 'same');
+rl = conv(yl_decal, ga);
 
 % ------------------------- Echantillonnage -------------------------- %
-rl_d = rl(1:Fse:end);
-
-ss_sur = zeros(1, length(rl_d)*Fse);
-ss_sur(1:Fse:length(rl_d)*Fse) = rl_d;
-
-% plot(rl_d);
+indices = Fse + (0:Fse:length(yl) - Fse);
+rl_d = rl(indices);
 
 display = false;
 if display
+
+    ss_sur = zeros(1, length(rl_d)*Fse);
+    ss_sur(indices) = rl_d;
+
     figure;
     hold on;
     plot(rl, 'g');

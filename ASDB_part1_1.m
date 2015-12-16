@@ -28,8 +28,7 @@ Nfft = 2048;
 lngr = 10000;
 
 % p(t) le filtre de mise en forme
-p = - ones(1, (Fse)) * 0.5;
-p(Fse/2:Fse) = - p(Fse/2:Fse);
+p = [ -ones(1, Fse/2) ones(1, Fse/2) ] /2;
 
 %% =========================================== Canal ======================
 
@@ -95,11 +94,11 @@ sl_mat = reshape(sl_zero, Nfft, nbr_lignes);
 % DSP
 % Transformee de Fourier
 Sl = fft(sl_mat, Nfft);
-Sl_moy = mean(Sl, 2);
+Sl_moy = mean(abs(Sl), 2);
 % On centre la TF
 Sl_dec = fftshift(Sl_moy);
 % Formule de la DSP
-dsp_pra = (1/(fe*Nfft)) * (abs(Sl_dec).^2);
+dsp_pra = (1/(fe*Nfft)) * (Sl_dec.^2);
 
 % Frequences observees
 f = -fe/2 : fe/Nfft : fe/2-fe/Nfft;
