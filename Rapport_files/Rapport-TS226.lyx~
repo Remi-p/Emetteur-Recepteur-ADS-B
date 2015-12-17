@@ -418,6 +418,16 @@ end{titlepage}
 \end_inset
 
 
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Part
@@ -2479,12 +2489,18 @@ indices_fin_preamb.m
 \end_layout
 
 \begin_layout Standard
-Notre taux d'erreur binaire pratique, présenté en figure //TODO, ne suit
- pas exactement la courbe théorique.
+Notre taux d'erreur binaire pratique, présenté en figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Taux-d'Erreur-Binaire-avec-estim"
+
+\end_inset
+
+, ne suit pas exactement la courbe théorique.
  Ceci est dû au nombre d'itérations effectuées pour le calcul : comme pour
  la 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand nameref
 reference "par:Question-14-TEB"
 
 \end_inset
@@ -2499,6 +2515,53 @@ reference "par:Question-14-TEB"
 ), on itère jusqu'à obtenir 100 erreurs.
  Cependant, avec les décalages fréquentiels et temporels, cette valeur ne
  semble pas assez élevée pour se calquer exactement sur la courbe de théorique.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Q17-TEB-2.png
+	width 60line%
+	groupId graph
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Taux d'Erreur Binaire en fonction du rapport signal sur bruit, avec estimation
+ temporelle et fréquentielle
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Taux-d'Erreur-Binaire-avec-estim"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Part
@@ -2618,7 +2681,7 @@ status open
 
 \end_inset
 
- (hexadecimal) appartient à la compagnie Air France ®.
+ (hexadécimal) appartient à la compagnie Air France ®.
  C'est un avion de modèle A321 et, d'après sa trajectoire, il se dirigeait
  vers le nord.
 \end_layout
@@ -2959,7 +3022,7 @@ Ce qui nous permet d'appliquer notre algorithme uniquement aux bits avec
 \begin_inset Formula $\neq$
 \end_inset
 
-bits de poids fort ou faible du binaire), qui correspond à une probabilité
+ bits de poids fort ou faible du binaire), qui correspond à une probabilité
  plus élevée d'erreur.
 \end_layout
 

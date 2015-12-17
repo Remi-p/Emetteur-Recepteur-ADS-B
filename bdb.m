@@ -12,8 +12,8 @@ Ns_sur = Fse*Ns;
 
 % ----------------- Bloc association bits->symbole ------------------- %
 
-% Modulation de phase (donnee, nombre de symbole, phase)
-ss = pammod(sb, M, 0);
+% Symboles
+ss = sb * 2 - 1;
 
 % -------------------- Filtrage de mise en forme --------------------- %
 % Convolution du signal ss(t) et g(t)
@@ -50,6 +50,6 @@ rl_d = rl(retard+(0:Fse:(Ns-1)*Fse));
 
 % -------------------------- Bloc decision --------------------------- %
 % ------------------ Bloc association symbole->bits ------------------ %
-s = pamdemod(rl_d, M, 0);
+s = rl_d > 0;
 
 end

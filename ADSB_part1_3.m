@@ -36,8 +36,7 @@ Fse = Ts/Te;
 
 % p(t) le filtre de mise en forme
 p = [ -ones(1, Fse/2) ones(1, Fse/2) ]/2;
-p = p / norm(p);
-% p = [ -ones(1, Fse/2) ones(1, Fse/2) ] /2;
+p = p / sqrt(sum(p.^2)); % Normalisation
 
 % h(t) le filtre du canal
 h = ones(1, 1);
@@ -84,6 +83,7 @@ sigma = sqrt((sigma_a_2 * Eg)./(2*EbN0));
 
 Teb = zeros(1, length(sigma));
 
+tic
 for i=1:length(sigma)
 % sigma(end+1) = 0;
 % i = length(sigma);
@@ -119,6 +119,7 @@ for i=1:length(sigma)
     Teb(i) = nb_erreurs / (k * length(s));
     
 end
+toc
 
 %% ==================== Resultats / Figures ========================== %
 
