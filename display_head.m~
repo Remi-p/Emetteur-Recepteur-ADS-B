@@ -1,0 +1,13 @@
+function [ display_plot ] = display_head( p, head, display_plot )
+% display_head Affiche la derniere position d'un avion et sa direction par
+%              une flèche
+
+    display_plot = 0;
+
+    display_plot = text(p(2),p(1),'\fontsize{22}\color{blue}\uparrow', ...
+                           'horizontalalignment','center', ...
+                           'verticalalignment','bottom');
+    set(display_plot, 'rotation', head);
+
+
+end

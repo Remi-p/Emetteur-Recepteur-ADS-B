@@ -25,6 +25,6 @@ end
  if head < 0
      head = head + 360;
  end
- head = head + 90;
+ head = head + 180;
 end
 

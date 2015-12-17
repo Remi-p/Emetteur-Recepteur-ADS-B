@@ -11,9 +11,7 @@ for ind=1:size(registre.adresse,2)
     for k=1:length(registre.positions{ind})
 
         % derniere position de l'avion
-        curr_plane__pos = registre.positions{ind}{k};
-        
-        
+        curr_plane_pos = registre.positions{ind}{k};
         
         % nombre de positions enregistre pour cet avion
         nb_positions = length(registre.positions{ind});
@@ -21,18 +19,15 @@ for ind=1:size(registre.adresse,2)
         if registre.update(ind) == 0;
             if k == nb_positions
                 if registre.head(ind) == 0;
-                    display_plot{ind} = plot(curr_plane__pos(2), curr_plane__pos(1),'.c','MarkerSize',20); 
+                    display_plot{ind} = plot(curr_plane_pos(2), curr_plane_pos(1),'.c','MarkerSize',20); 
                 else
-                    display_plot{ind} = text(curr_plane__pos(2),curr_plane__pos(1),'\fontsize{22}\color{blue}\up-arrow', ...
-                           'horizontalalignment','center', ...
-                           'verticalalignment','bottom');
-                 set(display_plot{ind}, 'rotation', registre.head(ind))
+                    display_plot{ind} = display_head( curr_plane_pos, registre.head(ind) );
                 end
                 
-                display_text{ind} = text(curr_plane__pos(2)+0.1, curr_plane__pos(1),registre.adresse{ind},'color','r');
+                display_text{ind} = text(curr_plane_pos(2)+0.1, curr_plane_pos(1),registre.adresse{ind},'color','r');
                 registre.update(ind) = k;
             else % sinon
-                plot(curr_plane__pos(2), curr_plane__pos(1),'.b','MarkerSize',5)
+                plot(curr_plane_pos(2), curr_plane_pos(1),'.b','MarkerSize',5)
             end
         
         elseif registre.update(ind) < nb_positions
@@ -48,20 +43,18 @@ for ind=1:size(registre.adresse,2)
                     plot(p(2), p(1),'.b','MarkerSize',5)
                 end
                  if registre.head(ind) == 0;
-                    display_plot{ind} = plot(curr_plane__pos(2), curr_plane__pos(1),'.c','MarkerSize',20); 
-                else
-                
-                display_plot{ind} = text(curr_plane__pos(2),curr_plane__pos(1),'\fontsize{22}\color{blue}\up-arrow', ...
-                           'horizontalalignment','center', ...
-                           'verticalalignment','bottom');
-                set(display_plot{ind}, 'rotation', registre.head(ind))
+                    display_plot{ind} = plot(curr_plane_pos(2), curr_plane_pos(1),'.c','MarkerSize',20); 
+                 else
+                     
+                 display_plot{ind} = display_head( curr_plane_pos, registre.head(ind) );
+
                  end
-                display_text{ind} = text(curr_plane__pos(2)+0.1, curr_plane__pos(1),registre.adresse{ind},'color','r');
+                display_text{ind} = text(curr_plane_pos(2)+0.1, curr_plane_pos(1),registre.adresse{ind},'color','r');
                 registre.update(ind) = registre.update(ind)+1;
                 
 
             else % sinon
-                plot(curr_plane__pos(2), curr_plane__pos(1),'.b','MarkerSize',5)
+                plot(curr_plane_pos(2), curr_plane_pos(1),'.b','MarkerSize',5)
             end
         end
     end

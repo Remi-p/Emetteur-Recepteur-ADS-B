@@ -19,15 +19,15 @@ registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
 display_plot = [];
 display_text = [];
 display_velocity = [];
+Rb = 1e6; % debit binaire
+Ts = 1/Rb;
+
               
 % Initialisation de la carte
 planes_on_map_init();
 
 Rs = 4e6; % Le rythme d'echantillonnage (pas plus de 4Mhz)
 Te = 1/Rs;
-
-Rb = 1e6; % debit binaire
-Ts = 1/Rb;
 
 Fse = Ts/Te; % Sur-echantillonnage
 
