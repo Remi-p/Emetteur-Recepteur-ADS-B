@@ -56,14 +56,14 @@ arrowx=[x1; x2; x2+lvek1(1,:); x2; x2+lvek2(1,:)];
 arrowy=[y1; y2; y2+lvek1(2,:); y2; y2+lvek2(2,:)];
 
 if nargin<6 | isempty(linetype)
-   display_plot = plot(arrowx,arrowy,'blue-')
+   display_plot = plot(arrowx,arrowy,'blue-');
 else
-   display_plot = plot(arrowx,arrowy,linetype)
+   display_plot = plot(arrowx,arrowy,linetype);
 end
 
 if nargin==7 & ~isempty(mark)
    hold on
-   display_plot = plot(x,y,mark)
+   display_plot = plot(x,y,mark);
 end
 
 if nargin==8 & ~isempty(fillcolour)

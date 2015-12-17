@@ -21,7 +21,7 @@ end
 % Calcul de la vitesse en (kn -> kilo noeuds)
  velocity = sqrt(Vew^2 + Vns^2);
  
- head = atand(Vew/Vns)
+ head = atand(Vew/Vns);
  if head < 0
      head = head + 360;
  end

@@ -41,8 +41,11 @@ end
 %                                                   avons cherchee 6h)
 s = rl_d < 0;
 
-% Pour la correction, on rajoute le poids des bits par rapport aux autres
-poids = abs(rl_d)./sqrt(sum(rl_d.^2));
+% Si le programme ne demande pas les poids, on ne les calcules pas !
+if (nargout > 1)
+    % Pour la correction, on rajoute le poids des bits par rapport aux autres
+    poids = abs(rl_d)./sqrt(sum(rl_d.^2));
+end
 
 end
 

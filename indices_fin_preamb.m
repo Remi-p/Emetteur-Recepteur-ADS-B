@@ -33,8 +33,12 @@ Eg_sp = sum(abs(preambule).^2);
 % De meme, pour augmenter les performances, il est possible de reecrire la
 % fonction precedente sous forme de convolution (puisque c'est une somme
 % qui se "deplace") :
+
 % La somme est caracterisee par le nombre de 1 du ones
-Egs_yl = conv(abs(yl_studied.^2), ones(1, Tp), 'valid');
+% Egs_yl = conv(abs(yl_studied.^2), ones(1, Tp), 'valid');
+
+% On est deja face au module de yl. Donc finalement :
+Egs_yl = conv(yl_studied.^2, ones(1, Tp), 'valid');
 
 denominateur = sqrt(Eg_sp) * sqrt(Egs_yl);
 
