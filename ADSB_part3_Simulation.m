@@ -82,7 +82,7 @@ for k = 1:7
     end
 
 
-    [registre, display_plot, display_text] = planes_on_map( registre, display_plot, display_text);
+    [registre, display_plot, display_text, display_velocity] = planes_on_map( registre, display_plot, display_text, display_velocity);
     registre
     % planes_on_map( registre.positions, registre.adresse );
     clear buff;
