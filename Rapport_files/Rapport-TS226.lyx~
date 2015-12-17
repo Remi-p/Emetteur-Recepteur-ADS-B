@@ -148,7 +148,7 @@ put
 
 \end_inset
 
-(65,-345)
+(110,-345)
 \begin_inset ERT
 status collapsed
 
@@ -230,7 +230,7 @@ height_special "totalheight"
 status open
 
 \begin_layout Plain Layout
-Novembre 2015
+Décembre 2015
 \end_layout
 
 \begin_layout Plain Layout
@@ -725,17 +725,6 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\end_inset
-
-
 \begin_inset Graphics
 	filename Question1-3.eps
 	width 50line%
@@ -2013,11 +2002,129 @@ On trace la densité spectrale de puissance théorique de
 \begin_inset Formula $s_{l}(t)$
 \end_inset
 
- sans fenêtre ni chevauchement.
+ sans fenêtre ni chevauchement à la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:DSP"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Q13-DSP.png
+	width 60line%
+	groupId graph
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Densité spectrale de puissance de 
+\begin_inset Formula $s_{l}(t)$
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DSP"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Remarque
+\begin_inset CommandInset label
+LatexCommand label
+name "Rmq:DSP-fausse"
+
+\end_inset
+
+ Pendant presque toute la période du projet (sauf les deux derniers jours),
+ notre courbe de la densité spectrale théorique était fausse, malgré tous
+ nos efforts de résolution.
+ Finalement ce problème a été résolu en même temps que la correction de
+ notre code pour le temps réel.
+ Il s'est avéré qu'une erreur s'était glissée dans la définition de notre
+ filtre.
+ En lieu et place de la ligne :
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+p = [ -ones(1, Fse/2) ones(1, Fse/2) ] /2;
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Nous avions (un équivalent de) la commande suivante :
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+p = [ -ones(1, Fse/2 - 1) ones(1, Fse/2 + 1) ] /2;
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Ce qui ne permettait pas à notre DSP de se calquer sur la version théorique.
 \end_layout
 
 \begin_layout Paragraph
 Question 14
+\begin_inset CommandInset label
+LatexCommand label
+name "par:Question-14-TEB"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2039,7 +2146,7 @@ reference "eq:Pb"
 
 ), visible à la figure 
 \begin_inset CommandInset ref
-LatexCommand pageref
+LatexCommand ref
 reference "fig:TEB"
 
 \end_inset
@@ -2051,6 +2158,8 @@ reference "fig:TEB"
 
  itération, on itère - pour un rapport signal sur bruit donné - jusqu'à
  atteindre un nombre d'erreurs rencontrées supérieur à 100.
+ La courbe théorique suit la courbe pratique, ce qui suggère une chaîne
+ de communication correcte.
 \end_layout
 
 \begin_layout Standard
@@ -2061,19 +2170,8 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\end_inset
-
-
 \begin_inset Graphics
-	filename Q14_TEB.png
+	filename Q14-TEB.png
 	width 60line%
 	groupId graph
 
@@ -2110,7 +2208,7 @@ name "fig:TEB"
 Synchronisation en temps et en fréquence
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Paragraph
 Question 15
 \end_layout
 
@@ -2140,7 +2238,7 @@ Nous allons montrer que
 \begin_layout Standard
 L'inégalité de Cauchy-Schwarz est donnée en équation 
 \begin_inset CommandInset ref
-LatexCommand pageref
+LatexCommand ref
 reference "eq:Cauchy-Schwarz"
 
 \end_inset
@@ -2219,7 +2317,7 @@ On a donc bien le résultat de l'énoncé.
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Paragraph
 Question 16
 \end_layout
 
@@ -2295,17 +2393,31 @@ C'est pour cela que dans la suite du projet il nous est demandé de tester
 
 \begin_layout Paragraph
 Question 17
+\begin_inset CommandInset label
+LatexCommand label
+name "par:Question-17-Xcorr"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 En observant l'équation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:corr_decalage"
+
+\end_inset
+
+ (page 
 \begin_inset CommandInset ref
 LatexCommand pageref
 reference "eq:corr_decalage"
 
 \end_inset
 
-, on remarque qu'on est face à une convolution entre le préambule inversé
+), on remarque qu'on est face à une convolution entre le préambule inversé
  temporellement (utilisation de 
 \begin_inset Flex Code
 status open
@@ -2351,6 +2463,44 @@ s, on passe d'une dizaine de secondes d’exécution à
 s.
 \end_layout
 
+\begin_layout Standard
+Cette amélioration est mise en place dans la fonction pour le temps réel
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+indices_fin_preamb.m
+\end_layout
+
+\end_inset
+
+ (qui renvoie les indices de début de chaque trame potentielle).
+\end_layout
+
+\begin_layout Standard
+Notre taux d'erreur binaire pratique, présenté en figure //TODO, ne suit
+ pas exactement la courbe théorique.
+ Ceci est dû au nombre d'itérations effectuées pour le calcul : comme pour
+ la 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:Question-14-TEB"
+
+\end_inset
+
+ (page 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "par:Question-14-TEB"
+
+\end_inset
+
+), on itère jusqu'à obtenir 100 erreurs.
+ Cependant, avec les décalages fréquentiels et temporels, cette valeur ne
+ semble pas assez élevée pour se calquer exactement sur la courbe de théorique.
+\end_layout
+
 \begin_layout Part
 Traitement / décodage de signaux réels
 \end_layout
@@ -2359,7 +2509,7 @@ Traitement / décodage de signaux réels
 Structure des trames ADS-B
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Paragraph
 Question 18
 \end_layout
 
@@ -2376,14 +2526,25 @@ Les trames d'identifications correspondent à des valeurs de FTC de 1 à 4.
 Travail à réaliser
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Paragraph
 Question 20
 \end_layout
 
 \begin_layout Standard
 Après extraction des informations sur les 21 trames issues d'un même appareil,
- on peut enregistrer les différentes coordonnées de l'avion provenant des
- trames de position en vol.
+ on peut enregistrer les différentes coordonnées de l'avion, provenant des
+ trames de positions en vol.
+\end_layout
+
+\begin_layout Standard
+Voir pour cela la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Trajectoire-de-l'appareil"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2394,19 +2555,10 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\end_inset
-
-
 \begin_inset Graphics
 	filename question20.eps
+	width 60line%
+	groupId graph
 
 \end_inset
 
@@ -2418,6 +2570,13 @@ status open
 
 \begin_layout Plain Layout
 Trajectoire de l'appareil sur une carte Google Maps.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Trajectoire-de-l'appareil"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2434,36 +2593,103 @@ Trajectoire de l'appareil sur une carte Google Maps.
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Paragraph
 Question 21
 \end_layout
 
 \begin_layout Standard
-D'après des informations issues du site flightradar24.com, l'avion d'adresse
- 393324 (hexadecimal) appartient à la compagnie Air France ®.
+D'après des informations issues du site 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+flightradar24.com
+\end_layout
+
+\end_inset
+
+, l'avion d'adresse 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+393324
+\end_layout
+
+\end_inset
+
+ (hexadecimal) appartient à la compagnie Air France ®.
  C'est un avion de modèle A321 et, d'après sa trajectoire, il se dirigeait
  vers le nord.
 \end_layout
 
 \begin_layout Part
-Affichage des trajectoires
+Temps réel
 \end_layout
 
 \begin_layout Standard
-Ayant pour objectif de traîter les trames reçu en temps réel, nous nous
- sommes intéressé aux optimisations possibles pour réduire le temps d'execution
- de programmes.
+Cette partie permet de mettre en œuvre les codes créés pour les deux parties
+ précédentes.
+ En fusionnant nos travaux et en utilisant l'antenne fournie, nous sommes
+ capable d'afficher en temps réel des informations à propos des avions autour
+ de l'aéroport de Mérignac.
 \end_layout
 
-\begin_layout Subsubsection*
-Determination du CRC
+\begin_layout Description
+Remarque Nous souhaitons remercier le binôme de Simon et Clément pour les
+ buffers qu'ils nous ont fourni.
+ En effet, cela nous a permis de travailler en temps extra-scolaire sur
+ cette dernière partie.
+\end_layout
+
+\begin_layout Description
+Remarque
+\begin_inset space ~
+\end_inset
+
+2 À noter que la fusion des codes (parties 1 et 2) n'a pas fonctionné directemen
+t.
+ Lorsque nous nous sommes penché sur le cas particulier du temps réel, de
+ nombreuses erreurs sont apparus.
+ Au départ, seules certaines trames étaient affichées (en comparant avec
+ le binôme cité précédemment).
+ Les deux erreurs principales étaient la mauvaise initialisation du filtre
+ 
+\begin_inset Formula $p$
+\end_inset
+
+ (voir remarque page 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "Rmq:DSP-fausse"
+
+\end_inset
+
+), et une mauvaise implémentation du bloc de décision.
+\end_layout
+
+\begin_layout Section
+Optimisation temps réel
 \end_layout
 
 \begin_layout Standard
-Les fonctions proposées par matlab pour la detection d'erreur CRC sont très
- simples d'utilisation mais sont très gourmandes en terme de temps d'exécution
- (appels à des fonctions tel que bi2dec plusieurs centaines de fois).
- Nous avons donc cherché à implémenter une fonction plus rudimentaire mais
+Pour pouvoir traiter les trames reçues en tant réel, nous nous sommes intéressé
+ aux optimisations possibles pour réduire le temps d’exécution du programme.
+\end_layout
+
+\begin_layout Subsection
+Détermination du CRC
+\end_layout
+
+\begin_layout Standard
+Les fonctions proposées par Matlab pour la détection d'erreur CRC sont très
+ simples d'utilisation mais sont quelque peu gourmandes en terme de temps
+ d'exécution (appels à des fonctions tel que bi2dec plusieurs centaines
+ de fois).
+\end_layout
+
+\begin_layout Standard
+Nous avons donc cherché à implémenter une fonction, plus rudimentaire, mais
  moins chronophage.
  Nous nous sommes inspiré d'une fonction proposée sur MathWorks
 \begin_inset Foot
@@ -2475,29 +2701,40 @@ http://in.mathworks.com/matlabcentral/fileexchange/26741-crc-16
 
 \end_inset
 
- qui calcule le CRC pour un polynome générateur de 16 bits.
- 
+, qui calcule le CRC pour un polynôme générateur de 16 bits.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Standard
+Cette amélioration nous a permis de gagner //TODO
+\end_layout
+
+\begin_layout Subsection
 Registre
 \end_layout
 
 \begin_layout Standard
-Pour stocker les données des avions issues des trames nous avions deux choix
- possibles.
- Le premier était de faire un tableau de structure contenant les informations
+Pour stocker les données des avions issues des trames, nous avions deux
+ choix possibles.
+\end_layout
+
+\begin_layout Standard
+Le premier était de faire un tableau de structure, contenant les informations
  d'un avion par structure.
  Le second était de n'avoir qu'une seule structure contenant des vecteurs
  dont l'indice déterminait l'avion.
- Pour faire notre choix nous avons comparé la gestion par matlab de la mémoire
- selon les deux configurations.
+\end_layout
+
+\begin_layout Standard
+Pour faire notre choix nous avons comparé la gestion, par Matlab, de la
+ mémoire selon les deux configurations.
  Nous les avons donc testé avec exactement les mêmes données : 10 avions
- avec chaque champs rempli des mêmes données et pour chaque avion 5 coordonnées.
+ avec chaque champ rempli de données similaires, et pour chaque avion, cinq
+ coordonnées.
  
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="4">
 <features rotate="0" tabularvalignment="middle">
@@ -2598,19 +2835,6 @@ registre_arrayofstruct
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-\lang english
 \begin_inset Formula $1\times10$
 \end_inset
 
@@ -2643,6 +2867,104 @@ struct
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+//TODO ?
+\end_layout
+
+\begin_layout Subsection
+Convolutions
+\end_layout
+
+\begin_layout Standard
+Suite à nos tests avec le ''profiler'' de Matlab, il s'est avéré que le
+ temps passé dans la fonction 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+xcorr
+\end_layout
+
+\end_inset
+
+ était particulièrement important.
+ Nous nous sommes donc attelé à remplacer cette fonction par une convolution
+ (voir 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Question-17-Xcorr"
+
+\end_inset
+
+, page 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "par:Question-17-Xcorr"
+
+\end_inset
+
+), puisque :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+R_{xx}(\tau)=x(\tau)*x^{*}(-\tau)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Correction d'une erreur
+\end_layout
+
+\begin_layout Standard
+Lorsque notre code était non fonctionnel, et ne détectait pas toutes les
+ trames possibles, nous avons cherché à corriger un bit d'erreur pour augmenter
+ notre nombre de trames valides découvertes (implémenté au sein du fichier
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+get_trames.m
+\end_layout
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Pour ce faire, il suffit d'inverser un bit de la trame, et de vérifier à
+ l'aide du CRC si celle ci devient bonne.
+\end_layout
+
+\begin_layout Standard
+Afin de ne pas surcharger le programme, on va faire en sorte de ne pas tester
+ tous les bits : l'idée est d'attribuer une valeur à chaque bit, correspondant
+ à un poids.
+ Cette valeur est calculée en observant si, au moment d'échantillonnage,
+ un bit est proche de là où la décision a été faite, ou non.
+\end_layout
+
+\begin_layout Standard
+Ce qui nous permet d'appliquer notre algorithme uniquement aux bits avec
+ un poids plus faible (
+\begin_inset Formula $\neq$
+\end_inset
+
+bits de poids fort ou faible du binaire), qui correspond à une probabilité
+ plus élevée d'erreur.
+\end_layout
+
+\begin_layout Section
+Figures de résultat
 \end_layout
 
 \end_body
