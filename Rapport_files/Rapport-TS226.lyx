@@ -806,12 +806,109 @@ Question 3
 \end_layout
 
 \begin_layout Standard
-On calcule les convolutions entre chaque filtre, pour prouver le fait qu'ils
- vérifient les critères de Nyquist.
+Montrons que les couples de filtres 
+\begin_inset Formula $(p_{0}(t),p_{0}^{*}(-t))$
+\end_inset
+
+ et 
+\begin_inset Formula $(p_{1}(t),p_{1}^{*}(-t))$
+\end_inset
+
+ vérifient le critère de Nyquist.
+ 
 \end_layout
 
 \begin_layout Standard
-// TODO (soit graphiquement, soit calculatoirement)
+Le critère de Nyquist est vérfié si 
+\begin_inset Formula $\sum_{k\in Z}V(f-\frac{k}{T_{s}})=T_{s}v(0)$
+\end_inset
+
+ c'est-à-dire si la convolution du couple est centrée en zéro et de largeur
+ 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+On peut le vérifier graphiquement :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename convolution1.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schéma de la convolution des couples de filtres
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On en déduit la représentation de la convolution suivante :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename convolution2.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Représentation de la convolution d'un couple de filtre
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Paragraph
@@ -2744,7 +2841,44 @@ http://in.mathworks.com/matlabcentral/fileexchange/26741-crc-16
 \end_layout
 
 \begin_layout Standard
-Cette amélioration nous a permis de gagner //TODO
+En testant avec la fonction d'origine de Matlab, et en activant notre correction
+ d'erreur (voir 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Correction-d'une-erreur"
+
+\end_inset
+
+, page 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "sec:Correction-d'une-erreur"
+
+\end_inset
+
+), on atteint presque 9 secondes passées dans la fonction 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Detector
+\end_layout
+
+\end_inset
+
+.
+ Avec la nouvelle fonction mise en place exclusivement pour notre cas, le
+ temps passé dans 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+crc24
+\end_layout
+
+\end_inset
+
+ est d'une seconde et demie.
 \end_layout
 
 \begin_layout Subsection
@@ -2960,6 +3094,13 @@ R_{xx}(\tau)=x(\tau)*x^{*}(-\tau)
 
 \begin_layout Section
 Correction d'une erreur
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Correction-d'une-erreur"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
