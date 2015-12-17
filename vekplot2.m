@@ -6,6 +6,8 @@ function [ display_plot ]=vekplot2(x,y,u,v,scale,linetype,mark,fillcolour)
 % Returns [arrowx,arrowy] which can be used to make the same
 % vector plot using plot(arrowx,arrowy).
 %
+% Inspire de http://www.mathworks.com/matlabcentral/newsreader/view_thread/4878
+%
 % vekplot2(x,y,u,v,scale,linetype,mark,fillcolour) plots with line
 
 % 'linetype', markers at the arrows basepoints 'mark' and with

@@ -1,7 +1,10 @@
 function [ lat lon ] = decode_coordonnees( cprFlag, LAT, LON )
-%decode_coordonnees Decode les latitude et longitude depuis le cprFlag et 
+%DECODE_COORDONNEES Decode les latitude et longitude depuis le cprFlag et 
 %                   les sequences encodee en CPR de la trame correspondant 
 %                   a la latitude et longitude
+%   LAT :
+%   LON :
+%   cprFlag :
 
 %% Latitude
 Nz = 15; % nb de lat geographiques considerees entre equateur et un pole
@@ -15,16 +18,12 @@ LONref = -0.605744;
 Dlati = 360 / (4 * Nz - cprFlag);
 
 % Etape 2
-% TO VERIFY : j'ai change la formule a voir avec le prof
-% mais bon resultat
 j = floor(LATref/Dlati) + floor(0.5 + (mod(LATref, Dlati) / Dlati) - (LAT / 2^Nb ));
 
 % Etape 3
 lat = Dlati*(j + (LAT/(2^Nb)));
 
 %% Longitude
-
-% TODO longitude mauvaise
 
 % Etape 1
 if((cprNL(lat) - cprFlag) > 0)

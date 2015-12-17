@@ -1,5 +1,5 @@
 function [ registre ] = bit2registre( trame, registre_old, varargin )
-% bit2registre Extrait les informations du vecteur binaire et renvoie le
+% BIT2REGISTRE Extrait les informations du vecteur binaire et renvoie le
 %              registre mis a jour seulement si le CRC ne detecte pas
 %              d'erreur
 %

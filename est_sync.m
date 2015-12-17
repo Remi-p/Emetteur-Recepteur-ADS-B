@@ -5,14 +5,16 @@ function [ dec_t_est dec_f_est ] = est_sync( yl, preambule, dec_max, Te, taille_
 %   Te : temps d'echantillonnage
 %   taille_sl : taille du vecteur d'information
 %   Fse : facteur de sur-echantillonnage
+%
+% Remarque : cette version de l'estimation de decalage n'est pas optimisee.
+%            La version utilisee en temps reel est indices_fin_preamb.m
 
 dec_t_max = dec_max(1);
 dec_f_max = dec_max(2);
 Tp = length(preambule);
 
-
-% Le decalage frequentiel n'impacte pas la detection du decalage temporel.
-% On separe donc les deux operations !
+% Le decalage frequentiel n'impacte pas la detection du decalage temporel
+% (dans notre cas). On separe donc les deux operations !
 
 % ------------------------------------ Decalage temporel
 

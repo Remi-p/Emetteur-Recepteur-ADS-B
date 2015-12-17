@@ -7,8 +7,10 @@ function [ decalages ] = indices_fin_preamb( yl, preambule, lg_trame_canal, Te, 
 %                    valeurs inutiles)
 %   Te : temps d'echantillonnage
 %   seuil : seuil pour le test de valeur a conserver
-
-% => Voir est_sync.m
+% 
+% Remarque : version optimisee pour le temps reel, qui ne prends donc pas
+%            en compte le decalage frequentiel (annule par le module).
+%            => Voir est_sync.m pour l'estimation temporelle+frequentielle
 
 Tp = length(preambule);
 

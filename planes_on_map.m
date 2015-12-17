@@ -1,8 +1,10 @@
 function [registre, display_plot, display_text, display_velocity] = planes_on_map( registre, display_plot, display_text, display_velocity )
-% planes_on_map Affiche les avions et leur trajectoire sur une carte 
+% PLANES_ON_MAP Affiche les avions et leur trajectoire sur une carte 
 %               google map
-%   type : "Initialisation" : pr?pare la carte
-%          Autre : affiche la position des avions entr? en param?tre
+%   registre : registre contenant les informations vis-a-vis des avions
+%   display_plot :
+%   display_text :
+%   display_velocity : 
 
 %% Avions
 

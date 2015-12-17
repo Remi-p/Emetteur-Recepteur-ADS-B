@@ -151,8 +151,6 @@ while my_input_stream.available % tant qu'on re?oit quelque chose on boucle
         planes_on_map( registre.positions, registre.adresse );
     end
     
-%     clear buff;
-    
     toc
     % --------------------------------------------------------------------
     

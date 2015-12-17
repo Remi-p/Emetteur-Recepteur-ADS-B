@@ -1,5 +1,5 @@
 function [ s, ss, sl, rl ] = bdb_sync( sb, sigma, Ts, Te, g, h, ga, Ns, decalage, preamb, dec, dec_max, taille_buff )
-%BDB Retourne le signal apres passage dans le systeme
+%BDB_SYNC Retourne le signal apres passage dans le systeme
 %   sb : vecteur des bits
 %   sigma : pour le bruit gaussien
 %   Ts : temps symbole
@@ -9,8 +9,8 @@ function [ s, ss, sl, rl ] = bdb_sync( sb, sigma, Ts, Te, g, h, ga, Ns, decalage
 %   h : filtre du canal
 %   Ns : nombre de symbole
 %   preamb : preambule (directement en tant que signal)
-%   dec_f : decalage frequentiel
-%   dec_t : decalage temporel
+%   dec : decalage temporel et frequentiel
+%   dec_max : decalage temporel et frequentiel maximal possible
 %   taille_buff : taille de la fenetre etudiee
 
 % On choisit directement a l'interieur de la fonction M = 2
