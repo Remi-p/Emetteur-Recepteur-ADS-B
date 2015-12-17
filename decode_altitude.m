@@ -1,5 +1,5 @@
 function [ altitude ] = decode_altitude( sequence )
-% decode_altitude Decode la valeur de l'altitude exprimee en pieds a partir
+% DECODE_ALTITUDE Decode la valeur de l'altitude exprimee en pieds a partir
 %                 de la sequence de bit passee en entree
 
 sequence = [ sequence(1,1:7),sequence(1,9:12) ];

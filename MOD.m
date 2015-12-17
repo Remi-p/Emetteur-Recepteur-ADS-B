@@ -1,5 +1,5 @@
 function [ mod ] = MOD( X, Y )
-%MOD 
+%MOD
 
 mod = X - Y*ceil(X/Y);
 

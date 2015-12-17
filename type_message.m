@@ -1,5 +1,6 @@
 function [ type ] = type_message( FTC )
-% type Determine le type de message selon le FTC
+%TYPE_MESSAGE Determine le type de message selon le FTC
+%   FTC : Format Type Code
 
 % Kind of enum
 message = struct('identification',1, ...

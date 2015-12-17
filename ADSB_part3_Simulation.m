@@ -16,15 +16,14 @@ registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
                   'timeFlag', [], 'cprFlag', [], ...
                   'positions', [], 'update', [], 'velocity', [], 'head', []);
 
+% Initialisations liees a la carte :
+planes_on_map_init();
 display_plot = [];
 display_text = [];
 display_velocity = [];
+
 Rb = 1e6; % debit binaire
 Ts = 1/Rb;
-
-              
-% Initialisation de la carte
-planes_on_map_init();
 
 Rs = 4e6; % Le rythme d'echantillonnage (pas plus de 4Mhz)
 Te = 1/Rs;
@@ -51,7 +50,7 @@ p_gen = [1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1];
 % ------------------------------------- Filtres
 % p(t) le filtre de mise en forme
 p = [-ones(1, Fse/2) ones(1, Fse/2)] / 2;
-p = p / sqrt(sum(p.^2));
+% p = p / sqrt(sum(p.^2));
 
 % Filtre de reception : Pour maximiser le rapport signal sur bruit,
 % on prend pa(t) = p*(-t)
@@ -83,6 +82,7 @@ for k = 1:7
 
 
     if mod(k, 2) == 0
+        % Mise a jour de la carte
         [registre, display_plot, display_text, display_velocity] = planes_on_map( registre, display_plot, display_text, display_velocity);
     end
 %     registre

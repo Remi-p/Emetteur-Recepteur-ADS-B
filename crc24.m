@@ -1,7 +1,9 @@
 function [outdata err] = crc24(h, p)
-% crc24 Calcul la valeur du crc
-%     renvoie err à 0 s'il n'y a pas d'erreur, 1 sinon
+% CRC24 Calcul la valeur du crc
+%     renvoie err a 0 s'il n'y a pas d'erreur, 1 sinon
 % 	  renvoie la trame sans les bits de crc dans outdata
+%   h :
+%   p :
 
     % g(X) =  x^24 + x^23 + x^22 + x^21 + x^20 + x^19 + x^18 + x^17 + x^16
     % + x^15 + x^14 + x^13 + x^12 + x^10 + x^3 + 1

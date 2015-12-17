@@ -1,4 +1,4 @@
-function [ output_args ] = planes_on_map_init( input_args )
+function [ output_args ] = planes_on_map_init()
 %PLANES_ON_MAP_INIT Initialisation de la carte pour l'affichage des avions
 
 fprintf('Initialisation de la carte ... ');

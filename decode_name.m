@@ -1,7 +1,7 @@
 function [ string ] = decode_name( sequence )
-% b2d Convertit une sequence de bit sous forme de vecteur ligne 
-%     en une chaine de caractere en utilisant la table des caracteres
-% 	  utilise par ADS-B
+% DECODE_NAME Convertit une sequence de bit sous forme de vecteur ligne 
+%             en une chaine de caractere en utilisant la table des
+%             caracteres utilise par ADS-B
 
 % Inpsire de : http://adsb-decode-guide.readthedocs.org/en/latest/decoding.html
 
