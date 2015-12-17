@@ -1,4 +1,4 @@
-function [ velocity ] = decode_velocity( sequence )
+function [ velocity, head ] = decode_velocity( sequence )
 % decode_velocity Decode la valeur de la vitesse a partir de la sequence
 %                 issue d'un message de vitesse
 
@@ -20,6 +20,11 @@ if Sns == 1
 end
 % Calcul de la vitesse en (kn -> kilo noeuds)
  velocity = sqrt(Vew^2 + Vns^2);
-   
+ 
+ head = atand(Vew/Vns)
+ if head < 0
+     head = head + 360;
+ end
+ head = head + 90;
 end
 

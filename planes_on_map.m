@@ -1,4 +1,4 @@
-function [] = planes_on_map( positions, adresse, type )
+function [registre, display_plot, display_text] = planes_on_map( registre, display_plot, display_text )
 % planes_on_map Affiche les avions et leur trajectoire sur une carte 
 %               google map
 %   type : "Initialisation" : pr?pare la carte
@@ -6,18 +6,64 @@ function [] = planes_on_map( positions, adresse, type )
 
 %% Avions
 
-for ind=1:size(adresse,2)
-    for k=1:length(positions{ind})
+for ind=1:size(registre.adresse,2)
+    
+    for k=1:length(registre.positions{ind})
 
-    p = positions{ind}{k};
+        % derniere position de l'avion
+        curr_plane__pos = registre.positions{ind}{k};
+        
+        
+        
+        % nombre de positions enregistre pour cet avion
+        nb_positions = length(registre.positions{ind});
 
-        if k ==1
-            plot(p(2), p(1),'.b','MarkerSize',20); 
-            text(p(2)+0.1, p(1),adresse{ind},'color','b');
-        else
-            plot(p(2), p(1),'+b','MarkerSize',10)
+        if registre.update(ind) == 0;
+            if k == nb_positions
+                if registre.head(ind) == 0;
+                    display_plot{ind} = plot(curr_plane__pos(2), curr_plane__pos(1),'.c','MarkerSize',20); 
+                else
+                    display_plot{ind} = text(curr_plane__pos(2),curr_plane__pos(1),'\fontsize{22}\color{blue}\up-arrow', ...
+                           'horizontalalignment','center', ...
+                           'verticalalignment','bottom');
+                 set(display_plot{ind}, 'rotation', registre.head(ind))
+                end
+                
+                display_text{ind} = text(curr_plane__pos(2)+0.1, curr_plane__pos(1),registre.adresse{ind},'color','r');
+                registre.update(ind) = k;
+            else % sinon
+                plot(curr_plane__pos(2), curr_plane__pos(1),'.b','MarkerSize',5)
+            end
+        
+        elseif registre.update(ind) < nb_positions
+            % si c'est la derniere position
+            if k == nb_positions
+                
+                set(display_plot{ind}, 'Visible', 'off');
+                set(display_text{ind}, 'Visible', 'off');
+                
+                for m=length(registre.update(ind)):nb_positions
+                    
+                    p = registre.positions{ind}{m};
+                    plot(p(2), p(1),'.b','MarkerSize',5)
+                end
+                 if registre.head(ind) == 0;
+                    display_plot{ind} = plot(curr_plane__pos(2), curr_plane__pos(1),'.c','MarkerSize',20); 
+                else
+                
+                display_plot{ind} = text(curr_plane__pos(2),curr_plane__pos(1),'\fontsize{22}\color{blue}\up-arrow', ...
+                           'horizontalalignment','center', ...
+                           'verticalalignment','bottom');
+                set(display_plot{ind}, 'rotation', registre.head(ind))
+                 end
+                display_text{ind} = text(curr_plane__pos(2)+0.1, curr_plane__pos(1),registre.adresse{ind},'color','r');
+                registre.update(ind) = registre.update(ind)+1;
+                
+
+            else % sinon
+                plot(curr_plane__pos(2), curr_plane__pos(1),'.b','MarkerSize',5)
+            end
         end
-
     end
 end
 

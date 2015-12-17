@@ -11,6 +11,7 @@ registre.timeFlag = [old_registre.timeFlag 0];
 registre.cprFlag = [old_registre.cprFlag 0];
 registre.velocity = [old_registre.velocity 0];
 registre.type = [old_registre.type 0];
-
+registre.update = [old_registre.update 0];
+registre.head = [old_registre.head 0];
 
 end

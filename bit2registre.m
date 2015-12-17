@@ -73,9 +73,11 @@ if ~checkcrc | err == 0
                 index = 1;
                 registre.adresse = [registre.adresse AA];
                 registre.positions{index} = [];
+                registre.update(index) = 0;
                 registre.velocity(index)  = 0;
                 registre.nom  = {};
                 registre.altitude(index) = 0;
+                registre.head(index) = 0;
                 
             end
             
@@ -123,6 +125,7 @@ if ~checkcrc | err == 0
                         [ latitude, longitude ] = decode_coordonnees(cprFlag, lat, lon);
                         registre.positions{index}{end+1} = [ latitude longitude ];
 
+                        
                     case message.surface_pos
                         if verbose;fprintf('\tSurface position for %s\n', AA{:});end
                         % timeFlag
@@ -136,16 +139,20 @@ if ~checkcrc | err == 0
                         % latitude & lonitude
                         lat = b2d(extract(datas, 1, 23, 39));
                         lon = b2d(extract(datas, 1, 40, 56));
+                        
                         [ latitude longitude ] = decode_coordonnees(cprFlag, lat, lon);
                         registre.positions{index}{end+1} = [ latitude longitude ];
-
+                        
+                        
+                        
                     case message.airborne_vel
 
                         %velocity
-                        if verbose;fprintf('\tVelocity for %s\n', AA{:});end
+                        if verbose;fprintf('\tVelocity and head for %s\n', AA{:});end
                         vel_mes = extract(datas, 1, 14, 35);
-                        velocity = decode_velocity( vel_mes );
+                        [velocity, head] = decode_velocity( vel_mes );
                         registre.velocity(index) = velocity;
+                        registre.head(index) = head;
                         
                     otherwise
                 end

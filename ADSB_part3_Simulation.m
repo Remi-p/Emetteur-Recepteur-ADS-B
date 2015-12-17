@@ -14,7 +14,11 @@ global verbose;
 
 registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
                   'timeFlag', [], 'cprFlag', [], ...
-                  'positions', [], 'velocity', []);
+                  'positions', [], 'update', [], 'velocity', [], 'head', []);
+
+display_plot = [];
+display_text = [];
+display_velocity = [];
               
 % Initialisation de la carte
 planes_on_map_init();
@@ -77,8 +81,10 @@ for k = 1:7
         % get_trames)
     end
 
-%     registre
-    planes_on_map( registre.positions, registre.adresse );
+
+    [registre, display_plot, display_text] = planes_on_map( registre, display_plot, display_text);
+    registre
+    % planes_on_map( registre.positions, registre.adresse );
     clear buff;
     
 end
