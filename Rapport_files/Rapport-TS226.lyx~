@@ -807,7 +807,111 @@ Question 3
 
 \begin_layout Standard
 Montrons que les couples de filtres 
-\begin_inset Formula $(p_{0}^{*}(-t)$
+\begin_inset Formula $(p_{0}(t),p_{0}^{*}(-t))$
+\end_inset
+
+ et 
+\begin_inset Formula $(p_{1}(t),p_{1}^{*}(-t))$
+\end_inset
+
+ vérifient le critère de Nyquist.
+ 
+\end_layout
+
+\begin_layout Standard
+Le critère de Nyquist est vérfié si 
+\begin_inset Formula $\sum_{k\in Z}V(f-\frac{k}{T_{s}})=T_{s}v(0)$
+\end_inset
+
+ c'est-à-dire si la convolution du couple est centrée en zéro et de largeur
+ 
+\begin_inset Formula $T_{s}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+On peut le vérifier graphiquement :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename convolution1.eps
+	width 60line%
+	groupId graph
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schéma de la convolution des couples de filtres
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On en déduit la représentation de la convolution suivante :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename convolution2.eps
+	width 60line%
+	groupId graph
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Représentation de la convolution d'un couple de filtre
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
 \end_inset
 
 

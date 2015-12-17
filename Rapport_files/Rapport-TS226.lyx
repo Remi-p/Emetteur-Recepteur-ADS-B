@@ -842,8 +842,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename convolution1.eps
+	width 60line%
+	groupId graph
 
 \end_inset
 
@@ -882,8 +885,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename convolution2.eps
+	width 60line%
+	groupId graph
 
 \end_inset
 
@@ -3141,6 +3147,13 @@ Ce qui nous permet d'appliquer notre algorithme uniquement aux bits avec
 
  bits de poids fort ou faible du binaire), qui correspond à une probabilité
  plus élevée d'erreur.
+\end_layout
+
+\begin_layout Standard
+En testant sur les buffers fournis par Simon et Clément, sans correction
+ d'erreur nous obtenons 86 trames valides, et 91 avec.
+ À noter que cette correction augmente le temps d'exécution du programme,
+ et ne peux donc pas être utiliser en temps réel.
 \end_layout
 
 \begin_layout Section
