@@ -2,9 +2,9 @@ function [ lat lon ] = decode_coordonnees( cprFlag, LAT, LON )
 %DECODE_COORDONNEES Decode les latitude et longitude depuis le cprFlag et 
 %                   les sequences encodee en CPR de la trame correspondant 
 %                   a la latitude et longitude
-%   LAT :
-%   LON :
-%   cprFlag :
+%   LAT : latitude issue de la trame
+%   LON : longitude issue de la trame
+%   cprFlag : boulean issue de la trame
 
 %% Latitude
 Nz = 15; % nb de lat geographiques considerees entre equateur et un pole

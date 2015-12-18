@@ -16,17 +16,5 @@ registre.velocity(end + 1) = 0;
 registre.type(end + 1) = 0;
 registre.update(end + 1) = 0;
 registre.head(end + 1) = 0;
-% registre.adresse =  [old_registre.adresse AA];
-% registre.format = [old_registre.format 0];
-% registre.nom =  [old_registre.nom {''}];
-% registre.altitude = [old_registre.altitude 0];
-% old_registre.positions{index} = [];
-% registre.positions = old_registre.positions;
-% registre.timeFlag = [old_registre.timeFlag 0];
-% registre.cprFlag = [old_registre.cprFlag 0];
-% registre.velocity = [old_registre.velocity 0];
-% registre.type = [old_registre.type 0];
-% registre.update = [old_registre.update 0];
-% registre.head = [old_registre.head 0];
 
 end

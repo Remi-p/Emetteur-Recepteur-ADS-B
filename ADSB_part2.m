@@ -11,21 +11,27 @@ clc; close all; clear all;
 global verbose;
 verbose = false;
 
+% Initialisations liees a la carte :
+planes_on_map_init();
+display_plot = [];
+display_text = [];
+display_velocity = [];
+
 registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
                   'timeFlag', [], 'cprFlag', [], ...
                   'positions', [], 'velocity', []);
-              
 
-              
-load('trames_13.mat')
-% matrice_binaire2 = [0,1,1,1;1,0,0,0;0,0,0,0;0,0,0,0;0,1,1,1;1,1,1,1;1,0,0,0;0,1,1,1;1,0,0,0;0,0,1,1;0,0,0,0;0,0,0,0;0,0,1,1;0,0,0,0;0,1,0,0;1,0,0,0;0,0,0,0;0,0,1,1;0,0,0,0;0,0,0,0;0,0,1,1;0,0,1,1;0,0,0,0;0,0,0,0;0,1,0,0;1,1,1,1;1,1,0,0;1,0,1,1;0,1,1,1;1,1,0,0;1,1,0,0;1,1,1,1;1,1,0,0;1,0,1,1;0,0,0,0;0,1,1,1;1,1,1,1;1,0,0,0;0,0,0,0;0,1,0,0;1,0,1,1;0,0,0,0;0,0,1,1;0,1,1,1;1,0,1,1;0,1,1,1;1,0,1,1;0,0,1,1;0,1,0,0;1,1,0,0;1,0,0,0;0,1,0,0;1,0,0,0;0,1,1,1;1,0,0,0;0,0,1,1;0,0,0,0;0,0,1,1;0,0,0,0;0,0,1,1;0,1,0,0;1,1,1,1;1,0,0,0;0,0,1,1;0,0,1,1;0,1,1,1;1,0,0,0;0,0,1,1;0,1,1,1;1,0,1,1;0,0,1,1;0,0,1,1;0,0,1,1;0,0,1,1;0,1,1,1;1,0,0,0;0,0,1,1;0,0,0,0;0,0,0,0;0,0,0,0;0,0,1,1;0,0,1,1;0,1,0,0;1,0,0,0;0,0,1,1;0,0,0,0;0,0,0,0;0,1,0,0;1,0,0,0;0,0,0,0;0,0,1,1;0,0,0,0;0,0,0,0;0,0,0,0;0,1,1,1;1,0,0,0;0,1,0,0;1,1,0,0;1,1,1,1;1,1,1,1;1,1,0,0;1,0,0,0;0,0,1,1;0,0,1,1;0,0,1,1;0,1,0,0;1,0,0,0;0,1,1,1;1,1,0,0;1,0,0,0;0,0,1,1;0,0,0,0];
+% Trames fournies dans le zip du projet
+load('trames_20141120.mat')
 
-for i=1:size(matrice_binaire2,2)
+for i=1:size(trames_20141120,2)
     if verbose;cprintf('_blue', 'Trame %i\n', i);end
-	registre = bit2registre(matrice_binaire2(:,i), registre);
+	registre = bit2registre(trames_20141120(:,i), registre);
 end
 
 registre
 
-
-planes_on_map( registre.positions, registre.adresse );
+% Affichage des points
+[registre, display_plot, display_text, display_velocity] = planes_on_map( registre, display_plot, display_text, display_velocity);
+% display_velocity est ici inutile car il n'y a aucune trame de vitesse
+% dans le fichier trames_20141120.mat

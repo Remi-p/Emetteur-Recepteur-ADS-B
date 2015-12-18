@@ -29,7 +29,7 @@ for ind=1:size(registre.adresse,2)
                 display_text{ind} = text(curr_plane_pos(2)+0.1, curr_plane_pos(1),registre.adresse{ind},'color','r', 'BackgroundColor','white', 'EdgeColor','black');
                 registre.update(ind) = k;
             else % sinon
-                plot(curr_plane_pos(2), curr_plane_pos(1),'.b','MarkerSize',3)
+                plot(curr_plane_pos(2), curr_plane_pos(1),'.b','MarkerSize',5)
             end
         
         elseif registre.update(ind) < nb_positions
@@ -42,7 +42,7 @@ for ind=1:size(registre.adresse,2)
                 
                 for m=length(registre.update(ind)):nb_positions
                     p = registre.positions{ind}{m};
-                    plot(p(2), p(1),'.b','MarkerSize',3)
+                    plot(p(2), p(1),'.b','MarkerSize',5)
                 end
                 
                 [display_plot{ind}, display_velocity{ind}] = display_head( registre.velocity(ind), registre.positions{ind} );
@@ -51,7 +51,7 @@ for ind=1:size(registre.adresse,2)
                 
 
             else % sinon
-                plot(curr_plane_pos(2), curr_plane_pos(1),'.b','MarkerSize',3)
+                plot(curr_plane_pos(2), curr_plane_pos(1),'.b','MarkerSize',5)
             end
         end
     end
