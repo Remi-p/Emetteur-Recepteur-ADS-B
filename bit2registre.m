@@ -23,8 +23,6 @@ else if nVar == 2
      end
 end
 
-
-
 global verbose;
 
 registre = registre_old;
@@ -125,7 +123,6 @@ if ~checkcrc | err == 0
                         [ latitude, longitude ] = decode_coordonnees(cprFlag, lat, lon);
                         registre.positions{index}{end+1} = [ latitude longitude ];
 
-                        
                     case message.surface_pos
                         if verbose;fprintf('\tSurface position for %s\n', AA{:});end
                         % timeFlag
@@ -142,8 +139,6 @@ if ~checkcrc | err == 0
                         
                         [ latitude longitude ] = decode_coordonnees(cprFlag, lat, lon);
                         registre.positions{index}{end+1} = [ latitude longitude ];
-                        
-                        
                         
                     case message.airborne_vel
 
