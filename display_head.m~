@@ -1,6 +1,6 @@
-function [ display_plot, display_velocity ] = display_head( velocity, positions)
+function [ display_plot, display_velocity ] = display_head( head, velocity, positions, )
 % display_head Affiche la derniere position d'un avion et sa direction par
-%              une fleche / ou un point
+%              une fleche
 %   p : position
 %   head :
 %   velocity : vitesse de l'avion (depuis les trames de vitesse)
@@ -11,31 +11,22 @@ function [ display_plot, display_velocity ] = display_head( velocity, positions)
 %            nous sommes donc replies sur une fleche calculee par rapport
 %            aux deux positions precedentes
 
-    
-% Taille de la fleche
-R = 0.1;
-
-% Positions
-p1 = positions{end};
-
-if velocity ~= 0
-    display_velocity = text(p1(2)+0.1, p1(1)-0.1,num2str(ceil(velocity)),'color','black');
-else
-    display_velocity = 0;
-end
-    
 % Le nombre de position n'est pas suffisant
 if (length(positions) < 2)
     
-    display_plot = plot(p1(2), p1(1),'.c','MarkerSize',20);
-    
-    return;
+    display_plot = 0;
+    display_velocity = 0;
     
 % Sinon ...
 else
     
+    % Taille de la fleche
+    R = 0.1;
+
+    % Positions
+    p1 = positions{end};
     p2 = positions{end-1};
-    
+     
     diff2 = p1(2) - p2(2); %x
     diff1 = p1(1) - p2(1); %y
     
@@ -50,6 +41,8 @@ else
 %     v = 0.05*sind(head);
 
      display_plot = vekplot2(p1(2),p1(1),u,v,2,'blue-');
+     
+     display_velocity = text(p1(2)+0.1, p1(1)-0.1,num2str(ceil(velocity)),'color','black');
 
 %     display_plot = quiver(x,y,u,v);
 %     set(display_plot, 'AutoScale', 'off', ...

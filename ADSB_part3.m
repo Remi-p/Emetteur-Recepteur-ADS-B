@@ -73,6 +73,11 @@ disp('R?ception...')
 
 global verbose;
 
+% Initialisations liees a la carte :
+display_plot = [];
+display_text = [];
+display_velocity = [];
+
 registre = struct('adresse', [], 'format', [], 'type', [], 'nom', [], ...
                   'timeFlag', [], 'cprFlag', [], ...
                   'positions', [], 'velocity', []);
@@ -101,8 +106,8 @@ p_gen = [1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 1 0 0 1];
 
 % ------------------------------------- Filtres
 % p(t) le filtre de mise en forme
-p = - ones(1, (Fse)) * 0.5;
-p(Fse/2:Fse) = - p(Fse/2:Fse);
+p = [-ones(1, Fse/2) ones(1, Fse/2)] / 2;
+% p = p / sqrt(sum(p.^2));
 
 % Filtre de reception : Pour maximiser le rapport signal sur bruit,
 % on prend pa(t) = p*(-t)
@@ -148,7 +153,8 @@ while my_input_stream.available % tant qu'on re?oit quelque chose on boucle
 
 %     registre
     if mod(k, 4) == 0
-        planes_on_map( registre.positions, registre.adresse );
+        % Mise a jour de la carte
+        [registre, display_plot, display_text, display_velocity] = planes_on_map( registre, display_plot, display_text, display_velocity);
     end
     
     toc

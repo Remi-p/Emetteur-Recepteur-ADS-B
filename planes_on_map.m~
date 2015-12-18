@@ -20,8 +20,13 @@ for ind=1:size(registre.adresse,2)
 
         if registre.update(ind) == 0;
             if k == nb_positions
-                
-                [display_plot{ind}, display_velocity{ind}] = display_head( registre.velocity(ind), registre.positions{ind} );
+                if registre.head(ind) == 0;
+                    display_plot{ind} = plot(curr_plane_pos(2), curr_plane_pos(1),'.c','MarkerSize',20);
+                    display_velocity{ind} = 0;
+                else
+                    if(length(registre.positions{ind}) > 2)
+                   [display_plot{ind}, display_velocity{ind}] = display_head( registre.head(ind), registre.velocity(ind), registre.positions{ind} );
+                end
                 
                 display_text{ind} = text(curr_plane_pos(2)+0.1, curr_plane_pos(1),registre.adresse{ind},'color','r', 'BackgroundColor','white', 'EdgeColor','black');
                 registre.update(ind) = k;
@@ -38,11 +43,18 @@ for ind=1:size(registre.adresse,2)
                 set(display_velocity{ind}, 'Visible', 'off');
                 
                 for m=length(registre.update(ind)):nb_positions
+                    
                     p = registre.positions{ind}{m};
                     plot(p(2), p(1),'.b','MarkerSize',3)
                 end
-                
-                [display_plot{ind}, display_velocity{ind}] = display_head( registre.velocity(ind), registre.positions{ind} );
+                 if registre.head(ind) == 0;
+                    display_plot{ind} = plot(curr_plane_pos(2), curr_plane_pos(1),'.c','MarkerSize',20); 
+                    display_velocity{ind} = text(curr_plane_pos(2)+0.1, curr_plane_pos(1)-0.1,num2str(ceil(registre.velocity(ind))),'color','black');
+                 else
+                     
+                 [display_plot{ind}, display_velocity{ind}] = display_head( registre.head(ind), registre.velocity(ind), registre.positions{ind} );
+
+                 end
                 display_text{ind} = text(curr_plane_pos(2)+0.1, curr_plane_pos(1),registre.adresse{ind},'color','r','BackgroundColor','white', 'EdgeColor','black');
                 registre.update(ind) = registre.update(ind)+1;
                 
