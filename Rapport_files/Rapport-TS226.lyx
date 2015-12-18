@@ -2964,7 +2964,16 @@ Class
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
 registre_structofvectors
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3005,7 +3014,16 @@ struct
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
 registre_arrayofstruct
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3173,10 +3191,31 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\begin_inset Graphics
+	filename Aff_avions_eux.png
+	width 45line%
+	groupId subgraph
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Positions des avions à //TODO d'après //TODO
+Positions des avions d'après 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+flightradar24.com
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3197,6 +3236,13 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\begin_inset Graphics
+	filename Aff_Avions_Nous.png
+	width 45line%
+	groupId subgraph
+
+\end_inset
+
 
 \end_layout
 
@@ -3204,7 +3250,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Positions des avons à //TODO d'après notre algorithme
+Positions des avons d'après notre algorithme
 \end_layout
 
 \end_inset
@@ -3225,7 +3271,18 @@ Positions des avons à //TODO d'après notre algorithme
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Capture des trames ADS-B avec notre algorithme et le site //TODO
+Capture des trames ADS-B, à 10h (18 déc.
+ 2015) avec notre algorithme et le site 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+flightradar24.com
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
