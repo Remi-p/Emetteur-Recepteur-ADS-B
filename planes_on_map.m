@@ -2,9 +2,12 @@ function [registre, display_plot, display_text, display_velocity] = planes_on_ma
 % PLANES_ON_MAP Affiche les avions et leur trajectoire sur une carte 
 %               google map
 %   registre : registre contenant les informations vis-a-vis des avions
-%   display_plot :
-%   display_text :
-%   display_velocity : 
+%   display_plot : tableau des identifiants des plots des dernieres
+%                  positions de l'avion
+%   display_text : tableau des identifiants des plots des affichages des
+%                  adresses des avions
+%   display_velocity : tableau des identifiants des plots des affichages
+%                      des vitesses des avions
 
 %% Avions
 

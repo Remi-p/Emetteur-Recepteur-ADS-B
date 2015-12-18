@@ -2964,16 +2964,7 @@ Class
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
 registre_structofvectors
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -3014,16 +3005,7 @@ struct
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
 registre_arrayofstruct
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -3067,7 +3049,9 @@ struct
 \end_layout
 
 \begin_layout Standard
-//TODO ?
+Il semble que MATLAB enregistre les informations relatives aux structures
+ pour chaque indice du tableau, ce qui prend beaucoup de mémoire.
+ Nous avons donc préféré un unique registre contenant des vecteurs.
 \end_layout
 
 \begin_layout Subsection
@@ -3175,6 +3159,43 @@ En testant sur les buffers fournis par Simon et Clément, sans correction
 \end_layout
 
 \begin_layout Section
+Vitesse et direction des avions
+\end_layout
+
+\begin_layout Standard
+Nous avons implémenté le decodage des trames de vitesse envoyés par les
+ avions dans le fichier 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+decode_velocity.m
+\end_layout
+
+\end_inset
+
+.
+ De plus, les trames de vitesse contiennent des informations sur le cap
+ des avions.
+ Nous avons donc essayé de recupérer cette information, cependant il s'avère
+ que nous n'avions que le cap c'est-à-dire la direction de l'avion sur 180
+ degrés.
+ Pour faciliter le calcul de la direction nous avons préféré utiliser les
+ deux dernières positions de l'avion pour estimer la direction de l'avion.
+ Cette opération se fait dans le fichier 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+display_head.m
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
 Figures de résultat
 \end_layout
 
@@ -3189,17 +3210,6 @@ status open
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename Aff_avions_eux.png
-	width 45line%
-	groupId subgraph
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -3236,13 +3246,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename Aff_Avions_Nous.png
-	width 45line%
-	groupId subgraph
-
-\end_inset
-
 
 \end_layout
 

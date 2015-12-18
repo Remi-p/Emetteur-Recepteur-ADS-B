@@ -2,7 +2,6 @@ function [ display_plot, display_velocity ] = display_head( velocity, positions)
 % display_head Affiche la derniere position d'un avion et sa direction par
 %              une fleche / ou un point
 %   p : position
-%   head :
 %   velocity : vitesse de l'avion (depuis les trames de vitesse)
 %
 % Remarque : Nous avions prealablement calcule la direction vis-a-vis des

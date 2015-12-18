@@ -1,6 +1,6 @@
 function [ velocity, head ] = decode_velocity( sequence )
 % DECODE_VELOCITY Decode la valeur de la vitesse a partir de la sequence
-%                 issue d'un message de vitesse
+%                 issue d'un message de vitesse ainsi que le cap
 %   sequence : issue d'une trame de vitesse
 
 Vew = sequence(1, 2:11);
@@ -26,8 +26,6 @@ end
  if head < 0
      head = head +360;
  end
-
- 
  
 end
 
