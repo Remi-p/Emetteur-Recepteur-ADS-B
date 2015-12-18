@@ -13,7 +13,7 @@ function [ display_plot, display_velocity ] = display_head( velocity, positions)
 
     
 % Taille de la fleche
-R = 0.1;
+R = 0.05;
 
 % Positions
 p1 = positions{end};
