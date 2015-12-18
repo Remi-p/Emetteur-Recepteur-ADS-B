@@ -832,7 +832,14 @@ Le critère de Nyquist est vérfié si
 \end_layout
 
 \begin_layout Standard
-On peut le vérifier graphiquement :
+On peut le vérifier graphiquement, voir pour cela la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Schéma-conv"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -858,6 +865,13 @@ status open
 
 \begin_layout Plain Layout
 Schéma de la convolution des couples de filtres
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Schéma-conv"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -875,7 +889,14 @@ Schéma de la convolution des couples de filtres
 \end_layout
 
 \begin_layout Standard
-On en déduit la représentation de la convolution suivante :
+On en déduit la représentation de la convolution, donnée en figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Conv-filtre"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -901,6 +922,13 @@ status open
 
 \begin_layout Plain Layout
 Représentation de la convolution d'un couple de filtre
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Conv-filtre"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3163,7 +3191,7 @@ Vitesse et direction des avions
 \end_layout
 
 \begin_layout Standard
-Nous avons implémenté le decodage des trames de vitesse envoyés par les
+Nous avons implémenté le décodage des trames de vitesse envoyés par les
  avions dans le fichier 
 \begin_inset Flex Code
 status open
@@ -3200,6 +3228,35 @@ Figures de résultat
 \end_layout
 
 \begin_layout Standard
+En fusionnant nos deux premières parties, et avec nos modifications apportées
+ au code (présentées dans cette partie du rapport), nous pouvons afficher
+ sur une carte, en temps réel, la position des avions.
+ Nos résultats finaux sont présentés en figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Capture-des-trames"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+À noter que, sur la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Positions-des-avions"
+
+\end_inset
+
+ (notre capture des positions des avions), la carte de Google n'a pas été
+ affichée.
+ En effet, puisque l'adresse IP publique de l'école est la même pour tous
+ les étudiants, elle a atteint le quota maximal de téléchargement de la
+ carte via le service de Google.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -3212,6 +3269,15 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Affiche_Avions_Eux_Last.png
+	width 45line%
+	groupId subgraph
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -3246,6 +3312,14 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Aff_Avions_Nous_Last.png
+	width 45line%
+	groupId subgraph
+
+\end_inset
+
 
 \end_layout
 
@@ -3253,7 +3327,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Positions des avons d'après notre algorithme
+Positions des avions d'après notre algorithme
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Positions-des-avions"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3274,7 +3355,7 @@ Positions des avons d'après notre algorithme
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Capture des trames ADS-B, à 10h (18 déc.
+Capture des trames ADS-B, à 11h30 (18 déc.
  2015) avec notre algorithme et le site 
 \begin_inset Flex Code
 status open
@@ -3282,6 +3363,13 @@ status open
 \begin_layout Plain Layout
 flightradar24.com
 \end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Capture-des-trames"
 
 \end_inset
 

@@ -832,7 +832,14 @@ Le critère de Nyquist est vérfié si
 \end_layout
 
 \begin_layout Standard
-On peut le vérifier graphiquement :
+On peut le vérifier graphiquement, voir pour cela la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Schéma-conv"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -858,6 +865,13 @@ status open
 
 \begin_layout Plain Layout
 Schéma de la convolution des couples de filtres
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Schéma-conv"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -875,7 +889,14 @@ Schéma de la convolution des couples de filtres
 \end_layout
 
 \begin_layout Standard
-On en déduit la représentation de la convolution suivante :
+On en déduit la représentation de la convolution, donnée en figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Conv-filtre"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -901,6 +922,13 @@ status open
 
 \begin_layout Plain Layout
 Représentation de la convolution d'un couple de filtre
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Conv-filtre"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3049,7 +3077,9 @@ struct
 \end_layout
 
 \begin_layout Standard
-//TODO ?
+Il semble que MATLAB enregistre les informations relatives aux structures
+ pour chaque indice du tableau, ce qui prend beaucoup de mémoire.
+ Nous avons donc préféré un unique registre contenant des vecteurs.
 \end_layout
 
 \begin_layout Subsection
@@ -3157,7 +3187,69 @@ En testant sur les buffers fournis par Simon et Clément, sans correction
 \end_layout
 
 \begin_layout Section
+Vitesse et direction des avions
+\end_layout
+
+\begin_layout Standard
+Nous avons implémenté le décodage des trames de vitesse envoyés par les
+ avions dans le fichier 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+decode_velocity.m
+\end_layout
+
+\end_inset
+
+.
+ De plus, les trames de vitesse contiennent des informations sur le cap
+ des avions.
+ Nous avons donc essayé de recupérer cette information, cependant il s'avère
+ que nous n'avions que le cap c'est-à-dire la direction de l'avion sur 180
+ degrés.
+ Pour faciliter le calcul de la direction nous avons préféré utiliser les
+ deux dernières positions de l'avion pour estimer la direction de l'avion.
+ Cette opération se fait dans le fichier 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+display_head.m
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
 Figures de résultat
+\end_layout
+
+\begin_layout Standard
+En fusionnant nos deux premières parties, et avec nos modifications apportées
+ au code (présentées dans cette partie du rapport), nous pouvons afficher
+ sur une carte, en temps réel, la position des avions.
+ Nos résultats finaux sont présentés en figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Capture-des-trames"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+À noter que, sur la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Positions-des-avions"
+
+\end_inset
+
+ (notre capture des positions des avions), 
 \end_layout
 
 \begin_layout Standard
@@ -3173,17 +3265,15 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename Aff_avions_eux.png
+	filename Affiche_Avions_Eux_Last.png
 	width 45line%
 	groupId subgraph
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -3218,8 +3308,9 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename Aff_Avions_Nous.png
+	filename Aff_Avions_Nous_Last.png
 	width 45line%
 	groupId subgraph
 
@@ -3232,7 +3323,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Positions des avons d'après notre algorithme
+Positions des avions d'après notre algorithme
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Positions-des-avions"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3253,7 +3351,7 @@ Positions des avons d'après notre algorithme
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Capture des trames ADS-B, à 10h (18 déc.
+Capture des trames ADS-B, à 11h30 (18 déc.
  2015) avec notre algorithme et le site 
 \begin_inset Flex Code
 status open
@@ -3261,6 +3359,13 @@ status open
 \begin_layout Plain Layout
 flightradar24.com
 \end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Capture-des-trames"
 
 \end_inset
 
