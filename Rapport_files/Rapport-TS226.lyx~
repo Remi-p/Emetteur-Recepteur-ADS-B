@@ -1,5 +1,5 @@
-#LyX 2.1 created this file. For more info see http://www.lyx.org/
-\lyxformat 474
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
 \begin_document
 \begin_header
 \textclass article
@@ -44,13 +44,13 @@ logicalmkup
 \font_roman default
 \font_sans default
 \font_typewriter default
-\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -61,24 +61,15 @@ logicalmkup
 \use_hyperref false
 \papersize a4paper
 \use_geometry true
-\use_package amsmath 2
-\use_package amssymb 2
-\use_package cancel 1
-\use_package esint 0
-\use_package mathdots 0
-\use_package mathtools 1
-\use_package mhchem 0
-\use_package stackrel 1
-\use_package stmaryrd 1
-\use_package undertilde 1
+\use_amsmath 2
+\use_esint 0
+\use_mhchem 0
+\use_mathdots 0
 \cite_engine basic
-\cite_engine_type default
-\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
-\justification true
 \use_refstyle 0
 \index Index
 \shortcut idx
@@ -517,7 +508,7 @@ filename "Question1-1.tex"
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Représentation de 
@@ -745,7 +736,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Architecture pour une modulation avec 
@@ -861,7 +852,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Schéma de la convolution des couples de filtres
@@ -918,7 +909,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Représentation de la convolution d'un couple de filtre
@@ -1331,7 +1322,7 @@ filename "Question7-1.tex"
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Calcul graphique de l’auto-corrélation moyennée
@@ -1650,7 +1641,7 @@ On note, enfin, que, la densité spectrale du filtre adapté
 \end_layout
 
 \begin_layout Standard
-Connaissant ses informations, on peut calculer la fonction d’auto-corrélation
+Connaissant ces informations, on peut calculer la fonction d’auto-corrélation
  des composantes de ce bruit après filtrage adapté par les deux filtres.
  Détaillons les étapes pour la première composante.
  On commence par calculer la densité spectrale de puissance :
@@ -2007,7 +1998,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 \begin_inset Formula $s_{l}(t)$
@@ -2075,7 +2066,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Diagramme de l'œil de de 
@@ -2148,7 +2139,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Densité spectrale de puissance de 
@@ -2298,7 +2289,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Taux d'Erreur Binaire en fonction du rapport signal sur bruit
@@ -2643,7 +2634,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Taux d'Erreur Binaire en fonction du rapport signal sur bruit, avec estimation
@@ -2736,7 +2727,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Trajectoire de l'appareil sur une carte Google Maps.
@@ -2944,11 +2935,11 @@ Pour faire notre choix nous avons comparé la gestion, par Matlab, de la
 \align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="4">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -3249,7 +3240,11 @@ reference "fig:Positions-des-avions"
 
 \end_inset
 
- (notre capture des positions des avions), 
+ (notre capture des positions des avions), la carte de Google n'a pas été
+ affichée.
+ En effet, puisque l'adresse IP publique de l'école est la même pour tous
+ les étudiants, elle a atteint le quota maximal de téléchargement de la
+ carte via le service de Google.
 \end_layout
 
 \begin_layout Standard
@@ -3274,7 +3269,7 @@ status open
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Positions des avions d'après 
@@ -3320,7 +3315,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Positions des avions d'après notre algorithme
@@ -3348,7 +3343,7 @@ name "fig:Positions-des-avions"
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Capture des trames ADS-B, à 11h30 (18 déc.

@@ -22,6 +22,7 @@ end
 % Calcul de la vitesse en (kn -> kilo noeuds)
  velocity = sqrt(Vew^2 + Vns^2);
  
+ % Calcul du cap en degres
  head = atan(Vew/Vns) * 360/2*pi;
  if head < 0
      head = head +360;

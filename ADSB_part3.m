@@ -13,28 +13,28 @@ javaaddpath('./javaDataReader');
 
 %% Constants definition
 PORT = 1234;
-MER_LON = -0.710648; % Longitude de l'a?roport de M?rignac
-MER_LAT = 44.836316; % Latitude de l'a?roport de M?rignac
+MER_LON = -0.710648; % Longitude de l'aeroport de Merignac
+MER_LAT = 44.836316; % Latitude de l'aeroport de Merignac
 
-%% Param?tres Utilisateur
-Fc = 1090e6; % La fr?quence porteuse
-Rs = 4e6; % Le rythme d'?chantillonnage (pas plus de 4Mhz)
+%% Parametres Utilisateur
+Fc = 1090e6; % La frequence porteuse
+Rs = 4e6; % Le rythme d'echantillonnage (pas plus de 4Mhz)
 
 antenna = 'TX/RX'; % Port de l'usrp sur lequel est branch?e l'antenne
 antenna_gain = 40; % Gain d'antenne
 
 secInBuffer = 0.5; % dur?e du buffer en secondes
 
-%% Autres param?tres
-Rb = 1e6;% d?bit binaire
-NsB = floor(Rs/Rb); % nombre d'?chantillons par symbole
-cplxSamplesInBuffer = secInBuffer*Rs; % dur?e en secondes
+%% Autres parametres
+Rb = 1e6;% debit binaire
+NsB = floor(Rs/Rb); % nombre d'echantillons par symbole
+cplxSamplesInBuffer = secInBuffer*Rs; % duree en secondes
 
 %% Affichage de la carte avant de commencer
 disp('Chargement de la carte ...')
 figure(1);
 plot(MER_LON,MER_LAT,'.r','MarkerSize',20);
-text(MER_LON+0.05,MER_LAT,'Merignac airport','color','b') % On affiche l'a?roport de M?rignac sur la carte
+text(MER_LON+0.05,MER_LAT,'Merignac airport','color','b') % On affiche l'aeroport de Merignac sur la carte
 plot_google_map('MapType','terrain','ShowLabels',0) % On affiche une carte sans le nom des villes
 xlabel('Longitude en degr?');
 ylabel('Lattitude en degr?');
@@ -42,7 +42,7 @@ hold on
 drawnow
 
 %% Lancement du server
-my_server = ServerSocket (PORT); % D?finition d'un server tcp sur le port 1234
+my_server = ServerSocket (PORT); % Definition d'un server tcp sur le port 1234
 
 % Affichage des lignes de commande pour lancer le client
 disp('Pour lancer le client taper le code suivant dans une console :')
@@ -54,7 +54,7 @@ disp('En attente de connexion client...')
 socket = my_server.accept; % attente de connexion client
 disp('Connexion accept?e')
 
-% Le n?cessaire pour aller lire les paquets re?us par tcp
+% Le n?cessaire pour aller lire les paquets recus par tcp
 my_input_stream = socket.getInputStream;
 my_data_input_stream = DataInputStream(my_input_stream);
 data_reader = DataReader(my_data_input_stream);

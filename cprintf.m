@@ -1,5 +1,6 @@
 function count = cprintf(style,format,varargin)
 % CPRINTF displays styled formatted text in the Command Window
+% 	      From : http://www.mathworks.com/matlabcentral/fileexchange/24093-cprintf-display-formatted-colored-text-in-the-command-window
 %
 % Syntax:
 %    count = cprintf(style,format,...)
