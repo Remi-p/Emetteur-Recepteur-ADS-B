@@ -2,7 +2,7 @@
 
 Simulation d'un émetteur / récepteur ADS-B, projet TS226
 
-Enseirb-Matmeca, 2015, T1-G2
+Enseirb-Matmeca, 2015, T2-G1
 
 *Thibaut Gourdel*, *Rémi Perrot*
 
